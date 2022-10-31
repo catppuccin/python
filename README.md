@@ -1,8 +1,17 @@
-# catppuccin
+<h3 align="center">
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+	Catppuccin for <a href="https://www.python.org/">Python</a>
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+</h3>
 
-🐍 Soothing pastel theme for Python.
+<p align="center">
+	<a href="https://github.com/catppuccin/python/stargazers"><img src="https://img.shields.io/github/stars/catppuccin/python?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+	<a href="https://github.com/catppuccin/python/issues"><img src="https://img.shields.io/github/issues/catppuccin/python?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+	<a href="https://github.com/catppuccin/python/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/python?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
+</p>
 
-## Usage
+## Installation
 
 Install with `pip` or your preferred dependency management tool.
 
@@ -10,7 +19,7 @@ Install with `pip` or your preferred dependency management tool.
 pip install catppuccin
 ```
 
-## Example
+## Usage
 
 ```python
 >>> from catppuccin import Flavour
@@ -44,7 +53,7 @@ If you are looking to contribute, please read through our
 [CONTRIBUTING.md](https://github.com/catppuccin/.github/blob/main/CONTRIBUTING.md)
 first!
 
-### Setup
+### Development
 
 This project is maintained with [Poetry](https://python-poetry.org). If you
 don't have Poetry yet, you can install it using the [installation
@@ -56,7 +65,7 @@ Install the project's dependencies:
 poetry install
 ```
 
-### Code Standards
+#### Code Standards
 
 Before committing changes, it is recommended to run the following tools to
 ensure consistency in the codebase.
@@ -73,3 +82,19 @@ These tools are all installed as part of the `dev` dependency group with
 Poetry. You can use `poetry shell` to automatically put these tools in your
 path.
 
+
+## 💝 Thanks to
+
+-   [backwardspy](https://github.com/backwardspy)
+
+&nbsp;
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
+</p>
+<p align="center">
+	Copyright &copy; 2022-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
+</p>
+<p align="center">
+	<a href="https://github.com/catppuccin/catppuccin/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
+</p>
