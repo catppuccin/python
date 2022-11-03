@@ -1,5 +1,6 @@
 """🐍 Soothing pastel theme for Python."""
 from dataclasses import dataclass
+from typing import Tuple
 
 
 @dataclass(frozen=True)
@@ -11,7 +12,7 @@ class Colour:
     blue: int
 
     @property
-    def rgb(self) -> tuple[int, int, int]:
+    def rgb(self) -> Tuple[int, int, int]:
         """Get the colour as a 3-tuple of red, green, and blue."""
         return (self.red, self.green, self.blue)
 
