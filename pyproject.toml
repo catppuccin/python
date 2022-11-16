@@ -11,6 +11,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7.2"
+pygments = { version = "^2.13.0", optional = true }
+
+[tool.poetry.extras]
+pygments = ["pygments"]
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^2.15.5"
@@ -19,6 +23,13 @@ black = "^22.10.0"
 isort = "^5.10.1"
 pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
+types-setuptools = "^65.5.0.3"
+types-pygments = "^2.13.1.1"
 
-[too.isort]
+[tool.pylint.messages_control]
+disable = [
+    "useless-import-alias", # pyright compatibility
+]
+
+[tool.isort]
 profile = "black"

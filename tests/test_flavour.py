@@ -1,8 +1,7 @@
 from typing import cast
 
-from catppuccin import Flavour
-
-from .conftest import ColourJSON, FlavourJSON, PaletteJSON
+from catppuccin.flavour import Flavour
+from tests.conftest import ColourJSON, FlavourJSON, PaletteJSON
 
 
 def validate_flavour(flavour: Flavour, flavour_json: FlavourJSON) -> None:
