@@ -22,5 +22,5 @@ jobs:
       - run: poetry install
       - run: isort --check .
       - run: black --check .
-      - run: pylint catppuccin.py
+      - run: pylint catppuccin
       - run: mypy .
