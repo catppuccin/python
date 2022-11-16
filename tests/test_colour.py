@@ -1,4 +1,4 @@
-from catppuccin import Colour
+from catppuccin.colour import Colour
 
 
 def test_colour_to_rgb():

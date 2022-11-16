@@ -73,9 +73,9 @@ ensure consistency in the codebase.
 ```bash
 isort .
 black .
-pylint catppuccin.py
+pylint catppuccin
 mypy .
-pytest --cov
+pytest --cov catppuccin
 ```
 
 These tools are all installed as part of the `dev` dependency group with
