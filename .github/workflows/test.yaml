@@ -19,5 +19,5 @@ jobs:
         with:
           poetry-version: "1.2.2"
       - run: poetry config virtualenvs.create false
-      - run: poetry install
+      - run: poetry install -E pygments
       - run: pytest --cov catppuccin
