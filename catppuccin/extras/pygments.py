@@ -1,6 +1,8 @@
 """
 Pygments styles for all Catppuccin flavours.
 """
+from typing import Dict
+
 from pygments.style import Style
 from pygments.token import (
     Comment,
@@ -20,7 +22,7 @@ from pygments.token import (
 from catppuccin.flavour import Flavour
 
 
-def _make_styles(flavour: Flavour) -> dict[_TokenType, str]:
+def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
     return {
         Token: f"#{flavour.text.hex}",
         Text: f"#{flavour.text.hex}",
