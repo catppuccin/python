@@ -47,6 +47,38 @@ mantle: #292c3c
 crust: #232634
 ```
 
+## Pygments Styles
+
+This package provides a Pygments style for each of the four Catppuccin flavours.
+
+Install Catppuccin with the `pygments` feature to include the relevant dependencies:
+
+```bash
+pip install catppuccin[pygments]
+```
+
+The styles are registered as importlib entrypoints, which allows Pygments to
+find them by name:
+
+```python
+>>> from pygments.styles import get_style_by_name
+>>> get_style_by_name("catppuccin-frappe")
+catppuccin.extras.pygments.FrappeStyle
+```
+
+The following style names are available:
+
+ - `catppuccin-latte`
+ - `catppuccin-frappe`
+ - `catppuccin-macchiato`
+ - `catppuccin-mocha`
+
+They can also be accessed by directly importing them:
+
+```python
+from catppuccin.extras.pygments import MacchiatoStyle
+```
+
 ## Contribution
 
 If you are looking to contribute, please read through our
