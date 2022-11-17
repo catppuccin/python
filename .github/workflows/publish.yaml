@@ -1,0 +1,22 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.2.2"
+      - run: poetry self add "poetry-dynamic-versioning[plugin]"
+      - run: poetry config virtualenvs.create false
+      - run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+      - run: poetry build
+      - run: poetry publish

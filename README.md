@@ -59,10 +59,10 @@ This project is maintained with [Poetry](https://python-poetry.org). If you
 don't have Poetry yet, you can install it using the [installation
 instructions](https://python-poetry.org/docs/#installation).
 
-Install the project's dependencies:
+Install the project's dependencies including extras:
 
 ```bash
-poetry install
+poetry install -E pygments
 ```
 
 #### Code Standards
