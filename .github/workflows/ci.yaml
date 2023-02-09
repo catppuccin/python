@@ -1,0 +1,85 @@
+name: CI
+on:
+  pull_request:
+    types: [opened, reopened]
+  workflow_dispatch:
+  push:
+    paths:
+      - '**.py'
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.7
+          cache: 'pip'
+      - run: pip install bandit
+      - run: bandit --recursive catppuccin
+  codespell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.7
+          cache: 'pip'
+      - run: pip install codespell
+      - run: codespell
+  lint:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        os: [ ubuntu, windows, macos ]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.2.2"
+      - run: poetry config virtualenvs.create false
+      - run: poetry install -E pygments
+      - run: isort --check .
+      - run: black --check .
+      - run: pylint catppuccin
+      - run: mypy .
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        os: [ ubuntu, windows, macos ]
+    runs-on: ${{ matrix.os }}-latest
+    name: Nox - py ${{ matrix.python }} - ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python Setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+          cache: 'pip'
+      - name: Test installation
+        run: pip install -e .
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        os: [ ubuntu, windows, macos ]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.2.2"
+      - run: poetry config virtualenvs.create false
+      - run: poetry install -E pygments
+      - run: pytest --cov catppuccin
