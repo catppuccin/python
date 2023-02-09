@@ -1,3 +1,17 @@
+# IDE Settings
+.idea
+.vscode
+.vs
+
+# Python Virtual Environment
 .venv
+venv
+
+# Python bytecode
 __pycache__/
+*.py[cod]
+
+# Coverage report
 .coverage
+coverage.xml
+htmlcov
