@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Tuple, Any
+from typing import Any, Tuple
 
 
 @dataclass(frozen=True)
@@ -39,5 +39,5 @@ class Colour:
         match = re.match(r"([\da-fA-F]{2})" * 3, hex_string)
         if match is None:
             raise ValueError("Hex string have an invalid format.")
-        r, g, b = match.groups()
-        return Colour(*(int(col, 16) for col in (r, g, b)))
+        hex_r, hex_g, hex_b = match.groups()
+        return Colour(*(int(col, 16) for col in (hex_r, hex_g, hex_b)))
