@@ -18,9 +18,11 @@ catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 [tool.poetry.dependencies]
 python = "^3.7.2"
 pygments = { version = "^2.13.0", optional = true }
+rich = { version = "^13.3.5", optional = true }
 
 [tool.poetry.extras]
 pygments = ["pygments"]
+rich = ["rich"]
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^2.15.5"
