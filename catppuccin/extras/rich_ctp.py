@@ -1,13 +1,12 @@
-from rich import print
+from rich import style
 from rich.theme import Theme
-
+from rich.console import Console
+from rich.highlighter import RegexHighlighter
+from catppuccin import flavour
 from catppuccin.flavour import Flavour
 
-print("[italic red] Hello [/italic red]")
-
-def _make_styles(flavour: Flavour) -> Theme:
-    return {
-        Theme({
+def _make_theme(flavour: Flavour) -> Theme:
+    return Theme({
     "red": f"#{flavour.red.hex}",
     "base": f"#{flavour.base.hex}",
     "subtext0": f"#{flavour.subtext0.hex}",
@@ -15,7 +14,7 @@ def _make_styles(flavour: Flavour) -> Theme:
     "flamingo": f"#{flavour.flamingo.hex}",
     "pink": f"#{flavour.pink.hex}",
     "mauve": f"#{flavour.mauve.hex}",
-    "maroon": f"{flavour.maroon.hex}",
+    "maroon": f"#{flavour.maroon.hex}",
     "peach": f"#{flavour.peach.hex}",
     "yellow": f"#{flavour.yellow.hex}",
     "green": f"#{flavour.green.hex}",
@@ -35,4 +34,15 @@ def _make_styles(flavour: Flavour) -> Theme:
     "mantle": f"#{flavour.mantle.hex}",
     "crust": f"#{flavour.crust.hex}"
     })
-}
+    
+latte = _make_theme(Flavour.latte())
+
+frappe = _make_theme(Flavour.frappe())
+
+macchiato = _make_theme(Flavour.macchiato())
+
+mocha = _make_theme(Flavour.mocha())
+
+
+c = Console(theme=mocha)
+c.print("Hello", style="yellow")
