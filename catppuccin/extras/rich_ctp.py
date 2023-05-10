@@ -1,3 +1,6 @@
+"""
+Rich themes for all Catppuccin flavours.
+"""
 from rich.theme import Theme
 
 from catppuccin.flavour import Flavour
