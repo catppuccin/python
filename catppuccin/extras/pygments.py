@@ -16,6 +16,7 @@ from pygments.token import (
     String,
     Text,
     Token,
+    Generic,
     _TokenType,
 )
 
@@ -48,6 +49,7 @@ def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
         Punctuation: f"#{flavour.text.hex}",
         Operator: f"#{flavour.sky.hex}",
         Comment: f"#{flavour.overlay0.hex}",
+        Generic.Heading: f"#{flavour.blue.hex} bold",
     }
 
 
