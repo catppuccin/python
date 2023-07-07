@@ -55,23 +55,43 @@ def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
 
 class LatteStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Latte pygments style."""
+    _flavour = Flavour.latte()
 
-    styles = _make_styles(Flavour.latte())
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Frappé pygments style."""
+    _flavour = Flavour.frappe()
 
-    styles = _make_styles(Flavour.frappe())
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Macchiato pygments style."""
+    _flavour = Flavour.macchiato()
 
-    styles = _make_styles(Flavour.macchiato())
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class MochaStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Mocha pygments style."""
+    _flavour = Flavour.mocha()
 
-    styles = _make_styles(Flavour.mocha())
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
