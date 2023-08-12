@@ -7,6 +7,7 @@ from pygments.style import Style
 from pygments.token import (
     Comment,
     Error,
+    Generic,
     Keyword,
     Literal,
     Name,
@@ -48,28 +49,53 @@ def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
         Punctuation: f"#{flavour.text.hex}",
         Operator: f"#{flavour.sky.hex}",
         Comment: f"#{flavour.overlay0.hex}",
+        Generic.Heading: f"#{flavour.blue.hex} bold",
     }
 
 
 class LatteStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Latte pygments style."""
 
-    styles = _make_styles(Flavour.latte())
+    _flavour = Flavour.latte()
+
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Frappé pygments style."""
 
-    styles = _make_styles(Flavour.frappe())
+    _flavour = Flavour.frappe()
+
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Macchiato pygments style."""
 
-    styles = _make_styles(Flavour.macchiato())
+    _flavour = Flavour.macchiato()
+
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
 
 
 class MochaStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Mocha pygments style."""
 
-    styles = _make_styles(Flavour.mocha())
+    _flavour = Flavour.mocha()
+
+    background_color = f"#{_flavour.base.hex}"
+    line_number_background_color = f"#{_flavour.mantle.hex}"
+    line_number_color = f"#{_flavour.text.hex}"
+
+    styles = _make_styles(_flavour)
