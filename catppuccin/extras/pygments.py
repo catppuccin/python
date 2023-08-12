@@ -7,6 +7,7 @@ from pygments.style import Style
 from pygments.token import (
     Comment,
     Error,
+    Generic,
     Keyword,
     Literal,
     Name,
@@ -16,7 +17,6 @@ from pygments.token import (
     String,
     Text,
     Token,
-    Generic,
     _TokenType,
 )
 
@@ -55,6 +55,7 @@ def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
 
 class LatteStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Latte pygments style."""
+
     _flavour = Flavour.latte()
 
     background_color = f"#{_flavour.base.hex}"
@@ -66,6 +67,7 @@ class LatteStyle(Style):  # pylint: disable=too-few-public-methods
 
 class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Frappé pygments style."""
+
     _flavour = Flavour.frappe()
 
     background_color = f"#{_flavour.base.hex}"
@@ -77,6 +79,7 @@ class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
 
 class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Macchiato pygments style."""
+
     _flavour = Flavour.macchiato()
 
     background_color = f"#{_flavour.base.hex}"
@@ -88,6 +91,7 @@ class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
 
 class MochaStyle(Style):  # pylint: disable=too-few-public-methods
     """Catppuccin Mocha pygments style."""
+
     _flavour = Flavour.mocha()
 
     background_color = f"#{_flavour.base.hex}"
