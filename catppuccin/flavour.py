@@ -43,7 +43,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def latte() -> "Flavour":
         """Latte flavoured Catppuccin."""
         return Flavour(
-            name= "Latte",
+            name="Latte",
             rosewater=Colour(220, 138, 120),
             flamingo=Colour(221, 120, 120),
             pink=Colour(234, 118, 203),
@@ -76,7 +76,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def frappe() -> "Flavour":
         """Frappé flavoured Catppuccin."""
         return Flavour(
-            name= "Frappé",
+            name="Frappé",
             rosewater=Colour(242, 213, 207),
             flamingo=Colour(238, 190, 190),
             pink=Colour(244, 184, 228),
