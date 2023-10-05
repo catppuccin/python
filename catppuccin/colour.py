@@ -37,7 +37,7 @@ class Colour:
     @property
     def hsla(self) -> Tuple[float, float, float, float]:
         """Get the colour as a 4-tuple of hue, saturation, lightness, and alpha."""
-        return *self.hsl, self.alpha
+        return (*self.hsl, self.alpha)
 
     @property
     def hex(self) -> str:
