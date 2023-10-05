@@ -11,6 +11,7 @@ from catppuccin.colour import Colour
 class Flavour:  # pylint: disable=too-many-instance-attributes
     """All the colours in a flavour of Catppuccin."""
 
+    name: str
     rosewater: Colour
     flamingo: Colour
     pink: Colour
@@ -42,6 +43,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def latte() -> "Flavour":
         """Latte flavoured Catppuccin."""
         return Flavour(
+            name="Latte",
             rosewater=Colour(220, 138, 120),
             flamingo=Colour(221, 120, 120),
             pink=Colour(234, 118, 203),
@@ -74,6 +76,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def frappe() -> "Flavour":
         """Frappé flavoured Catppuccin."""
         return Flavour(
+            name="Frappé",
             rosewater=Colour(242, 213, 207),
             flamingo=Colour(238, 190, 190),
             pink=Colour(244, 184, 228),
@@ -106,6 +109,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def macchiato() -> "Flavour":
         """Macchiato flavoured Catppuccin."""
         return Flavour(
+            name="Macchiato",
             rosewater=Colour(244, 219, 214),
             flamingo=Colour(240, 198, 198),
             pink=Colour(245, 189, 230),
@@ -138,6 +142,7 @@ class Flavour:  # pylint: disable=too-many-instance-attributes
     def mocha() -> "Flavour":
         """Mocha flavoured Catppuccin."""
         return Flavour(
+            name="Mocha",
             rosewater=Colour(245, 224, 220),
             flamingo=Colour(242, 205, 205),
             pink=Colour(245, 194, 231),
