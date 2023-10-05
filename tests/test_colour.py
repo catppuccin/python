@@ -15,6 +15,18 @@ def test_colour_to_rgba_default():
     assert Colour(12, 123, 234).rgba == (12, 123, 234, 255)
 
 
+def test_colour_to_hsl():
+    assert Colour(12, 123, 234).hsl == (210, 0.90, 0.48)
+
+
+def test_colour_to_hsla():
+    assert Colour(12, 123, 234, 35).hsla == (210, 0.90, 0.48, 35)
+
+
+def test_colour_to_hsla_default():
+    assert Colour(12, 123, 234).hsla == (210, 0.90, 0.48, 255)
+
+
 def test_rgb_colour_to_hex():
     assert Colour(0x12, 0xEB, 0x77).hex == "12eb77"
 

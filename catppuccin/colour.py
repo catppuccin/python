@@ -7,6 +7,8 @@ import re
 from dataclasses import dataclass
 from typing import Any, Tuple
 
+from catppuccin.hsl import rgb_to_hsl
+
 
 @dataclass(frozen=True)
 class Colour:
@@ -26,6 +28,16 @@ class Colour:
     def rgba(self) -> Tuple[int, int, int, int]:
         """Get the colour as a 4-tuple of red, green, blue, and alpha."""
         return self.red, self.green, self.blue, self.alpha
+
+    @property
+    def hsl(self) -> Tuple[float, float, float]:
+        """Get the colour as a 3-tuple of hue, saturation, and lightness."""
+        return rgb_to_hsl(*self.rgb)
+
+    @property
+    def hsla(self) -> Tuple[float, float, float, float]:
+        """Get the colour as a 4-tuple of hue, saturation, lightness, and alpha."""
+        return *self.hsl, self.alpha
 
     @property
     def hex(self) -> str:
