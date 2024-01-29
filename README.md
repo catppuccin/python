@@ -84,10 +84,7 @@ from catppuccin.extras.pygments import MacchiatoStyle
 A minimal configuration:
 
 ```python
-from pygments.styles import get_style_by_name
-
-c = get_config()
-c.TerminalInteractiveShell.highlighting_style = get_style_by_name("catppuccin-mocha")
+c.TerminalInteractiveShell.highlighting_style = "catppuccin-mocha"
 ```
 
 Putting this into your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html) and ensuring `catppuccin[pygments]` is installed in the same environment will give you Catppuccin Mocha syntax highlighting in the REPL. See [here](https://github.com/backwardspy/dots/blob/f6991570d6691212e27e266517656192f910ccbf/dot_config/ipython/profile_default/ipython_config.py) for a more complete example configuration.
