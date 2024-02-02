@@ -84,6 +84,7 @@ from catppuccin.extras.pygments import MacchiatoStyle
 A minimal configuration:
 
 ```python
+c.TerminalInteractiveShell.true_color = True
 c.TerminalInteractiveShell.highlighting_style = "catppuccin-mocha"
 ```
 
