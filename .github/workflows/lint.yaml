@@ -20,6 +20,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - uses: abatilo/actions-poetry@v3
       - run: poetry install --all-extras
-      - run: ruff check
-      - run: ruff format --check --diff
-      - run: mypy .
+      - run: poetry run ruff check
+      - run: poetry run ruff format --check --diff
+      - run: poetry run mypy .
