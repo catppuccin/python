@@ -345,25 +345,40 @@ files = [
 ]
 
 [[package]]
-name = "types-decorator"
-version = "5.1.8.20240106"
-description = "Typing stubs for decorator"
+name = "types-docutils"
+version = "0.20.0.20240201"
+description = "Typing stubs for docutils"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-decorator-5.1.8.20240106.tar.gz", hash = "sha256:32ff92b33615060d23b9d3760124bdb3506c4aa8d9eb50963cf1a3c20b9ecbbf"},
-    {file = "types_decorator-5.1.8.20240106-py3-none-any.whl", hash = "sha256:14d21e6a0755dbb8f301f2f532b3eab5148f433c69dad2d98bf5bd2b3a2ef4e7"},
+    {file = "types-docutils-0.20.0.20240201.tar.gz", hash = "sha256:ba4bfd4ff6dd19640ba7ab5d93900393a65897880f3650997964a943f4e79a6b"},
+    {file = "types_docutils-0.20.0.20240201-py3-none-any.whl", hash = "sha256:79d3bcef235f7c81a63f4f3dcf1d0b138985079bb32d02f5a7d266e1f9f361ba"},
 ]
 
 [[package]]
-name = "types-six"
-version = "1.16.21.20240106"
-description = "Typing stubs for six"
+name = "types-pygments"
+version = "2.17.0.20240106"
+description = "Typing stubs for Pygments"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-six-1.16.21.20240106.tar.gz", hash = "sha256:c83908b4925583e973eb9971ef2bd60dbab647611e10e9cd588d2bef415bfe68"},
-    {file = "types_six-1.16.21.20240106-py3-none-any.whl", hash = "sha256:3658c9e36e9cb003e522655b01b9ca39bd0db61b6383b3e7d0d10d14f873b338"},
+    {file = "types-Pygments-2.17.0.20240106.tar.gz", hash = "sha256:92e62ac37793e567cd2b0f64f1456c24fccce4041d9c5f869697a6739fde4fce"},
+    {file = "types_Pygments-2.17.0.20240106-py3-none-any.whl", hash = "sha256:8052c574b0ab8f2dc94bdc4a31b9d48e8aa5a0f12398ef40cadadbe551da949b"},
+]
+
+[package.dependencies]
+types-docutils = "*"
+types-setuptools = "*"
+
+[[package]]
+name = "types-setuptools"
+version = "69.1.0.20240215"
+description = "Typing stubs for setuptools"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-setuptools-69.1.0.20240215.tar.gz", hash = "sha256:2a4fdd3a3ca643c57359e584db2dd2b5db7481a82ecc21ea368bc4317bfc0505"},
+    {file = "types_setuptools-69.1.0.20240215-py3-none-any.whl", hash = "sha256:7b450d7a853f40488ae13630d9fa29abc10458e5b2d81e9534f34a842b38fd65"},
 ]
 
 [[package]]
@@ -384,4 +399,4 @@ rich = ["rich"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.0"
-content-hash = "4f92e3f7a7eb4cef7ff89408dcb63fb26d5f16b77ea324d49ae5f213116f3ab1"
+content-hash = "e0dd8e64b7b617aaf05ceee439af64da8d359b58a3efd3fb5d79ec4eef35277a"
