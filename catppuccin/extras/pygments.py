@@ -1,6 +1,8 @@
 """Pygments styles for all Catppuccin flavors."""
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from pygments.style import Style
 from pygments.token import (
     Comment,
@@ -18,82 +20,85 @@ from pygments.token import (
     _TokenType,
 )
 
-from catppuccin.flavor import Flavor
+from catppuccin import PALETTE
+
+if TYPE_CHECKING:
+    from catppuccin.models import FlavorColors
 
 
-def _make_styles(flavor: Flavor) -> dict[_TokenType, str]:
+def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
     return {
-        Token: f"#{flavor.text.hex}",
-        Text: f"#{flavor.text.hex}",
-        Error: f"#{flavor.red.hex}",
-        Keyword: f"#{flavor.mauve.hex}",
-        Keyword.Constant: f"#{flavor.peach.hex}",
-        Keyword.Declaration: f"#{flavor.blue.hex}",
-        Keyword.Namespace: f"#{flavor.teal.hex}",
-        Keyword.Pseudo: f"#{flavor.mauve.hex}",
-        Keyword.Reserved: f"#{flavor.mauve.hex}",
-        Keyword.Type: f"#{flavor.blue.hex}",
-        Name: f"#{flavor.peach.hex}",
-        Name.Attribute: f"#{flavor.blue.hex}",
-        Name.Constant: f"#{flavor.yellow.hex}",
-        Name.Decorator: f"#{flavor.blue.hex}",
-        Name.Function: f"#{flavor.blue.hex}",
-        Name.Function.Magic: f"#{flavor.sky.hex}",
-        Name.Label: f"#{flavor.blue.hex}",
-        Name.Tag: f"#{flavor.mauve.hex}",
-        Literal: f"#{flavor.text.hex}",
-        String: f"#{flavor.green.hex}",
-        Number: f"#{flavor.peach.hex}",
-        Punctuation: f"#{flavor.text.hex}",
-        Operator: f"#{flavor.sky.hex}",
-        Comment: f"#{flavor.overlay0.hex}",
-        Generic.Heading: f"#{flavor.blue.hex} bold",
+        Token: colors.text.hex,
+        Text: colors.text.hex,
+        Error: colors.red.hex,
+        Keyword: colors.mauve.hex,
+        Keyword.Constant: colors.peach.hex,
+        Keyword.Declaration: colors.blue.hex,
+        Keyword.Namespace: colors.teal.hex,
+        Keyword.Pseudo: colors.mauve.hex,
+        Keyword.Reserved: colors.mauve.hex,
+        Keyword.Type: colors.blue.hex,
+        Name: colors.peach.hex,
+        Name.Attribute: colors.blue.hex,
+        Name.Constant: colors.yellow.hex,
+        Name.Decorator: colors.blue.hex,
+        Name.Function: colors.blue.hex,
+        Name.Function.Magic: colors.sky.hex,
+        Name.Label: colors.blue.hex,
+        Name.Tag: colors.mauve.hex,
+        Literal: colors.text.hex,
+        String: colors.green.hex,
+        Number: colors.peach.hex,
+        Punctuation: colors.text.hex,
+        Operator: colors.sky.hex,
+        Comment: colors.overlay0.hex,
+        Generic.Heading: f"{colors.blue.hex} bold",
     }
 
 
 class LatteStyle(Style):
     """Catppuccin Latte pygments style."""
 
-    _flavor = Flavor.latte()
+    _colors = PALETTE.latte.colors
 
-    background_color = f"#{_flavor.base.hex}"
-    line_number_background_color = f"#{_flavor.mantle.hex}"
-    line_number_color = f"#{_flavor.text.hex}"
+    background_color = _colors.base.hex
+    line_number_background_color = _colors.mantle.hex
+    line_number_color = _colors.text.hex
 
-    styles = _make_styles(_flavor)
+    styles = _make_styles(_colors)
 
 
 class FrappeStyle(Style):
     """Catppuccin Frappé pygments style."""
 
-    _flavor = Flavor.frappe()
+    _colors = PALETTE.frappe.colors
 
-    background_color = f"#{_flavor.base.hex}"
-    line_number_background_color = f"#{_flavor.mantle.hex}"
-    line_number_color = f"#{_flavor.text.hex}"
+    background_color = _colors.base.hex
+    line_number_background_color = _colors.mantle.hex
+    line_number_color = _colors.text.hex
 
-    styles = _make_styles(_flavor)
+    styles = _make_styles(_colors)
 
 
 class MacchiatoStyle(Style):
     """Catppuccin Macchiato pygments style."""
 
-    _flavor = Flavor.macchiato()
+    _colors = PALETTE.macchiato.colors
 
-    background_color = f"#{_flavor.base.hex}"
-    line_number_background_color = f"#{_flavor.mantle.hex}"
-    line_number_color = f"#{_flavor.text.hex}"
+    background_color = _colors.base.hex
+    line_number_background_color = _colors.mantle.hex
+    line_number_color = _colors.text.hex
 
-    styles = _make_styles(_flavor)
+    styles = _make_styles(_colors)
 
 
 class MochaStyle(Style):
     """Catppuccin Mocha pygments style."""
 
-    _flavor = Flavor.mocha()
+    _colors = PALETTE.mocha.colors
 
-    background_color = f"#{_flavor.base.hex}"
-    line_number_background_color = f"#{_flavor.mantle.hex}"
-    line_number_color = f"#{_flavor.text.hex}"
+    background_color = _colors.base.hex
+    line_number_background_color = _colors.mantle.hex
+    line_number_color = _colors.text.hex
 
-    styles = _make_styles(_flavor)
+    styles = _make_styles(_colors)

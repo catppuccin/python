@@ -21,30 +21,42 @@ pip install catppuccin
 
 ## Usage
 
+Get access to the palette with the `catppuccin.PALETTE` constant:
+
 ```python
->>> from catppuccin import Flavor
->>> Flavor.latte().mauve.hex
-'8839ef'
->>> Flavor.mocha().teal.rgb
-(148, 226, 213)
+from catppuccin import PALETTE
+
+PALETTE.latte.colors.mauve.hex
+# '#8839ef'
+PALETTE.mocha.colors.teal.rgb
+# RGB(r=148, g=226, b=213)
 ```
 
-`Flavor` is a [`dataclass`](https://docs.python.org/3/library/dataclasses.html),
-so you can inspect its fields to get access to the full set of color names and values:
+The `Palette` data structure matches [the palette JSON](https://github.com/catppuccin/palette/blob/main/palette.json).
+
+### dataclasses
+
+`Palette`, `Flavor`, `Color` et cetera are all [`dataclasses`](https://docs.python.org/3/library/dataclasses.html),
+so you can also inspect and iterate their fields using methods from the dataclass module.
+
+For example, to list all color names and their hex codes:
 
 ```python
->>> from dataclasses import fields
->>> flavor = Flavor.frappe()
->>> for field in fields(flavor):
-        color = getattr(flavor, field.name)
-        print(f"{field.name}: #{color.hex}")
-rosewater: #f2d5cf
-flamingo: #eebebe
-pink: #f4b8e4
-...
-base: #303446
-mantle: #292c3c
-crust: #232634
+from dataclasses import fields
+from catppuccin import PALETTE
+
+flavor = PALETTE.frappe
+for field in fields(flavor.colors):
+    color = getattr(flavor.colors, field.name)
+    print(f"{field.name}: {color.hex}")
+
+# rosewater: #f2d5cf
+# flamingo: #eebebe
+# pink: #f4b8e4
+# ...
+# base: #303446
+# mantle: #292c3c
+# crust: #232634
 ```
 
 ## Pygments Styles
@@ -61,9 +73,10 @@ The styles are registered as importlib entrypoints, which allows Pygments to
 find them by name:
 
 ```python
->>> from pygments.styles import get_style_by_name
->>> get_style_by_name("catppuccin-frappe")
-catppuccin.extras.pygments.FrappeStyle
+from pygments.styles import get_style_by_name
+
+get_style_by_name("catppuccin-frappe")
+# catppuccin.extras.pygments.FrappeStyle
 ```
 
 The following style names are available:
@@ -88,7 +101,10 @@ c.TerminalInteractiveShell.true_color = True
 c.TerminalInteractiveShell.highlighting_style = "catppuccin-mocha"
 ```
 
-Putting this into your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html) and ensuring `catppuccin[pygments]` is installed in the same environment will give you Catppuccin Mocha syntax highlighting in the REPL. See [here](https://github.com/backwardspy/dots/blob/f6991570d6691212e27e266517656192f910ccbf/dot_config/ipython/profile_default/ipython_config.py) for a more complete example configuration.
+Putting this into your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html)
+and ensuring `catppuccin[pygments]` is installed in the same environment will
+give you Catppuccin Mocha syntax highlighting in the REPL. See [here](https://github.com/backwardspy/dots/blob/f6991570d6691212e27e266517656192f910ccbf/dot_config/ipython/profile_default/ipython_config.py)
+for an example of a more complete configuration.
 
 ## Contribution
 

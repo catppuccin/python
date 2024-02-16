@@ -1,43 +1,44 @@
 """Rich themes for all Catppuccin flavors."""
 from rich.theme import Theme
 
-from catppuccin.flavor import Flavor
+from catppuccin import PALETTE
+from catppuccin.models import FlavorColors
 
 
-def _make_theme(flavor: Flavor) -> Theme:
+def _make_theme(colors: FlavorColors) -> Theme:
     return Theme(
         {
-            "rosewater": f"#{flavor.rosewater.hex}",
-            "flamingo": f"#{flavor.flamingo.hex}",
-            "pink": f"#{flavor.pink.hex}",
-            "mauve": f"#{flavor.mauve.hex}",
-            "red": f"#{flavor.red.hex}",
-            "maroon": f"#{flavor.maroon.hex}",
-            "peach": f"#{flavor.peach.hex}",
-            "yellow": f"#{flavor.yellow.hex}",
-            "green": f"#{flavor.green.hex}",
-            "teal": f"#{flavor.teal.hex}",
-            "sky": f"#{flavor.sky.hex}",
-            "sapphire": f"#{flavor.sapphire.hex}",
-            "blue": f"#{flavor.blue.hex}",
-            "lavender": f"#{flavor.lavender.hex}",
-            "text": f"#{flavor.text.hex}",
-            "subtext1": f"#{flavor.subtext1.hex}",
-            "subtext0": f"#{flavor.subtext0.hex}",
-            "overlay2": f"#{flavor.overlay2.hex}",
-            "overlay1": f"#{flavor.overlay1.hex}",
-            "overlay0": f"#{flavor.overlay0.hex}",
-            "surface2": f"#{flavor.surface2.hex}",
-            "surface1": f"#{flavor.surface1.hex}",
-            "surface0": f"#{flavor.surface0.hex}",
-            "base": f"#{flavor.base.hex}",
-            "mantle": f"#{flavor.mantle.hex}",
-            "crust": f"#{flavor.crust.hex}",
+            "rosewater": f"#{colors.rosewater.hex}",
+            "flamingo": f"#{colors.flamingo.hex}",
+            "pink": f"#{colors.pink.hex}",
+            "mauve": f"#{colors.mauve.hex}",
+            "red": f"#{colors.red.hex}",
+            "maroon": f"#{colors.maroon.hex}",
+            "peach": f"#{colors.peach.hex}",
+            "yellow": f"#{colors.yellow.hex}",
+            "green": f"#{colors.green.hex}",
+            "teal": f"#{colors.teal.hex}",
+            "sky": f"#{colors.sky.hex}",
+            "sapphire": f"#{colors.sapphire.hex}",
+            "blue": f"#{colors.blue.hex}",
+            "lavender": f"#{colors.lavender.hex}",
+            "text": f"#{colors.text.hex}",
+            "subtext1": f"#{colors.subtext1.hex}",
+            "subtext0": f"#{colors.subtext0.hex}",
+            "overlay2": f"#{colors.overlay2.hex}",
+            "overlay1": f"#{colors.overlay1.hex}",
+            "overlay0": f"#{colors.overlay0.hex}",
+            "surface2": f"#{colors.surface2.hex}",
+            "surface1": f"#{colors.surface1.hex}",
+            "surface0": f"#{colors.surface0.hex}",
+            "base": f"#{colors.base.hex}",
+            "mantle": f"#{colors.mantle.hex}",
+            "crust": f"#{colors.crust.hex}",
         },
     )
 
 
-latte = _make_theme(Flavor.latte())
-frappe = _make_theme(Flavor.frappe())
-macchiato = _make_theme(Flavor.macchiato())
-mocha = _make_theme(Flavor.mocha())
+latte = _make_theme(PALETTE.latte.colors)
+frappe = _make_theme(PALETTE.frappe.colors)
+macchiato = _make_theme(PALETTE.macchiato.colors)
+mocha = _make_theme(PALETTE.mocha.colors)
