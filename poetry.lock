@@ -334,6 +334,39 @@ files = [
 ]
 
 [[package]]
+name = "types-colorama"
+version = "0.4.15.20240205"
+description = "Typing stubs for colorama"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-colorama-0.4.15.20240205.tar.gz", hash = "sha256:7ae4f58d407d387f4f98b24d81e1b7657ec754ea1dc4619ae5bd27f0c367637e"},
+    {file = "types_colorama-0.4.15.20240205-py3-none-any.whl", hash = "sha256:3ab26dcd76d2f13b1b795ed5c87a1a1a29331ea64cf614bb6ae958a3cebc3a53"},
+]
+
+[[package]]
+name = "types-decorator"
+version = "5.1.8.20240106"
+description = "Typing stubs for decorator"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-decorator-5.1.8.20240106.tar.gz", hash = "sha256:32ff92b33615060d23b9d3760124bdb3506c4aa8d9eb50963cf1a3c20b9ecbbf"},
+    {file = "types_decorator-5.1.8.20240106-py3-none-any.whl", hash = "sha256:14d21e6a0755dbb8f301f2f532b3eab5148f433c69dad2d98bf5bd2b3a2ef4e7"},
+]
+
+[[package]]
+name = "types-six"
+version = "1.16.21.20240106"
+description = "Typing stubs for six"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "types-six-1.16.21.20240106.tar.gz", hash = "sha256:c83908b4925583e973eb9971ef2bd60dbab647611e10e9cd588d2bef415bfe68"},
+    {file = "types_six-1.16.21.20240106-py3-none-any.whl", hash = "sha256:3658c9e36e9cb003e522655b01b9ca39bd0db61b6383b3e7d0d10d14f873b338"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.9.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -351,4 +384,4 @@ rich = ["rich"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.0"
-content-hash = "26cd7ecfa13ce50a38f683e3da6652a18a6ec0abd79a05c02b831eb3f3e2967b"
+content-hash = "4f92e3f7a7eb4cef7ff89408dcb63fb26d5f16b77ea324d49ae5f213116f3ab1"

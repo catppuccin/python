@@ -5,7 +5,7 @@ mocha = Flavour.mocha()
 latte = Flavour.latte()
 
 
-def test_rgb_to_hsl():
+def test_rgb_to_hsl() -> None:
     hsl = rgb_to_hsl(*mocha.mauve.rgb)
     assert hsl == (267, 0.84, 0.81)
 

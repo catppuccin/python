@@ -33,5 +33,23 @@ ruff = "^0.2.1"
 [tool.poetry-dynamic-versioning]
 enable = true
 
-[tool.ruff]
+[tool.ruff.lint]
 select = ["ALL"]
+ignore = [
+  "D203",   # one-blank-line-before class, incompatible with D211
+  "D213",   # multi-line-summary-second-line, incompatible with D212
+  "ANN101", # missing-type-self, deprecated
+  "ANN102", # missing-type-cls, deprecated
+  "ISC001", # single-line-implicit-string-concatenation, incompatible with formatter
+  "COM812", # missing-trailing-comma, incompatible with formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/test_*.py" = [
+  "D100", # undocumented-public-module
+  "D103", # undocumented-public-function
+  "S101", # assert
+]
+
+[tool.mypy]
+strict = true

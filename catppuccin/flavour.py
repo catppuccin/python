@@ -1,5 +1,5 @@
-"""
-Functionality relating to Catppuccin flavours.
+"""Functionality relating to Catppuccin flavours.
+
 A flavour is a collection of colours.
 """
 from dataclasses import dataclass
@@ -8,7 +8,7 @@ from catppuccin.colour import Colour
 
 
 @dataclass(frozen=True)
-class Flavour:  # pylint: disable=too-many-instance-attributes
+class Flavour:
     """All the colours in a flavour of Catppuccin."""
 
     name: str

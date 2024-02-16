@@ -105,7 +105,7 @@ instructions](https://python-poetry.org/docs/#installation).
 Install the project's dependencies including extras:
 
 ```bash
-poetry install -E pygments
+poetry install --all-extras
 ```
 
 #### Code Standards
@@ -114,9 +114,8 @@ Before committing changes, it is recommended to run the following tools to
 ensure consistency in the codebase.
 
 ```bash
-isort .
-black .
-pylint catppuccin
+ruff format
+ruff check
 mypy .
 pytest --cov catppuccin
 ```
@@ -128,7 +127,7 @@ path.
 
 ## 💝 Thanks to
 
--   [backwardspy](https://github.com/backwardspy)
+- [backwardspy](https://github.com/backwardspy)
 
 &nbsp;
 

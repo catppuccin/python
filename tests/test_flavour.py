@@ -1,13 +1,11 @@
-from typing import cast
-
 from catppuccin.flavour import Flavour
-from tests.conftest import ColourJSON, FlavourJSON, PaletteJSON
+from tests.conftest import FlavourJSON, PaletteJSON
 
 
 def validate_flavour(flavour: Flavour, flavour_json: FlavourJSON) -> None:
     for colour_name, colour_json in flavour_json.items():
         colour = getattr(flavour, colour_name)
-        assert f"#{colour.hex}" == cast(ColourJSON, colour_json)["hex"], colour_name
+        assert f"#{colour.hex}" == colour_json["hex"], colour_name
 
 
 def test_latte(palette_json: PaletteJSON) -> None:
