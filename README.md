@@ -22,22 +22,22 @@ pip install catppuccin
 ## Usage
 
 ```python
->>> from catppuccin import Flavour
->>> Flavour.latte().mauve.hex
+>>> from catppuccin import Flavor
+>>> Flavor.latte().mauve.hex
 '8839ef'
->>> Flavour.mocha().teal.rgb
+>>> Flavor.mocha().teal.rgb
 (148, 226, 213)
 ```
 
-`Flavour` is a [`dataclass`](https://docs.python.org/3/library/dataclasses.html),
-so you can inspect its fields to get access to the full set of colour names and values:
+`Flavor` is a [`dataclass`](https://docs.python.org/3/library/dataclasses.html),
+so you can inspect its fields to get access to the full set of color names and values:
 
 ```python
 >>> from dataclasses import fields
->>> flavour = Flavour.frappe()
->>> for field in fields(flavour):
-        colour = getattr(flavour, field.name)
-        print(f"{field.name}: #{colour.hex}")
+>>> flavor = Flavor.frappe()
+>>> for field in fields(flavor):
+        color = getattr(flavor, field.name)
+        print(f"{field.name}: #{color.hex}")
 rosewater: #f2d5cf
 flamingo: #eebebe
 pink: #f4b8e4
@@ -49,7 +49,7 @@ crust: #232634
 
 ## Pygments Styles
 
-This package provides a Pygments style for each of the four Catppuccin flavours.
+This package provides a Pygments style for each of the four Catppuccin flavors.
 
 Install Catppuccin with the `pygments` feature to include the relevant dependencies:
 

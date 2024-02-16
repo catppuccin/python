@@ -1,8 +1,8 @@
-from catppuccin import Flavour
+from catppuccin import Flavor
 from catppuccin.hsl import rgb_to_hsl
 
-mocha = Flavour.mocha()
-latte = Flavour.latte()
+mocha = Flavor.mocha()
+latte = Flavor.latte()
 
 
 def test_rgb_to_hsl() -> None:

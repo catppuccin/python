@@ -1,4 +1,4 @@
-"""Functionality relating to individual colours."""
+"""Functionality relating to individual colors."""
 from __future__ import annotations
 
 import re
@@ -12,8 +12,8 @@ MAX_ALPHA = 255
 
 
 @dataclass(frozen=True)
-class Colour:
-    """A colour with three channels; red, green, and blue."""
+class Color:
+    """A color with three channels; red, green, and blue."""
 
     red: int
     green: int
@@ -22,42 +22,42 @@ class Colour:
 
     @property
     def rgb(self) -> tuple[int, int, int]:
-        """Get the colour as a 3-tuple of red, green, and blue."""
+        """Get the color as a 3-tuple of red, green, and blue."""
         return self.red, self.green, self.blue
 
     @property
     def rgba(self) -> tuple[int, int, int, int]:
-        """Get the colour as a 4-tuple of red, green, blue, and alpha."""
+        """Get the color as a 4-tuple of red, green, blue, and alpha."""
         return self.red, self.green, self.blue, self.alpha
 
     @property
     def hsl(self) -> tuple[float, float, float]:
-        """Get the colour as a 3-tuple of hue, saturation, and lightness."""
+        """Get the color as a 3-tuple of hue, saturation, and lightness."""
         return rgb_to_hsl(*self.rgb)
 
     @property
     def hsla(self) -> tuple[float, float, float, float]:
-        """Get the colour as a 4-tuple of hue, saturation, lightness, and alpha."""
+        """Get the color as a 4-tuple of hue, saturation, lightness, and alpha."""
         return (*self.hsl, self.alpha)
 
     @property
     def hex(self) -> str:
-        """Get the colour as a lowercase hex string."""
+        """Get the color as a lowercase hex string."""
         if self.alpha < MAX_ALPHA:
             return f"{self.red:02x}{self.green:02x}{self.blue:02x}{self.alpha:02x}"
         return f"{self.red:02x}{self.green:02x}{self.blue:02x}"
 
     def __eq__(self, other: object) -> bool:
-        """Check equality against another colour."""
-        if not isinstance(other, Colour):
-            e = "Cannot check equality with non-colour types."
+        """Check equality against another color."""
+        if not isinstance(other, Color):
+            e = "Cannot check equality with non-color types."
             raise TypeError(e)
 
         return self.hex == other.hex
 
     @classmethod
-    def from_hex(cls, hex_string: str) -> Colour:
-        """Create a colour from hex string."""
+    def from_hex(cls, hex_string: str) -> Color:
+        """Create a color from hex string."""
         if len(hex_string) not in (HEXLEN_NO_ALPHA, HEXLEN_ALPHA):
             e = (
                 f"Hex string must be {HEXLEN_NO_ALPHA} or "
@@ -76,12 +76,12 @@ class Colour:
             raise ValueError(e)
 
         components = (int(col, 16) for col in match.groups())
-        return Colour(*components)
+        return Color(*components)
 
-    def opacity(self, opacity: float) -> Colour:
-        """Return a new colour with the given opacity."""
+    def opacity(self, opacity: float) -> Color:
+        """Return a new color with the given opacity."""
         if not 0 <= opacity <= 1:
             e = "Opacity must be between 0 and 1."
             raise ValueError(e)
 
-        return Colour(self.red, self.green, self.blue, int(opacity * MAX_ALPHA))
+        return Color(self.red, self.green, self.blue, int(opacity * MAX_ALPHA))

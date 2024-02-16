@@ -1,5 +1,5 @@
 """🐍 Soothing pastel theme for Python."""
-from catppuccin.colour import Colour
-from catppuccin.flavour import Flavour
+from catppuccin.color import Color
+from catppuccin.flavor import Flavor
 
-__all__ = ["Colour", "Flavour"]
+__all__ = ["Color", "Flavor"]

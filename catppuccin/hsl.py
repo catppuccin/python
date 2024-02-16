@@ -1,4 +1,4 @@
-"""Utilities for working with HSL colours."""
+"""Utilities for working with HSL colors."""
 from __future__ import annotations
 
 

@@ -5,9 +5,9 @@ from urllib.request import urlopen
 
 import pytest
 
-ColourJSON = Dict[str, str]
-FlavourJSON = Dict[str, ColourJSON]
-PaletteJSON = Dict[str, FlavourJSON]
+ColorJSON = Dict[str, str]
+FlavorJSON = Dict[str, ColorJSON]
+PaletteJSON = Dict[str, FlavorJSON]
 
 
 @pytest.fixture()
