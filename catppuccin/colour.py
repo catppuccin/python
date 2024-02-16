@@ -59,8 +59,10 @@ class Colour:
     def from_hex(cls, hex_string: str) -> Colour:
         """Create a colour from hex string."""
         if len(hex_string) not in (HEXLEN_NO_ALPHA, HEXLEN_ALPHA):
-            e = f"Hex string must be {HEXLEN_NO_ALPHA} or {
-                HEXLEN_ALPHA} characters long."
+            e = (
+                f"Hex string must be {HEXLEN_NO_ALPHA} or "
+                f"{HEXLEN_ALPHA} characters long."
+            )
             raise ValueError(e)
 
         num_groups = (
