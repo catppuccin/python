@@ -1,13 +1,13 @@
 """Test fixtures & helpers."""
 import json
-from typing import cast
+from typing import Dict, cast
 from urllib.request import urlopen
 
 import pytest
 
-ColourJSON = dict[str, str]
-FlavourJSON = dict[str, ColourJSON]
-PaletteJSON = dict[str, FlavourJSON]
+ColourJSON = Dict[str, str]
+FlavourJSON = Dict[str, ColourJSON]
+PaletteJSON = Dict[str, FlavourJSON]
 
 
 @pytest.fixture()
