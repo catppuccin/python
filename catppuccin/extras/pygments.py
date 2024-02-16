@@ -1,7 +1,5 @@
-"""
-Pygments styles for all Catppuccin flavours.
-"""
-from typing import Dict
+"""Pygments styles for all Catppuccin flavours."""
+from __future__ import annotations
 
 from pygments.style import Style
 from pygments.token import (
@@ -23,7 +21,7 @@ from pygments.token import (
 from catppuccin.flavour import Flavour
 
 
-def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
+def _make_styles(flavour: Flavour) -> dict[_TokenType, str]:
     return {
         Token: f"#{flavour.text.hex}",
         Text: f"#{flavour.text.hex}",
@@ -53,7 +51,7 @@ def _make_styles(flavour: Flavour) -> Dict[_TokenType, str]:
     }
 
 
-class LatteStyle(Style):  # pylint: disable=too-few-public-methods
+class LatteStyle(Style):
     """Catppuccin Latte pygments style."""
 
     _flavour = Flavour.latte()
@@ -65,7 +63,7 @@ class LatteStyle(Style):  # pylint: disable=too-few-public-methods
     styles = _make_styles(_flavour)
 
 
-class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
+class FrappeStyle(Style):
     """Catppuccin Frappé pygments style."""
 
     _flavour = Flavour.frappe()
@@ -77,7 +75,7 @@ class FrappeStyle(Style):  # pylint: disable=too-few-public-methods
     styles = _make_styles(_flavour)
 
 
-class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
+class MacchiatoStyle(Style):
     """Catppuccin Macchiato pygments style."""
 
     _flavour = Flavour.macchiato()
@@ -89,7 +87,7 @@ class MacchiatoStyle(Style):  # pylint: disable=too-few-public-methods
     styles = _make_styles(_flavour)
 
 
-class MochaStyle(Style):  # pylint: disable=too-few-public-methods
+class MochaStyle(Style):
     """Catppuccin Mocha pygments style."""
 
     _flavour = Flavour.mocha()

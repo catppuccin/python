@@ -1,6 +1,4 @@
-"""
-Rich themes for all Catppuccin flavours.
-"""
+"""Rich themes for all Catppuccin flavours."""
 from rich.theme import Theme
 
 from catppuccin.flavour import Flavour
@@ -35,7 +33,7 @@ def _make_theme(flavour: Flavour) -> Theme:
             "base": f"#{flavour.base.hex}",
             "mantle": f"#{flavour.mantle.hex}",
             "crust": f"#{flavour.crust.hex}",
-        }
+        },
     )
 
 
