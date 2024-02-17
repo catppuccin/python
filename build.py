@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 
@@ -14,7 +14,7 @@ from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette'''
 def load_palette_json() -> dict[str, Any]:
     """Load palette data from `./palette.json`."""
     with Path("palette.json").open() as f:
-        return json.load(f)
+        return cast(dict[str, Any], json.load(f))
 
 
 def make_color(fields: dict[str, Any]) -> Color:
