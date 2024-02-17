@@ -48,10 +48,17 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/test_*.py" = [
-  "D100", # undocumented-public-module
-  "D103", # undocumented-public-function
-  "S101", # assert
+  "D100",    # undocumented-public-module
+  "D103",    # undocumented-public-function
+  "S101",    # assert
+  "PLR2004", # magic-value-comparison
 ]
 
 [tool.mypy]
 strict = true
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]
