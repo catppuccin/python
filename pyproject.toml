@@ -9,10 +9,6 @@ description = "🐍 Soothing pastel theme for Python."
 authors = ["backwardspy <backwardspy@pigeon.life>"]
 readme = "README.md"
 
-[tool.poetry.build]
-generate-setup-file = false
-script = "build.py"
-
 [tool.poetry.plugins."pygments.styles"]
 catppuccin-latte = "catppuccin.extras.pygments:LatteStyle"
 catppuccin-frappe = "catppuccin.extras.pygments:FrappeStyle"
