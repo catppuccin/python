@@ -1,3 +1,4 @@
+# ruff: noqa: ERA001
 """Pygments styles for all Catppuccin flavors."""
 from __future__ import annotations
 
@@ -13,10 +14,11 @@ from pygments.token import (
     Name,
     Number,
     Operator,
+    Other,
     Punctuation,
     String,
     Text,
-    Token,
+    Whitespace,
     _TokenType,
 )
 
@@ -28,31 +30,88 @@ if TYPE_CHECKING:
 
 def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
     return {
-        Token: colors.text.hex,
-        Text: colors.text.hex,
-        Error: colors.red.hex,
-        Keyword: colors.mauve.hex,
-        Keyword.Constant: colors.peach.hex,
-        Keyword.Declaration: colors.blue.hex,
-        Keyword.Namespace: colors.teal.hex,
-        Keyword.Pseudo: colors.mauve.hex,
-        Keyword.Reserved: colors.mauve.hex,
-        Keyword.Type: colors.blue.hex,
-        Name: colors.peach.hex,
-        Name.Attribute: colors.blue.hex,
-        Name.Constant: colors.yellow.hex,
-        Name.Decorator: colors.blue.hex,
-        Name.Function: colors.blue.hex,
-        Name.Function.Magic: colors.sky.hex,
-        Name.Label: colors.blue.hex,
-        Name.Tag: colors.mauve.hex,
-        Literal: colors.text.hex,
-        String: colors.green.hex,
-        Number: colors.peach.hex,
-        Punctuation: colors.text.hex,
-        Operator: colors.sky.hex,
         Comment: colors.overlay0.hex,
-        Generic.Heading: f"{colors.blue.hex} bold",
+        Comment.Hashbang: colors.overlay0.hex,
+        Comment.Multiline: colors.overlay0.hex,
+        Comment.Preproc: colors.pink.hex,
+        Comment.Single: colors.overlay0.hex,
+        Comment.Special: colors.overlay0.hex,
+        Generic: colors.text.hex,
+        Generic.Deleted: colors.red.hex,
+        Generic.Emph: f"{colors.text.hex} underline",
+        Generic.Error: colors.text.hex,
+        Generic.Heading: f"{colors.text.hex} bold",
+        Generic.Inserted: f"{colors.text.hex} bold",
+        Generic.Output: colors.overlay0.hex,
+        Generic.Prompt: colors.text.hex,
+        Generic.Strong: colors.text.hex,
+        Generic.Subheading: f"{colors.text.hex} bold",
+        Generic.Traceback: colors.text.hex,
+        Error: colors.text.hex,
+        # `as`
+        Keyword: colors.mauve.hex,
+        Keyword.Constant: colors.pink.hex,
+        Keyword.Declaration: f"{colors.teal.hex} italic",
+        # `from`, `import`
+        Keyword.Namespace: colors.mauve.hex,
+        Keyword.Pseudo: colors.pink.hex,
+        Keyword.Reserved: colors.pink.hex,
+        Keyword.Type: colors.teal.hex,
+        Literal: colors.text.hex,
+        Literal.Date: colors.text.hex,
+        # from xxx import NAME
+        # NAME = NAME
+        # NAME.NAME()
+        Name: colors.text.hex,
+        Name.Attribute: colors.green.hex,
+        # `len`, `print`
+        Name.Builtin: f"{colors.peach.hex} italic",
+        # `self`
+        Name.Builtin.Pseudo: colors.red.hex,
+        # class Name.Class:
+        Name.Class: colors.yellow.hex,
+        Name.Constant: colors.text.hex,
+        Name.Decorator: colors.text.hex,
+        Name.Entity: colors.text.hex,
+        Name.Exception: colors.text.hex,
+        # def __Name.Label__(
+        Name.Function: colors.sapphire.hex,
+        Name.Label: f"{colors.teal.hex} italic",
+        Name.Namespace: colors.text.hex,
+        Name.Other: colors.text.hex,
+        Name.Tag: colors.pink.hex,
+        Name.Variable: f"{colors.text.hex} italic",
+        Name.Variable.Class: f"{colors.yellow.hex} italic",
+        Name.Variable.Global: f"{colors.text.hex} italic",
+        Name.Variable.Instance: f"{colors.text.hex} italic",
+        Number: colors.peach.hex,
+        Number.Bin: colors.peach.hex,
+        Number.Float: colors.peach.hex,
+        Number.Hex: colors.peach.hex,
+        Number.Integer: colors.peach.hex,
+        Number.Integer.Long: colors.peach.hex,
+        Number.Oct: colors.peach.hex,
+        # `=`
+        Operator: colors.sky.hex,
+        # `not`, `in`
+        Operator.Word: colors.mauve.hex,
+        Other: colors.text.hex,
+        # `(`, `)`, `,`, `[`, `]`, `:`
+        Punctuation: colors.overlay2.hex,
+        String: colors.green.hex,
+        String.Backtick: colors.green.hex,
+        String.Char: colors.green.hex,
+        String.Doc: colors.green.hex,
+        String.Double: colors.green.hex,
+        String.Escape: colors.green.hex,
+        String.Heredoc: colors.green.hex,
+        String.Interpol: colors.green.hex,
+        String.Other: colors.green.hex,
+        String.Regex: colors.green.hex,
+        String.Single: colors.green.hex,
+        String.Symbol: colors.green.hex,
+        Text: colors.text.hex,
+        Whitespace: colors.text.hex,
     }
 
 
