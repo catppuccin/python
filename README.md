@@ -34,6 +34,31 @@ PALETTE.mocha.colors.teal.rgb
 
 The `Palette` data structure matches [the palette JSON](https://github.com/catppuccin/palette/blob/main/palette.json).
 
+### Iteration
+
+Both `Palette` and `FlavorColors` can be iterated to yield flavors and colors respectively:
+
+```python
+for flavor in PALETTE:
+    print(flavor.name)
+
+# Latte
+# Frappé
+# Macchiato
+# Mocha
+
+for color in PALETTE.latte.colors:
+    print(f"{color.name}: {color.hex}")
+
+# Rosewater: #f2d5cf
+# Flamingo: #eebebe
+# Pink: #f4b8e4
+# ...
+# Base: #303446
+# Mantle: #292c3c
+# Crust: #232634
+```
+
 ### dataclasses
 
 `Palette`, `Flavor`, `Color` et cetera are all [`dataclasses`](https://docs.python.org/3/library/dataclasses.html),

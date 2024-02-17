@@ -1,5 +1,6 @@
 """Dataclass definitions for the Catppuccin palette data structure."""
 from dataclasses import dataclass
+from typing import Iterator
 
 
 @dataclass(frozen=True)
@@ -63,6 +64,37 @@ class FlavorColors:
     mantle: Color
     crust: Color
 
+    def __iter__(self) -> Iterator[Color]:
+        """Iterate over colors in the flavor."""
+        yield from [
+            self.rosewater,
+            self.flamingo,
+            self.pink,
+            self.mauve,
+            self.red,
+            self.maroon,
+            self.peach,
+            self.yellow,
+            self.green,
+            self.teal,
+            self.sky,
+            self.sapphire,
+            self.blue,
+            self.lavender,
+            self.text,
+            self.subtext1,
+            self.subtext0,
+            self.overlay2,
+            self.overlay1,
+            self.overlay0,
+            self.surface2,
+            self.surface1,
+            self.surface0,
+            self.base,
+            self.mantle,
+            self.crust,
+        ]
+
 
 @dataclass(frozen=True)
 class Flavor:
@@ -91,3 +123,7 @@ class Palette:
     frappe: Flavor
     macchiato: Flavor
     mocha: Flavor
+
+    def __iter__(self) -> Iterator[Flavor]:
+        """Iterate over flavors in the palette."""
+        yield from [self.latte, self.frappe, self.macchiato, self.mocha]
