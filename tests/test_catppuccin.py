@@ -7,6 +7,9 @@ def test_some_colors() -> None:
     assert PALETTE.latte.colors.mauve.rgb.g == 57
     assert PALETTE.latte.colors.mauve.rgb.b == 239
 
+    assert PALETTE.latte.colors.surface0.identifier == "surface0"
+    assert PALETTE.latte.colors.surface0.name == "Surface 0"
+
 
 def test_iterate_palette() -> None:
     order = [PALETTE.latte, PALETTE.frappe, PALETTE.macchiato, PALETTE.mocha]
