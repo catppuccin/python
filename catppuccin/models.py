@@ -26,11 +26,12 @@ class Color:
     """A single color in the Catppuccin palette."""
 
     name: str
+    identifier: str
+    accent: bool
     order: int
     hex: str
     rgb: RGB
     hsl: HSL
-    accent: bool
 
 
 @dataclass(frozen=True)

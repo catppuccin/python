@@ -17,15 +17,16 @@ def load_palette_json() -> dict[str, Any]:
         return cast(dict[str, Any], json.load(f))
 
 
-def make_color(fields: dict[str, Any]) -> Color:
+def make_color(identifier: str, fields: dict[str, Any]) -> Color:
     """Create a Color instance from a set of fields."""
     return Color(
         name=fields["name"],
+        identifier=identifier,
+        accent=fields["accent"],
         order=fields["order"],
         hex=fields["hex"],
         rgb=RGB(**fields["rgb"]),
         hsl=HSL(**fields["hsl"]),
-        accent=fields["accent"],
     )
 
 
@@ -37,8 +38,8 @@ def make_flavor(fields: dict[str, Any]) -> Flavor:
         dark=fields["dark"],
         colors=FlavorColors(
             **{
-                color_name: make_color(color_data)
-                for color_name, color_data in fields["colors"].items()
+                color_identifier: make_color(color_identifier, color_data)
+                for color_identifier, color_data in fields["colors"].items()
             }
         ),
     )
