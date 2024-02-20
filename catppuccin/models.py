@@ -106,6 +106,7 @@ class Flavor:
     """
 
     name: str
+    identifier: str
     order: int
     dark: bool
     colors: FlavorColors

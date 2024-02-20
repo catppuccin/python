@@ -4,6 +4,7 @@ from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 PALETTE = Palette(
     latte=Flavor(
         name="Latte",
+        identifier="latte",
         order=0,
         dark=False,
         colors=FlavorColors(
@@ -293,6 +294,7 @@ PALETTE = Palette(
     ),
     frappe=Flavor(
         name="Frappé",
+        identifier="frappe",
         order=1,
         dark=True,
         colors=FlavorColors(
@@ -578,6 +580,7 @@ PALETTE = Palette(
     ),
     macchiato=Flavor(
         name="Macchiato",
+        identifier="macchiato",
         order=2,
         dark=True,
         colors=FlavorColors(
@@ -863,6 +866,7 @@ PALETTE = Palette(
     ),
     mocha=Flavor(
         name="Mocha",
+        identifier="mocha",
         order=3,
         dark=True,
         colors=FlavorColors(
