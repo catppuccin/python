@@ -1,0 +1,203 @@
+pre {
+  line-height: 125%;
+}
+
+td.linenos .normal, span.linenos {
+  color: var(--ctp-text);
+  background-color: var(--ctp-mantle);
+}
+
+td.linenos .special, span.linenos.special {
+  color: #000;
+  background-color: #ffffc0;
+}
+
+.hll {
+  background-color: #ffc;
+}
+
+.c {
+  color: var(--ctp-overlay0);
+}
+
+.err, .g {
+  color: var(--ctp-text);
+}
+
+.k {
+  color: var(--ctp-mauve);
+}
+
+.l, .n {
+  color: var(--ctp-text);
+}
+
+.o {
+  color: var(--ctp-sky);
+}
+
+.x {
+  color: var(--ctp-text);
+}
+
+.p {
+  color: var(--ctp-overlay2);
+}
+
+.ch, .cm {
+  color: var(--ctp-overlay0);
+}
+
+.cp {
+  color: var(--ctp-pink);
+}
+
+.cpf, .c1, .cs {
+  color: var(--ctp-overlay0);
+}
+
+.gd {
+  color: var(--ctp-red);
+}
+
+.ge {
+  color: var(--ctp-text);
+  text-decoration: underline;
+}
+
+.ges, .gr {
+  color: var(--ctp-text);
+}
+
+.gh, .gi {
+  color: var(--ctp-text);
+  font-weight: bold;
+}
+
+.go {
+  color: var(--ctp-overlay0);
+}
+
+.gp, .gs {
+  color: var(--ctp-text);
+}
+
+.gu {
+  color: var(--ctp-text);
+  font-weight: bold;
+}
+
+.gt {
+  color: var(--ctp-text);
+}
+
+.kc {
+  color: var(--ctp-pink);
+}
+
+.kd {
+  color: var(--ctp-teal);
+  font-style: italic;
+}
+
+.kn {
+  color: var(--ctp-mauve);
+}
+
+.kp, .kr {
+  color: var(--ctp-pink);
+}
+
+.kt {
+  color: var(--ctp-teal);
+}
+
+.ld {
+  color: var(--ctp-text);
+}
+
+.m {
+  color: var(--ctp-peach);
+}
+
+.s, .na {
+  color: var(--ctp-green);
+}
+
+.nb {
+  color: var(--ctp-peach);
+  font-style: italic;
+}
+
+.nc {
+  color: var(--ctp-yellow);
+}
+
+.no, .nd, .ni, .ne {
+  color: var(--ctp-text);
+}
+
+.nf {
+  color: var(--ctp-sapphire);
+}
+
+.nl {
+  color: var(--ctp-teal);
+  font-style: italic;
+}
+
+.nn, .nx, .py {
+  color: var(--ctp-text);
+}
+
+.nt {
+  color: var(--ctp-pink);
+}
+
+.nv {
+  color: var(--ctp-text);
+  font-style: italic;
+}
+
+.ow {
+  color: var(--ctp-mauve);
+}
+
+.pm {
+  color: var(--ctp-overlay2);
+}
+
+.w {
+  color: var(--ctp-text);
+}
+
+.mb, .mf, .mh, .mi, .mo {
+  color: var(--ctp-peach);
+}
+
+.sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss {
+  color: var(--ctp-green);
+}
+
+.bp {
+  color: var(--ctp-red);
+  font-style: italic;
+}
+
+.fm {
+  color: var(--ctp-sapphire);
+}
+
+.vc {
+  color: var(--ctp-yellow);
+  font-style: italic;
+}
+
+.vg, .vi, .vm {
+  color: var(--ctp-text);
+  font-style: italic;
+}
+
+.il {
+  color: var(--ctp-peach);
+}
