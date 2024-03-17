@@ -1,5 +1,6 @@
 # ruff: noqa: ERA001
 """Pygments styles for all Catppuccin flavors."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -121,8 +122,11 @@ class LatteStyle(Style):
     _colors = PALETTE.latte.colors
 
     background_color = _colors.base.hex
+    highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
+    line_number_special_background_color = _colors.mantle.hex
+    line_number_special_color = _colors.text.hex
 
     styles = _make_styles(_colors)
 
@@ -133,8 +137,11 @@ class FrappeStyle(Style):
     _colors = PALETTE.frappe.colors
 
     background_color = _colors.base.hex
+    highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
+    line_number_special_background_color = _colors.mantle.hex
+    line_number_special_color = _colors.text.hex
 
     styles = _make_styles(_colors)
 
@@ -145,8 +152,11 @@ class MacchiatoStyle(Style):
     _colors = PALETTE.macchiato.colors
 
     background_color = _colors.base.hex
+    highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
+    line_number_special_background_color = _colors.mantle.hex
+    line_number_special_color = _colors.text.hex
 
     styles = _make_styles(_colors)
 
@@ -157,7 +167,10 @@ class MochaStyle(Style):
     _colors = PALETTE.mocha.colors
 
     background_color = _colors.base.hex
+    highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
+    line_number_special_background_color = _colors.mantle.hex
+    line_number_special_color = _colors.text.hex
 
     styles = _make_styles(_colors)

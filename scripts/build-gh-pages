@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+import re
+from pathlib import Path
+
+from pygments.formatters.html import HtmlFormatter
+
+from catppuccin import PALETTE
+from catppuccin.extras.pygments import (
+    FrappeStyle,
+    LatteStyle,
+    MacchiatoStyle,
+    MochaStyle,
+)
+
+OUT_DIR = Path("gh-pages")
+PYGMENTS_DIR = OUT_DIR / "pygments"
+
+PYGMENTS_STYLES = {
+    PALETTE.latte.identifier: LatteStyle,
+    PALETTE.frappe.identifier: FrappeStyle,
+    PALETTE.macchiato.identifier: MacchiatoStyle,
+    PALETTE.mocha.identifier: MochaStyle,
+}
+
+
+PADDING_PAT = re.compile(r" padding-(?:left|right): \d+px;")
+
+
+def write(content: str, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content)
+
+
+def postprocess_css(content: str) -> str:
+    return PADDING_PAT.sub("", content)
+
+
+def flavor_css(flavor: str) -> str:
+    style = PYGMENTS_STYLES[flavor]
+    formatter = HtmlFormatter(style=style)
+    return formatter.get_style_defs()
+
+
+def variable_css() -> str:
+    flavor = PALETTE.latte
+    css = flavor_css(flavor.identifier)
+    for color in flavor.colors:
+        css = css.replace(color.hex, f"var(--ctp-{color.identifier})")
+    return css
+
+
+def build_css() -> None:
+    # build individual CSS files for each flavor
+    for flavor in PALETTE:
+        filename = f"ctp-{flavor.identifier}.css"
+        path = PYGMENTS_DIR / filename
+        write(postprocess_css(flavor_css(flavor.identifier)), path)
+
+    # build a variable CSS file
+    path = PYGMENTS_DIR / "ctp-variable.css"
+    write(postprocess_css(variable_css()), path)
+
+
+if __name__ == "__main__":
+    build_css()
