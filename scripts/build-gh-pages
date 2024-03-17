@@ -52,12 +52,12 @@ def variable_css() -> str:
 def build_css() -> None:
     # build individual CSS files for each flavor
     for flavor in PALETTE:
-        filename = f"ctp-{flavor.identifier}.css"
+        filename = f"catppuccin-{flavor.identifier}.css"
         path = PYGMENTS_DIR / filename
         write(postprocess_css(flavor_css(flavor.identifier)), path)
 
     # build a variable CSS file
-    path = PYGMENTS_DIR / "ctp-variable.css"
+    path = PYGMENTS_DIR / "catppuccin.variables.css"
     write(postprocess_css(variable_css()), path)
 
 
