@@ -16,7 +16,7 @@ jobs:
       - uses: "actions/setup-node@v4"
         with:
           node-version: "latest"
-      - run: "pip install catppuccin[pygments]"
+      - run: "pip install catppuccin[pygments,gh-pages]"
       - run: "scripts/build-gh-pages"
       - run: "npx lightningcss-cli --minify ./gh-pages/pygments/*.css --output-dir ./gh-pages/pygments/"
       - uses: "peaceiris/actions-gh-pages@v3"

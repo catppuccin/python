@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import re
 from pathlib import Path
 
+import tinycss2
 from pygments.formatters.html import HtmlFormatter
 
 from catppuccin import PALETTE
@@ -23,16 +23,32 @@ PYGMENTS_STYLES = {
 }
 
 
-PADDING_PAT = re.compile(r" padding-(?:left|right): \d+px;")
-
-
 def write(content: str, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content)
 
 
-def postprocess_css(content: str) -> str:
-    return PADDING_PAT.sub("", content)
+def postprocess_css(content: str, important: bool) -> str:
+    rules = tinycss2.parse_stylesheet(content, skip_comments=True, skip_whitespace=True)
+    for rule in rules:
+        declarations = tinycss2.parse_declaration_list(
+            rule.content, skip_comments=True, skip_whitespace=True
+        )
+
+        # remove padding
+        declarations = [
+            declaration
+            for declaration in declarations
+            if "padding" not in declaration.lower_name
+        ]
+
+        # add !important if needed
+        for declaration in declarations:
+            declaration.important = important
+
+        rule.content = declarations
+
+    return tinycss2.serialize(rules)
 
 
 def flavor_css(flavor: str) -> str:
@@ -49,17 +65,24 @@ def variable_css() -> str:
     return css
 
 
-def build_css() -> None:
+def build_css(*, important: bool) -> None:
     # build individual CSS files for each flavor
     for flavor in PALETTE:
-        filename = f"catppuccin-{flavor.identifier}.css"
+        if important:
+            filename = f"catppuccin-{flavor.identifier}.important.css"
+        else:
+            filename = f"catppuccin-{flavor.identifier}.css"
         path = PYGMENTS_DIR / filename
-        write(postprocess_css(flavor_css(flavor.identifier)), path)
+        write(postprocess_css(flavor_css(flavor.identifier), important), path)
 
     # build a variable CSS file
-    path = PYGMENTS_DIR / "catppuccin-variables.css"
-    write(postprocess_css(variable_css()), path)
+    if important:
+        path = PYGMENTS_DIR / "catppuccin-variables.important.css"
+    else:
+        path = PYGMENTS_DIR / "catppuccin-variables.css"
+    write(postprocess_css(variable_css(), important), path)
 
 
 if __name__ == "__main__":
-    build_css()
+    build_css(important=False)
+    build_css(important=True)
