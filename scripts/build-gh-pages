@@ -54,7 +54,7 @@ def postprocess_css(content: str, important: bool) -> str:
 def flavor_css(flavor: str) -> str:
     style = PYGMENTS_STYLES[flavor]
     formatter = HtmlFormatter(style=style)
-    return formatter.get_style_defs(["pre", "pre[lang]"])
+    return formatter.get_style_defs("pre")
 
 
 def variable_css() -> str:
