@@ -13,6 +13,7 @@ import matplotlib.style
 from catppuccin.palette import PALETTE
 
 CATPPUCCIN_STYLE_DIRECTORY = Path(__file__).parent / "matplotlib_styles"
+DEFAULT_COLORMAP_COLORS = ("base", "blue")
 
 
 def _register_styles() -> None:
@@ -26,7 +27,7 @@ def _register_styles() -> None:
 def _register_colormap_list() -> None:
     """Register the included color maps in the `matplotlib` colormap library."""
     for palette_name in asdict(PALETTE):
-        cmap = get_colormap_from_list(palette_name, ["base", "blue"])
+        cmap = get_colormap_from_list(palette_name, DEFAULT_COLORMAP_COLORS)
         mpl.colormaps.register(cmap=cmap, name=palette_name)
 
 
