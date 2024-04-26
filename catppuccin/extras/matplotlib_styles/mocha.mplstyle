@@ -1,0 +1,43 @@
+# Note: this explicitly only alters colors and should be combined with
+# other stylesheets if you want to edit other aspects, like linewidth,
+# margins, etc.
+
+# Original matplotlib cycle is blue, orange, green, red, purple, brown, pink, grey, light green, light blue
+# Main colors: blue, peach, green, red, mauve, maroon, pink, rosewater, teal, lavender
+axes.prop_cycle: cycler('color', ['89b4fa', 'fab387', 'a6e3a1', 'f38ba8', 'cba6f7', 'eba0ac', 'f5c2e7', 'f5e0dc', '94e2d5', 'b4befe'])
+
+image.cmap: mocha
+
+# Font color: Text
+text.color: cdd6f4
+axes.labelcolor: cdd6f4
+xtick.labelcolor: cdd6f4
+ytick.labelcolor: cdd6f4
+
+# Background color: Base
+figure.facecolor: 1e1e2e
+axes.facecolor: 1e1e2e
+savefig.facecolor: 1e1e2e
+
+# Edge color: Surface 0
+axes.edgecolor: 313244
+legend.edgecolor: 313244
+xtick.color: 313244
+ytick.color: 313244
+patch.edgecolor: 313244
+hatch.color: 313244
+
+# Grid color: Surface 0
+grid.color: 313244
+
+# Boxplots: Overlay 0
+boxplot.flierprops.color: 6c7086
+boxplot.flierprops.markerfacecolor: 6c7086 
+boxplot.flierprops.markeredgecolor: 6c7086
+boxplot.boxprops.color: 6c7086
+boxplot.whiskerprops.color: 6c7086
+boxplot.capprops.color: 6c7086
+boxplot.medianprops.color: 6c7086
+boxplot.meanprops.color: 6c7086
+boxplot.meanprops.markerfacecolor: 6c7086
+boxplot.meanprops.markeredgecolor: 6c7086
