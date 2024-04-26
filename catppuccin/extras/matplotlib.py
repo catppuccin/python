@@ -40,8 +40,8 @@ def get_colormap_from_list(
     palette_name: str, color_names: list[str]
 ) -> matplotlib.colors.LinearSegmentedColormap:
     """# TODO: add proper description."""
-    color_list = [load_color(palette_name, color_name) for color_name in color_names]
-    return matplotlib.colors.LinearSegmentedColormap.from_list(palette_name, color_list)
+    colors = [load_color(palette_name, color_name) for color_name in color_names]
+    return matplotlib.colors.LinearSegmentedColormap.from_list(palette_name, colors)
 
 
 def load_color(palette_name: str, color_name: str, *, color_format: str = "hex") -> str:
