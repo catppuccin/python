@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 from typing import Any, cast
 
@@ -65,6 +66,10 @@ def codegen() -> str:
 
 
 if __name__ == "__main__":
-    with Path("catppuccin/palette.py").open("w") as f:
+    palette_path = Path.cwd() / "catppuccin" / "palette.py"
+    with palette_path.open("w") as f:
         source = codegen()
         print(source, file=f)
+    # Run `ruff format` on the generated file
+    ruff_format = f"ruff format {palette_path}"
+    subprocess.run(ruff_format.split(), check=True)  # noqa: S603
