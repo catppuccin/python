@@ -31,13 +31,13 @@ hatch.color: 363a4f
 grid.color: 363a4f
 
 # Boxplots: Overlay 0
-boxplot.flierprops.color: cad3f5
-boxplot.flierprops.markerfacecolor: cad3f5 
-boxplot.flierprops.markeredgecolor: cad3f5
-boxplot.boxprops.color: cad3f5
-boxplot.whiskerprops.color: cad3f5
-boxplot.capprops.color: cad3f5
-boxplot.medianprops.color: cad3f5
-boxplot.meanprops.color: cad3f5
-boxplot.meanprops.markerfacecolor: cad3f5
-boxplot.meanprops.markeredgecolor: cad3f5
+boxplot.flierprops.color: 6e738d
+boxplot.flierprops.markerfacecolor: 6e738d 
+boxplot.flierprops.markeredgecolor: 6e738d
+boxplot.boxprops.color: 6e738d
+boxplot.whiskerprops.color: 6e738d
+boxplot.capprops.color: 6e738d
+boxplot.medianprops.color: 6e738d
+boxplot.meanprops.color: 6e738d
+boxplot.meanprops.markerfacecolor: 6e738d
+boxplot.meanprops.markeredgecolor: 6e738d
