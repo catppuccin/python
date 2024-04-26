@@ -4,40 +4,40 @@
 
 # Original matplotlib cycle is blue, orange, green, red, purple, brown, pink, grey, light green, light blue
 # Main colors: blue, peach, green, red, mauve, maroon, pink, rosewater, teal, lavender
-axes.prop_cycle: cycler('color', ['#89b4fa', '#fab387', '#a6e3a1', '#f38ba8', '#cba6f7', '#eba0ac', '#f5c2e7', '#f5e0dc', '#94e2d5', '#b4befe'])
+axes.prop_cycle: cycler('color', ['<blue>', '<peach>', '<green>', '<red>', '<mauve>', '<maroon>', '<pink>', '<rosewater>', '<teal>', '<lavender>'])
 
-image.cmap: mocha
+image.cmap: <palette>
 
 # Font color: Text
-text.color: #cdd6f4
-axes.labelcolor: #cdd6f4
-xtick.labelcolor: #cdd6f4
-ytick.labelcolor: #cdd6f4
+text.color: <text>
+axes.labelcolor: <text>
+xtick.labelcolor: <text>
+ytick.labelcolor: <text>
 
 # Background color: Base
-figure.facecolor: #1e1e2e
-axes.facecolor: #1e1e2e
-savefig.facecolor: #1e1e2e
+figure.facecolor: <base>
+axes.facecolor: <base>
+savefig.facecolor: <base>
 
 # Edge color: Surface 0
-axes.edgecolor: #313244
-legend.edgecolor: #313244
-xtick.color: #313244
-ytick.color: #313244
-patch.edgecolor: #313244
-hatch.color: #313244
+axes.edgecolor: <surface0>
+legend.edgecolor: <surface0>
+xtick.color: <surface0>
+ytick.color: <surface0>
+patch.edgecolor: <surface0>
+hatch.color: <surface0>
 
 # Grid color: Surface 0
-grid.color: #313244
+grid.color: <surface0>
 
 # Boxplots: Overlay 0
-boxplot.flierprops.color: #cdd6f4
-boxplot.flierprops.markerfacecolor: #cdd6f4 
-boxplot.flierprops.markeredgecolor: #cdd6f4
-boxplot.boxprops.color: #cdd6f4
-boxplot.whiskerprops.color: #cdd6f4
-boxplot.capprops.color: #cdd6f4
-boxplot.medianprops.color: #cdd6f4
-boxplot.meanprops.color: #cdd6f4
-boxplot.meanprops.markerfacecolor: #cdd6f4
-boxplot.meanprops.markeredgecolor: #cdd6f4
+boxplot.flierprops.color: <overlay0>
+boxplot.flierprops.markerfacecolor: <overlay0> 
+boxplot.flierprops.markeredgecolor: <overlay0>
+boxplot.boxprops.color: <overlay0>
+boxplot.whiskerprops.color: <overlay0>
+boxplot.capprops.color: <overlay0>
+boxplot.medianprops.color: <overlay0>
+boxplot.meanprops.color: <overlay0>
+boxplot.meanprops.markerfacecolor: <overlay0>
+boxplot.meanprops.markeredgecolor: <overlay0>
