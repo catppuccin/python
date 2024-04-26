@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import asdict
 from pathlib import Path
 from typing import cast
 
@@ -24,7 +25,7 @@ def _register_styles() -> None:
 
 def _register_colormap_list() -> None:
     """Register the included color maps in the `matplotlib` colormap library."""
-    for palette_name in ["latte", "frappe", "macchiato", "mocha"]:
+    for palette_name in asdict(PALETTE):
         cmap = get_colormap_from_list(palette_name, ["base", "blue"])
         mpl.colormaps.register(cmap=cmap, name=palette_name)
 
