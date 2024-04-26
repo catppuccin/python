@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 from pathlib import Path
-from typing import cast
+from typing import Iterable, cast
 
 import matplotlib as mpl
 import matplotlib.colors
@@ -31,7 +31,8 @@ def _register_colormap_list() -> None:
 
 
 def get_colormap_from_list(
-    palette_name: str, color_names: list[str]
+    palette_name: str,
+    color_names: Iterable[str],
 ) -> matplotlib.colors.LinearSegmentedColormap:
     """Get a `matplotlib` colormap from a list of colors for a specific palette."""
     colors = [load_color(palette_name, color_name) for color_name in color_names]
