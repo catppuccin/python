@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import cast
 
@@ -10,15 +9,9 @@ import matplotlib as mpl
 import matplotlib.colors
 import matplotlib.style
 
-
-def _load_palette_json() -> dict[str, dict[str, dict[str, str]]]:
-    # TODO: kill this function and load from actual PALETTE objects.  # noqa: TD002, TD003, FIX002, E501
-    with (CATPPUCCIN_STYLE_DIRECTORY / "palettes.json").open() as f:
-        return cast(dict[str, dict[str, dict[str, str]]], json.load(f))
-
+from catppuccin.palette import PALETTE
 
 CATPPUCCIN_STYLE_DIRECTORY = Path(__file__).parent / "matplotlib_styles"
-MPL_PALETTES = _load_palette_json()
 
 
 def _register_styles() -> None:
@@ -39,11 +32,14 @@ def _register_colormap_list() -> None:
 def get_colormap_from_list(
     palette_name: str, color_names: list[str]
 ) -> matplotlib.colors.LinearSegmentedColormap:
-    """# TODO: add proper description."""
+    """Get a `matplotlib` colormap from a list of colors for a specific palette."""
     colors = [load_color(palette_name, color_name) for color_name in color_names]
     return matplotlib.colors.LinearSegmentedColormap.from_list(palette_name, colors)
 
 
-def load_color(palette_name: str, color_name: str, *, color_format: str = "hex") -> str:
-    """# TODO: add proper description."""
-    return MPL_PALETTES[palette_name][color_name][color_format]
+def load_color(palette_name: str, color_name: str) -> str:
+    """Load the color for a given palette and color name."""
+    return cast(
+        str,
+        PALETTE.__getattribute__(palette_name).colors.__getattribute__(color_name).hex,
+    )
