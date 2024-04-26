@@ -1,4 +1,4 @@
-"""Soothing pastel theme for matplotlib"""
+"""Soothing pastel theme for matplotlib."""
 
 from __future__ import annotations
 
