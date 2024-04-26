@@ -80,11 +80,11 @@ if __name__ == "__main__":
     # Generate the matplotlib styles
 
     from catppuccin import PALETTE
+    from catppuccin.extras.matplotlib import CATPPUCCIN_STYLE_DIRECTORY
 
-    matplotlib_styles_folder = (
-        Path.cwd() / "catppuccin" / "extras" / "matplotlib_styles"
-    )
-    template_text = (matplotlib_styles_folder / "_catppuccin_template.txt").read_text()
+    template_text = (
+        CATPPUCCIN_STYLE_DIRECTORY / "_catppuccin_template.txt"
+    ).read_text()
 
     for key, palette in asdict(PALETTE).items():
         text = template_text
@@ -94,5 +94,5 @@ if __name__ == "__main__":
                 f"<{color}>",
                 palette["colors"][color]["hex"].replace("#", ""),
             )
-        with (matplotlib_styles_folder / f"{key}.mplstyle").open("w") as f:
+        with (CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle").open("w") as f:
             f.write(text)
