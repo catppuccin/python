@@ -1,4 +1,9 @@
-"""Soothing pastel theme for matplotlib."""
+"""Soothing pastel theme for `matplotlib`.
+
+The following code was ported from [catppuccin/matplotlib](https://github.com/catppuccin/matplotlib).
+Thanks to [Bram de Wilde](https://github.com/brambozz) for the original source code and
+for allowing this port.
+"""
 
 from __future__ import annotations
 
