@@ -35,7 +35,7 @@ def plot_palette(palette_name: str) -> plt.Figure:  # type: ignore [name-defined
         ax.text(
             -0.01,
             0.5,
-            f"{color_name} {colors[color_name]["hex"]}",
+            f"{color_name} {colors[color_name]['hex']}",
             va="center",
             ha="right",
             fontsize=10,
