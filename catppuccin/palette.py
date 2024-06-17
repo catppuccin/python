@@ -1,4 +1,5 @@
 """Catppuccin palette definition."""
+
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 
 PALETTE = Palette(

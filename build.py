@@ -1,4 +1,5 @@
 """Code generation script for creating the global palette constant."""
+
 from __future__ import annotations
 
 import json
