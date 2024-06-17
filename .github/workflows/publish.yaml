@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - uses: abatilo/actions-poetry@v2
+      - uses: abatilo/actions-poetry@v3
       - run: poetry self add "poetry-dynamic-versioning[plugin]"
       - run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
       - run: poetry publish --build
