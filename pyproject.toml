@@ -1,10 +1,10 @@
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "catppuccin"
-version = "0.0.0"
+version = "2.2.0"
 description = "🐍 Soothing pastel theme for Python."
 authors = ["backwardspy <backwardspy@pigeon.life>"]
 readme = "README.md"
@@ -35,9 +35,6 @@ pytest-cov = "^5.0.0"
 ruff = "^0.4.0"
 types-pygments = "^2.17.0.20240106"
 types-colorama = "^0.4.15.20240205"
-
-[tool.poetry-dynamic-versioning]
-enable = true
 
 [tool.ruff.lint]
 select = ["ALL"]
