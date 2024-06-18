@@ -1,4 +1,5 @@
 """Dataclass definitions for the Catppuccin palette data structure."""
+
 from dataclasses import dataclass
 from typing import Iterator
 

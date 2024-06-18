@@ -131,6 +131,60 @@ and ensuring `catppuccin[pygments]` is installed in the same environment will
 give you Catppuccin Mocha syntax highlighting in the REPL. See [here](https://github.com/backwardspy/dots/blob/f6991570d6691212e27e266517656192f910ccbf/dot_config/ipython/profile_default/ipython_config.py)
 for an example of a more complete configuration.
 
+## Matplotlib
+
+The library tries to register styles and colormaps if `matplotlib` is installed.
+See the examples below for some use cases:
+
+1. Load a style, using `mpl.style.use`
+    ```python
+    import catppuccin
+    import matplotlib as mpl
+    import matplotlib.pyplot as plt
+
+    mpl.style.use(catppuccin.PALETTE.mocha.identifier)
+    plt.plot([0,1,2,3], [1,2,3,4])
+    plt.show()
+    ```
+1. Mix it with different stylesheets!
+    ```python
+    import catppuccin
+    import matplotlib as mpl
+    import matplotlib.pyplot as plt
+
+    mpl.style.use(["ggplot", catppuccin.PALETTE.mocha.identifier])
+    plt.plot([0,1,2,3], [1,2,3,4])
+    plt.show()
+    ```
+1. Load individual colors
+    ```python
+    import matplotlib.pyplot as plt
+    import catppuccin
+    from catppuccin.extras.matplotlib import load_color
+
+    color = load_color(catppuccin.PALETTE.latte.identifier, "peach")
+    plt.plot([0,1,2,3], [1,2,3,4], color=color)
+    plt.show()
+    ```
+1. Define custom colormaps
+    ```python
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import catppuccin
+    from catppuccin.extras.matplotlib import get_colormap_from_list
+
+    cmap = get_colormap_from_list(
+        catppuccin.PALETTE.frappe.identifier,
+        ["red", "peach", "yellow", "green"],
+    )
+    rng = np.random.default_rng()
+    data = rng.integers(2, size=(30, 30))
+
+    plt.imshow(data, cmap=cmap)
+    plt.show()
+    ```
+
+
 ## Contribution
 
 If you are looking to contribute, please read through our

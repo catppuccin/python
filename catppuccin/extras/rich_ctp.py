@@ -1,4 +1,5 @@
 """Rich themes for all Catppuccin flavors."""
+
 from rich.theme import Theme
 
 from catppuccin import PALETTE
