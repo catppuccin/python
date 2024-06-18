@@ -235,6 +235,8 @@ path.
 ## 💝 Thanks to
 
 - [backwardspy](https://github.com/backwardspy)
+- [Bram de Wilde](https://github.com/brambozz)
+- [miloth](https://github.com/miloth)
 
 &nbsp;
 
