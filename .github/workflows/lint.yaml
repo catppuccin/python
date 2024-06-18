@@ -1,8 +1,10 @@
-name: Lint
 on:
   push:
     paths:
       - "**.py"
+
+name: lint
+
 jobs:
   lint:
     strategy:
