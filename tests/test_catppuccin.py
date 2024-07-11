@@ -1,4 +1,4 @@
-from catppuccin import PALETTE
+from catppuccin import PALETTE, ColorName
 
 
 def test_some_colors() -> None:
@@ -51,3 +51,10 @@ def test_iterate_flavor_colors() -> None:
     for i, color in enumerate(colors):
         assert order[i] == color
     assert list(colors) == order
+
+
+def test_name_enums() -> None:
+    assert (
+        getattr(PALETTE.latte.colors, ColorName.ROSEWATER)
+        == PALETTE.latte.colors.rosewater
+    )
