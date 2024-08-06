@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.1](https://github.com/catppuccin/python/compare/v2.3.0...v2.3.1) (2024-07-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency matplotlib to v3.9.1 ([#56](https://github.com/catppuccin/python/issues/56)) ([ed3cc08](https://github.com/catppuccin/python/commit/ed3cc0849fec8948b3beed8bebce3d3387b198d0))
+
+
+### Documentation
+
+* **readme:** add matplotlib contributors to thanks section ([1695f2f](https://github.com/catppuccin/python/commit/1695f2f47457d677836ba9c91134c7742cbb5981))
+
 ## [2.3.0](https://github.com/catppuccin/python/compare/v2.2.0...v2.3.0) (2024-06-18)
 
 
