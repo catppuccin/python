@@ -107,8 +107,8 @@ def example_patches() -> plt.Figure:  # type: ignore [name-defined]
     fig, ax = plt.subplots()
     arrow_1 = mpatches.FancyArrowPatch((0, 1), (1, 0), mutation_scale=100)
     arrow_2 = mpatches.FancyArrowPatch((0, 0), (1, 1), mutation_scale=100)
-    ax.set_xlim([-0.1, 1.1])
-    ax.set_ylim([-0.1, 1.1])
+    ax.set_xlim(-0.1, 1.1)
+    ax.set_ylim(-0.1, 1.1)
     ax.add_patch(arrow_1)
     ax.add_patch(arrow_2)
 
