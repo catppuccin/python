@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.3.1](https://github.com/catppuccin/python/compare/v2.3.0...v2.3.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency matplotlib to v3.9.1 ([#56](https://github.com/catppuccin/python/issues/56)) ([ed3cc08](https://github.com/catppuccin/python/commit/ed3cc0849fec8948b3beed8bebce3d3387b198d0))
+* **deps:** update dependency matplotlib to v3.9.2 ([#68](https://github.com/catppuccin/python/issues/68)) ([0d31bdb](https://github.com/catppuccin/python/commit/0d31bdbacaa5dc80073c317dd5105f6234f8016b))
+* **deps:** update dependency rich to v13.8.0 ([#71](https://github.com/catppuccin/python/issues/71)) ([9f4ed60](https://github.com/catppuccin/python/commit/9f4ed60a81b316b2941f372669557b499f7a173f))
+* **scripts/build-gh-pages:** add `code` selector for pygments styles ([#69](https://github.com/catppuccin/python/issues/69)) ([6699255](https://github.com/catppuccin/python/commit/6699255f59669cd044189c55afd141eba39c591a))
+
+
+### Documentation
+
+* move iterable docstring from Flavor to FlavorColors ([eaa1e45](https://github.com/catppuccin/python/commit/eaa1e459f64042c51a9fe2d19afb13eb7922cc2d))
+* **readme:** add matplotlib contributors to thanks section ([1695f2f](https://github.com/catppuccin/python/commit/1695f2f47457d677836ba9c91134c7742cbb5981))
+
 ## [2.3.0](https://github.com/catppuccin/python/compare/v2.2.0...v2.3.0) (2024-06-18)
 
 
