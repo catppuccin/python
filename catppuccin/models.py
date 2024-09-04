@@ -37,7 +37,10 @@ class Color:
 
 @dataclass(frozen=True)
 class FlavorColors:
-    """All of the colors for a particular flavor of Catppuccin."""
+    """All of the colors for a particular flavor of Catppuccin.
+
+    Can be iterated over, in which case the colors are yielded in order.
+    """
 
     rosewater: Color
     flamingo: Color
@@ -103,7 +106,6 @@ class Flavor:
     """A flavor is a collection of colors.
 
     Catppuccin has four flavors; Latte, Frappé, Macchiato, and Mocha.
-    Can be iterated over, in which case the colors are yielded in order.
     """
 
     name: str
