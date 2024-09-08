@@ -31,12 +31,12 @@ if TYPE_CHECKING:
 
 def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
     return {
-        Comment: colors.overlay0.hex,
-        Comment.Hashbang: colors.overlay0.hex,
-        Comment.Multiline: colors.overlay0.hex,
+        Comment: colors.overlay2.hex,
+        Comment.Hashbang: colors.overlay2.hex,
+        Comment.Multiline: colors.overlay2.hex,
         Comment.Preproc: colors.pink.hex,
-        Comment.Single: colors.overlay0.hex,
-        Comment.Special: colors.overlay0.hex,
+        Comment.Single: colors.overlay2.hex,
+        Comment.Special: colors.overlay2.hex,
         Generic: colors.text.hex,
         Generic.Deleted: colors.red.hex,
         Generic.Emph: f"{colors.text.hex} underline",
@@ -52,7 +52,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         # `as`
         Keyword: colors.mauve.hex,
         Keyword.Constant: colors.pink.hex,
-        Keyword.Declaration: f"{colors.teal.hex} italic",
+        Keyword.Declaration: f"{colors.mauve.hex} italic",
         # `from`, `import`
         Keyword.Namespace: colors.mauve.hex,
         Keyword.Pseudo: colors.pink.hex,
@@ -66,7 +66,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Name: colors.text.hex,
         Name.Attribute: colors.green.hex,
         # `len`, `print`
-        Name.Builtin: f"{colors.peach.hex} italic",
+        Name.Builtin: f"{colors.red.hex} italic",
         # `self`
         Name.Builtin.Pseudo: colors.red.hex,
         # class Name.Class:
@@ -104,13 +104,13 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         String.Char: colors.green.hex,
         String.Doc: colors.green.hex,
         String.Double: colors.green.hex,
-        String.Escape: colors.green.hex,
+        String.Escape: colors.pink.hex,
         String.Heredoc: colors.green.hex,
         String.Interpol: colors.green.hex,
         String.Other: colors.green.hex,
-        String.Regex: colors.green.hex,
+        String.Regex: colors.pink.hex,
         String.Single: colors.green.hex,
-        String.Symbol: colors.green.hex,
+        String.Symbol: colors.red.hex,
         Text: colors.text.hex,
         Whitespace: colors.text.hex,
     }
