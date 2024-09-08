@@ -52,7 +52,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Error: colors.text.hex,
         # `as`
         Keyword: colors.mauve.hex,
-        Keyword.Constant: colors.pink.hex,
+        Keyword.Constant: colors.mauve.hex,
         Keyword.Declaration: f"{colors.mauve.hex} italic",
         # `from`, `import`
         Keyword.Namespace: colors.mauve.hex,
