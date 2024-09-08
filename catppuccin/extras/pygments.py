@@ -77,7 +77,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Name.Entity: colors.text.hex,
         Name.Exception: colors.text.hex,
         # def __Name.Label__(
-        Name.Function: colors.sapphire.hex,
+        Name.Function: colors.blue.hex,
         Name.Label: f"{colors.teal.hex} italic",
         Name.Namespace: colors.text.hex,
         Name.Other: colors.text.hex,
