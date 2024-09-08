@@ -30,6 +30,7 @@ if TYPE_CHECKING:
 
 
 def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
+    # https://pygments.org/docs/tokens/
     return {
         Comment: colors.overlay2.hex,
         Comment.Hashbang: colors.overlay2.hex,
@@ -57,7 +58,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Keyword.Namespace: colors.mauve.hex,
         Keyword.Pseudo: colors.pink.hex,
         Keyword.Reserved: colors.pink.hex,
-        Keyword.Type: colors.teal.hex,
+        Keyword.Type: colors.yellow.hex,
         Literal: colors.text.hex,
         Literal.Date: colors.text.hex,
         # from xxx import NAME
