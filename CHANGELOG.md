@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.4](https://github.com/catppuccin/python/compare/v2.3.3...v2.3.4) (2024-09-08)
+
+
+### Bug Fixes
+
+* **extras/pygments:** change `Keyword.Reserved` from `pink` to `mauve` ([c0c3ee9](https://github.com/catppuccin/python/commit/c0c3ee990e5a36150f233ef61f1bae8cd4d09a59))
+* **extras/pygments:** change `Name.Exception` from `text` to `yellow` ([c0c3ee9](https://github.com/catppuccin/python/commit/c0c3ee990e5a36150f233ef61f1bae8cd4d09a59))
+
 ## [2.3.3](https://github.com/catppuccin/python/compare/v2.3.2...v2.3.3) (2024-09-08)
 
 
