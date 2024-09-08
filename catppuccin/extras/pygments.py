@@ -57,7 +57,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         # `from`, `import`
         Keyword.Namespace: colors.mauve.hex,
         Keyword.Pseudo: colors.pink.hex,
-        Keyword.Reserved: colors.pink.hex,
+        Keyword.Reserved: colors.mauve.hex,
         Keyword.Type: colors.yellow.hex,
         Literal: colors.text.hex,
         Literal.Date: colors.text.hex,
@@ -75,7 +75,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Name.Constant: colors.text.hex,
         Name.Decorator: colors.text.hex,
         Name.Entity: colors.text.hex,
-        Name.Exception: colors.text.hex,
+        Name.Exception: colors.yellow.hex,
         # def __Name.Label__(
         Name.Function: colors.blue.hex,
         Name.Label: f"{colors.teal.hex} italic",
