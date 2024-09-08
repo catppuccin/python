@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.2](https://github.com/catppuccin/python/compare/v2.3.1...v2.3.2) (2024-09-08)
+
+
+### Bug Fixes
+
+* **extras/pygments:** align syntax highlighting tokens with style guide ([#75](https://github.com/catppuccin/python/issues/75)) ([2d0df3d](https://github.com/catppuccin/python/commit/2d0df3d746a9f6797c9e7b095cdf58ee41f56c72))
+
 ## [2.3.1](https://github.com/catppuccin/python/compare/v2.3.0...v2.3.1) (2024-09-04)
 
 
