@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.3](https://github.com/catppuccin/python/compare/v2.3.2...v2.3.3) (2024-09-08)
+
+
+### Bug Fixes
+
+* **extras/pygments:** change `Name.Tag` from pink to blue ([#77](https://github.com/catppuccin/python/issues/77)) ([ecf1972](https://github.com/catppuccin/python/commit/ecf19729cbc53695db1fe3b0d0dfea5e5d84879e))
+* **pygments:** functions should be `blue`, not `sapphire` ([#79](https://github.com/catppuccin/python/issues/79)) ([0bdf4e0](https://github.com/catppuccin/python/commit/0bdf4e025e960af010b79374c3a38caf53d372a4))
+
 ## [2.3.2](https://github.com/catppuccin/python/compare/v2.3.1...v2.3.2) (2024-09-08)
 
 
