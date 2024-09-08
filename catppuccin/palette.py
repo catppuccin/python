@@ -1,5 +1,7 @@
 """Catppuccin palette definition."""
 
+from enum import Enum
+
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 
 PALETTE = Palette(
@@ -1140,3 +1142,45 @@ PALETTE = Palette(
         ),
     ),
 )
+
+
+class FlavorName(str, Enum):
+    """Enumeration of flavor names."""
+
+    __slots__ = ()
+    LATTE = "latte"
+    FRAPPE = "frappe"
+    MACCHIATO = "macchiato"
+    MOCHA = "mocha"
+
+
+class ColorName(str, Enum):
+    """Enumeration of color names."""
+
+    __slots__ = ()
+    ROSEWATER = "rosewater"
+    FLAMINGO = "flamingo"
+    PINK = "pink"
+    MAUVE = "mauve"
+    RED = "red"
+    MAROON = "maroon"
+    PEACH = "peach"
+    YELLOW = "yellow"
+    GREEN = "green"
+    TEAL = "teal"
+    SKY = "sky"
+    SAPPHIRE = "sapphire"
+    BLUE = "blue"
+    LAVENDER = "lavender"
+    TEXT = "text"
+    SUBTEXT1 = "subtext1"
+    SUBTEXT0 = "subtext0"
+    OVERLAY2 = "overlay2"
+    OVERLAY1 = "overlay1"
+    OVERLAY0 = "overlay0"
+    SURFACE2 = "surface2"
+    SURFACE1 = "surface1"
+    SURFACE0 = "surface0"
+    BASE = "base"
+    MANTLE = "mantle"
+    CRUST = "crust"
