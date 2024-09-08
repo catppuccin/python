@@ -81,7 +81,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Name.Label: f"{colors.teal.hex} italic",
         Name.Namespace: colors.text.hex,
         Name.Other: colors.text.hex,
-        Name.Tag: colors.pink.hex,
+        Name.Tag: colors.blue.hex,
         Name.Variable: f"{colors.text.hex} italic",
         Name.Variable.Class: f"{colors.yellow.hex} italic",
         Name.Variable.Global: f"{colors.text.hex} italic",
