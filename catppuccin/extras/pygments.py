@@ -99,7 +99,7 @@ def _make_styles(colors: FlavorColors) -> dict[_TokenType, str]:
         Operator.Word: colors.mauve.hex,
         Other: colors.text.hex,
         # `(`, `)`, `,`, `[`, `]`, `:`
-        Punctuation: colors.overlay2.hex,
+        Punctuation: colors.teal.hex,
         String: colors.green.hex,
         String.Backtick: colors.green.hex,
         String.Char: colors.green.hex,
