@@ -22,6 +22,8 @@ PYGMENTS_STYLES = {
     PALETTE.mocha.identifier: MochaStyle,
 }
 
+BANNED_DECLARATIONS = {"padding", "line-height"}
+
 
 def write(content: str, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -29,7 +31,8 @@ def write(content: str, path: Path) -> None:
 
 
 def postprocess_css(content: str, important: bool) -> str:
-    rules = tinycss2.parse_stylesheet(content, skip_comments=True, skip_whitespace=True)
+    rules = tinycss2.parse_stylesheet(
+        content, skip_comments=True, skip_whitespace=True)
     for rule in rules:
         declarations = tinycss2.parse_declaration_list(
             rule.content, skip_comments=True, skip_whitespace=True
@@ -39,7 +42,7 @@ def postprocess_css(content: str, important: bool) -> str:
         declarations = [
             declaration
             for declaration in declarations
-            if "padding" not in declaration.lower_name
+            if all(decl not in declaration.lower_name for decl in BANNED_DECLARATIONS)
         ]
 
         # add !important if needed
