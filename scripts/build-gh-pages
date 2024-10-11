@@ -42,7 +42,7 @@ def postprocess_css(content: str, important: bool) -> str:
         declarations = [
             declaration
             for declaration in declarations
-            if all(decl not in declaration.lower_name for decl in BANNED_DECLARATIONS)
+            if declaration.lower_name not in BANNED_DECLARATIONS
         ]
 
         # add !important if needed
