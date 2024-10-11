@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.4.0](https://github.com/catppuccin/python/compare/v2.3.4...v2.4.0) (2024-10-11)
+
+
+### Features
+
+* **pygments:** "can't you just..." - [@nullishamy](https://github.com/nullishamy) ([#88](https://github.com/catppuccin/python/issues/88)) ([0e0a289](https://github.com/catppuccin/python/commit/0e0a2898e7a6e642811f9d8263a4f43d7f0cc035))
+* **pygments:** remove line-height ([#86](https://github.com/catppuccin/python/issues/86)) ([368c755](https://github.com/catppuccin/python/commit/368c7552dbec69d71b21e68f0d403ff38e68707a))
+
+
+### Bug Fixes
+
+* **deps:** update dependency rich to v13.9.2 ([#83](https://github.com/catppuccin/python/issues/83)) ([73fc25e](https://github.com/catppuccin/python/commit/73fc25eef69f0188fc26f1814ce9793d63000556))
+
 ## [2.3.4](https://github.com/catppuccin/python/compare/v2.3.3...v2.3.4) (2024-09-08)
 
 
