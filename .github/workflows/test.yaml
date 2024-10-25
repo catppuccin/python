@@ -2,6 +2,9 @@ on:
   push:
     paths:
       - '**.py'
+      - 'poetry.toml'
+      - 'poetry.lock'
+      - 'pyproject.toml'
 
 name: test
 
