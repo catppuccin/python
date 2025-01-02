@@ -20,6 +20,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: abatilo/actions-poetry@v3
+      - uses: abatilo/actions-poetry@v4
       - run: poetry install --all-extras
       - run: poetry run pytest --cov catppuccin
