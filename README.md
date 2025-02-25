@@ -106,10 +106,10 @@ get_style_by_name("catppuccin-frappe")
 
 The following style names are available:
 
- - `catppuccin-latte`
- - `catppuccin-frappe`
- - `catppuccin-macchiato`
- - `catppuccin-mocha`
+- `catppuccin-latte`
+- `catppuccin-frappe`
+- `catppuccin-macchiato`
+- `catppuccin-mocha`
 
 They can also be accessed by directly importing them:
 
@@ -137,53 +137,59 @@ The library tries to register styles and colormaps if `matplotlib` is installed.
 See the examples below for some use cases:
 
 1. Load a style, using `mpl.style.use`
-    ```python
-    import catppuccin
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
 
-    mpl.style.use(catppuccin.PALETTE.mocha.identifier)
-    plt.plot([0,1,2,3], [1,2,3,4])
-    plt.show()
-    ```
+   ```python
+   import catppuccin
+   import matplotlib as mpl
+   import matplotlib.pyplot as plt
+
+   mpl.style.use(catppuccin.PALETTE.mocha.identifier)
+   plt.plot([0,1,2,3], [1,2,3,4])
+   plt.show()
+   ```
+
 1. Mix it with different stylesheets!
-    ```python
-    import catppuccin
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
 
-    mpl.style.use(["ggplot", catppuccin.PALETTE.mocha.identifier])
-    plt.plot([0,1,2,3], [1,2,3,4])
-    plt.show()
-    ```
+   ```python
+   import catppuccin
+   import matplotlib as mpl
+   import matplotlib.pyplot as plt
+
+   mpl.style.use(["ggplot", catppuccin.PALETTE.mocha.identifier])
+   plt.plot([0,1,2,3], [1,2,3,4])
+   plt.show()
+   ```
+
 1. Load individual colors
-    ```python
-    import matplotlib.pyplot as plt
-    import catppuccin
-    from catppuccin.extras.matplotlib import load_color
 
-    color = load_color(catppuccin.PALETTE.latte.identifier, "peach")
-    plt.plot([0,1,2,3], [1,2,3,4], color=color)
-    plt.show()
-    ```
+   ```python
+   import matplotlib.pyplot as plt
+   import catppuccin
+   from catppuccin.extras.matplotlib import load_color
+
+   color = load_color(catppuccin.PALETTE.latte.identifier, "peach")
+   plt.plot([0,1,2,3], [1,2,3,4], color=color)
+   plt.show()
+   ```
+
 1. Define custom colormaps
-    ```python
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import catppuccin
-    from catppuccin.extras.matplotlib import get_colormap_from_list
 
-    cmap = get_colormap_from_list(
-        catppuccin.PALETTE.frappe.identifier,
-        ["red", "peach", "yellow", "green"],
-    )
-    rng = np.random.default_rng()
-    data = rng.integers(2, size=(30, 30))
+   ```python
+   import matplotlib.pyplot as plt
+   import numpy as np
+   import catppuccin
+   from catppuccin.extras.matplotlib import get_colormap_from_list
 
-    plt.imshow(data, cmap=cmap)
-    plt.show()
-    ```
+   cmap = get_colormap_from_list(
+       catppuccin.PALETTE.frappe.identifier,
+       ["red", "peach", "yellow", "green"],
+   )
+   rng = np.random.default_rng()
+   data = rng.integers(2, size=(30, 30))
 
+   plt.imshow(data, cmap=cmap)
+   plt.show()
+   ```
 
 ## Contribution
 
@@ -193,14 +199,14 @@ first!
 
 ### Development
 
-This project is maintained with [Poetry](https://python-poetry.org). If you
-don't have Poetry yet, you can install it using the [installation
-instructions](https://python-poetry.org/docs/#installation).
+This project is maintained with [uv](https://docs.astral.sh/uv/). If you
+don't have uv yet, you can install it using the [installation
+instructions](https://docs.astral.sh/uv/getting-started/installation/).
 
 Install the project's dependencies including extras:
 
 ```bash
-poetry install --all-extras
+uv sync --all-extras
 ```
 
 #### Codegen
@@ -210,27 +216,51 @@ poetry install --all-extras
 To update after downloading a new palette JSON file:
 
 ```console
-poetry run python build.py
+uv run build.py
 ```
 
 Formatting this file is done manually as with any other file, see [`Code Standards`](#code-standards) below.
 
 #### Code Standards
 
-Before committing changes, it is recommended to run the following tools to
-ensure consistency in the codebase.
+All of the tools listed in this section are automatically installed by uv as
+part of the `dev` dependency group.
 
-```bash
-ruff format
-ruff check
-mypy .
-pytest --cov catppuccin
+##### Unit Tests
+
+Tests are run with [`pytest`](https://docs.pytest.org/en/stable/).
+
+To run tests and display coverage:
+
+```console
+$ pytest --cov catppuccin
 ```
 
-These tools are all installed as part of the `dev` dependency group with
-Poetry. You can use `poetry shell` to automatically put these tools in your
-path.
+##### Type Checking
 
+Type checking is performed by [`mypy`](https://www.mypy-lang.org/).
+
+To run type checks:
+
+```console
+$ mypy .
+```
+
+##### Lints and Formatting
+
+Code linting and formatting is done by [`ruff`](https://docs.astral.sh/ruff/).
+
+To lint the code:
+
+```console
+$ ruff check
+```
+
+To format the code:
+
+```console
+$ ruff format
+```
 
 ## 💝 Thanks to
 

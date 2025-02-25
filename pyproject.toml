@@ -1,48 +1,43 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
+authors = [{ name = "backwardspy", email = "backwardspy@pigeon.life" }]
+requires-python = ">=3.9.0"
+dependencies = []
 name = "catppuccin"
 version = "2.3.4"
 description = "🐍 Soothing pastel theme for Python."
-authors = ["backwardspy <backwardspy@pigeon.life>"]
 readme = "README.md"
 
-[tool.poetry.plugins."pygments.styles"]
+[project.entry-points."pygments.styles"]
 catppuccin-latte = "catppuccin.extras.pygments:LatteStyle"
 catppuccin-frappe = "catppuccin.extras.pygments:FrappeStyle"
 catppuccin-macchiato = "catppuccin.extras.pygments:MacchiatoStyle"
 catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 
-[tool.poetry.dependencies]
-python = "^3.9.0"
-matplotlib = { version = "^3.8.4", optional = true }
-pygments = { version = "^2.17.2", optional = true }
-rich = { version = "^13.7.0", optional = true }
-tinycss2 = { version = "^1.2.1", optional = true }
+[project.optional-dependencies]
+matplotlib = ["matplotlib>=3.8.4"]
+pygments = ["pygments>=2.17.2"]
+rich = ["rich>=13.7.0"]
+gh-pages = ["tinycss2>=1.2.1"]
 
-[tool.poetry.extras]
-matplotlib = ["matplotlib"]
-pygments = ["pygments"]
-rich = ["rich"]
-gh-pages = ["tinycss2"]
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.8.0"
-pytest = "^8.0.0"
-pytest-cov = "^5.0.0"
-ruff = "^0.6.0"
-types-pygments = "^2.17.0.20240106"
-types-colorama = "^0.4.15.20240205"
+[dependency-groups]
+dev = [
+  "mypy>=1.15.0",
+  "pytest>=8.3.4",
+  "pytest-cov>=6.0.0",
+  "ruff>=0.9.7",
+  "types-pygments>=2.19.0.20250219",
+  "types-colorama>=0.4.15.20240205",
+]
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
   "D203",   # one-blank-line-before class, incompatible with D211
   "D213",   # multi-line-summary-second-line, incompatible with D212
-  "ANN101", # missing-type-self, deprecated
-  "ANN102", # missing-type-cls, deprecated
   "ISC001", # single-line-implicit-string-concatenation, incompatible with formatter
   "COM812", # missing-trailing-comma, incompatible with formatter
 ]

@@ -10,15 +10,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: abatilo/actions-poetry@v3
-      - run: poetry install --all-extras
-      - run: poetry run ruff check
-      - run: poetry run ruff format --check --diff
-      - run: poetry run mypy .
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: 0.6.3
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+      - run: uv sync --all-extras
+      - run: uv run ruff check
+      - run: uv run ruff format --check --diff
+      - run: uv run mypy .
