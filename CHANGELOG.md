@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.4.0](https://github.com/catppuccin/python/compare/v2.3.4...v2.4.0) (2025-02-25)
+
+
+### Build System
+
+* switch to uv and drop python 3.8 support ([#100](https://github.com/catppuccin/python/issues/100)) ([ba03e0a](https://github.com/catppuccin/python/commit/ba03e0a1b3a252c36db2d4bdd67832bea4f2523e))
+
+
+### Features
+
+* **pygments:** remove line-height ([#86](https://github.com/catppuccin/python/issues/86)) ([368c755](https://github.com/catppuccin/python/commit/368c7552dbec69d71b21e68f0d403ff38e68707a))
+
+
+### Bug Fixes
+
+* **deps:** update dependency rich to v13.9.2 ([#83](https://github.com/catppuccin/python/issues/83)) ([73fc25e](https://github.com/catppuccin/python/commit/73fc25eef69f0188fc26f1814ce9793d63000556))
+
 ## [2.3.4](https://github.com/catppuccin/python/compare/v2.3.3...v2.3.4) (2024-09-08)
 
 
