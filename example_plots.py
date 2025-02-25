@@ -59,7 +59,7 @@ def example_plot() -> plt.Figure:  # type: ignore [name-defined]
 
     fig = plt.figure()
     for idx, phase in enumerate(phases):
-        plt.plot(x, np.sin(2 * np.pi * x + phase), label=f"Color {idx+1}")
+        plt.plot(x, np.sin(2 * np.pi * x + phase), label=f"Color {idx + 1}")
     plt.grid()
     plt.legend()
 

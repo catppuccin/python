@@ -32,7 +32,7 @@ grid.color: 363a4f
 
 # Boxplots: Overlay 0
 boxplot.flierprops.color: 6e738d
-boxplot.flierprops.markerfacecolor: 6e738d 
+boxplot.flierprops.markerfacecolor: 6e738d
 boxplot.flierprops.markeredgecolor: 6e738d
 boxplot.boxprops.color: 6e738d
 boxplot.whiskerprops.color: 6e738d
