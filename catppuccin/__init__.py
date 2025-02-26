@@ -2,9 +2,9 @@
 
 import importlib.util
 
-from catppuccin.palette import PALETTE
+from catppuccin.palette import PALETTE, ColorName, FlavorName
 
-__all__ = ["PALETTE"]
+__all__ = ["PALETTE", "ColorName", "FlavorName"]
 
 # Attempt to register styles and colormaps if matplotlib is available
 if importlib.util.find_spec("matplotlib") is not None:
