@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/catppuccin/python/compare/v2.4.0...v2.4.1) (2025-02-26)
+
+
+### ci
+
+* **release-please:** set `id-token: write` ([#103](https://github.com/catppuccin/python/issues/103)) ([df74a7e](https://github.com/catppuccin/python/commit/df74a7e13ed54b38ce4e310902edd63a20df139c))
+
 ## [2.4.0](https://github.com/catppuccin/python/compare/v2.3.4...v2.4.0) (2025-02-25)
 
 
