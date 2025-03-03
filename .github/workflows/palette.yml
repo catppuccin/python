@@ -21,7 +21,7 @@ jobs:
           cache-dependency-glob: "uv.lock"
 
       - name: Fetch latest palette
-        run: curl -Lo src/palette.json 'https://raw.githubusercontent.com/catppuccin/palette/main/palette.json'
+        run: curl -Lo palette.json 'https://raw.githubusercontent.com/catppuccin/palette/main/palette.json'
 
       - name: Run codegen
         run: uv run --extra matplotlib build.py
