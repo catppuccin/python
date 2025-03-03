@@ -20,7 +20,9 @@ DPI = 200
 def load_palette_json() -> dict[str, Any]:
     """Load palette data from `./palette.json`."""
     with Path("palette.json").open() as f:
-        return cast(dict[str, Any], json.load(f))
+        palette_json = cast(dict[str, Any], json.load(f))
+    del palette_json["version"]
+    return palette_json
 
 
 def make_color(identifier: str, fields: dict[str, Any]) -> Color:
