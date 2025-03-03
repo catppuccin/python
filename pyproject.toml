@@ -26,9 +26,9 @@ gh-pages = ["tinycss2>=1.2.1"]
 [dependency-groups]
 dev = [
   "mypy>=1.15.0",
-  "pytest>=8.3.4",
+  "pytest>=8.3.5",
   "pytest-cov>=6.0.0",
-  "ruff>=0.9.7",
+  "ruff>=0.9.9",
   "types-pygments>=2.19.0.20250219",
   "types-colorama>=0.4.15.20240205",
 ]
@@ -48,6 +48,10 @@ ignore = [
   "D103",    # undocumented-public-function
   "S101",    # assert
   "PLR2004", # magic-value-comparison
+]
+"build.py" = [
+  "T201", # print
+  "S603", # subprocess-without-shell-equals-true
 ]
 
 [tool.mypy]

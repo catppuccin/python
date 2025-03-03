@@ -1,0 +1,40 @@
+name: Palette
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Run every day at midnight UTC
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.6.3"
+          python-version: "3.13"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Fetch latest palette
+        run: curl -Lo src/palette.json 'https://raw.githubusercontent.com/catppuccin/palette/main/palette.json'
+
+      - name: Run codegen
+        run: uv run --extra matplotlib build.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "feat: auto-sync upstream palettes"
+          committer: "GitHub <noreply@github.com>"
+          author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          signoff: false
+          branch: new-palettes
+          delete-branch: true
+          title: "feat: auto-sync upstream palettes"
+          body: |
+            Auto-update `src/palette.json` based on https://github.com/catppuccin/palette/blob/main/palette.json
