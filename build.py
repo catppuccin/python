@@ -71,18 +71,17 @@ def codegen() -> str:
 
 
 if __name__ == "__main__":
-    # Generate the palette.py file
-
+    print("running codegen")
     palette_path = Path.cwd() / "catppuccin" / "palette.py"
-    with palette_path.open("w") as f:
-        source = codegen()
-        print(source, file=f)
-    # Run `ruff format` on the generated file
+    with palette_path.open("w", newline="\n") as f:
+        f.write(codegen())
+    print("formatting with ruff")
     ruff_format = f"ruff format {palette_path}"
-    subprocess.run(ruff_format.split(), check=True)  # noqa: S603
+    subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
+    print("palette.py generation complete")
 
     # Generate the matplotlib styles
-
+    print("generating matplotlib styles")
     from catppuccin.extras.matplotlib import CATPPUCCIN_STYLE_DIRECTORY
     from catppuccin.palette import PALETTE
 
@@ -91,6 +90,7 @@ if __name__ == "__main__":
     ).read_text()
 
     for key, palette in asdict(PALETTE).items():
+        print(f"- {key}")
         text = template_text
         text = text.replace("<palette>", key)
         for color in palette["colors"]:
@@ -98,8 +98,10 @@ if __name__ == "__main__":
                 f"<{color}>",
                 palette["colors"][color]["hex"].replace("#", ""),
             )
-        with (CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle").open("w") as f:
+        style_path = CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle"
+        with style_path.open("w", newline="\n") as f:
             f.write(text)
+    print("matplotlib styles generation complete")
 
     # Generate matplotlib assets for the docs
     import matplotlib as mpl
@@ -107,18 +109,23 @@ if __name__ == "__main__":
 
     import catppuccin  # This loads the styles in matplotlib  # noqa: F401
 
+    print("generating matplotlib asset images")
     for palette_name in asdict(PALETTE):
+        print(f"- {palette_name}")
         mpl.style.use(palette_name)
 
         palette_path = Path.cwd() / "assets" / palette_name
         palette_path.mkdir(exist_ok=True, parents=True)
 
         # Plot palette separately
+        print("  - palette")
         fig = plot_palette(palette_name)
         fig.savefig(palette_path / "palette.png", dpi=DPI)
 
         # Plot examples
         for filename, plot_function in example_plots.items():
+            print(f"  - {filename}")
             fig = plot_function()
             fig.savefig(palette_path / f"{filename}.png", dpi=DPI)
             plt.close()
+    print("matplotlib asset image generation complete")
