@@ -6,12 +6,14 @@ import json
 import subprocess
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, Iterable, cast
 
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 from example_plots import example_plots, plot_palette
 
 HEADER = '''"""Catppuccin palette definition."""
+from enum import Enum
+
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette'''
 
 DPI = 200
@@ -54,6 +56,29 @@ def make_flavor(identifier: str, fields: dict[str, Any]) -> Flavor:
     )
 
 
+# we unfortunately can't just `repr` the *name enums.
+def make_flavorname_enum(names: Iterable[str]) -> str:
+    """Create a `FlavorName` enum class from a list of flavor names."""
+    lines = [
+        "class FlavorName(str, Enum):",
+        '    """Enumeration of flavor names."""',
+        "    __slots__ = ()",
+        *[f"    {name.upper()} = '{name}'" for name in names],
+    ]
+    return "\n".join(lines)
+
+
+def make_colorname_enum(names: Iterable[str]) -> str:
+    """Create a `ColorName` enum class from a list of color names."""
+    lines = [
+        "class ColorName(str, Enum):",
+        '    """Enumeration of color names."""',
+        "    __slots__ = ()",
+        *[f"    {name.upper()} = '{name}'" for name in names],
+    ]
+    return "\n".join(lines)
+
+
 def codegen() -> str:
     """Generate contents of `catppuccin/palette.py`."""
     palette_json = load_palette_json()
@@ -67,6 +92,8 @@ def codegen() -> str:
     lines = [
         HEADER,
         f"PALETTE = {palette!r}",
+        make_flavorname_enum(palette_json.keys()),
+        make_colorname_enum(palette_json["latte"]["colors"].keys()),
     ]
 
     return "\n".join(lines)
