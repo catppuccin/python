@@ -12,16 +12,19 @@ jobs:
 
     steps:
       - uses: "actions/checkout@v4"
-      - uses: "actions/setup-python@v5"
+      - uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.x"
+          version: "0.6.3"
+          python-version: "3.13"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
       - uses: "actions/setup-node@v4"
         with:
           node-version: "latest"
-      - run: "pip install catppuccin[pygments,gh-pages]"
       - run: "mkdir -p gh-pages/docs/assets/ && cp assets/pepperjack.webp gh-pages/docs/assets/"
+      - run: "uv sync --extra pygments --extra gh-pages"
       - run: "uv run pdoc catppuccin --no-include-undocumented --favicon https://catppuccin.com/favicon.png --logo https://python.catppuccin.com/docs/assets/pepperjack.webp --logo-link / --template-directory pdoc --output-directory gh-pages/docs"
-      - run: "scripts/build-gh-pages"
+      - run: "uv run scripts/build-gh-pages"
       - run: "npx lightningcss-cli --minify gh-pages/pygments/*.css --output-dir gh-pages/pygments/"
       - uses: "peaceiris/actions-gh-pages@v4"
         with:
