@@ -23,7 +23,7 @@ jobs:
           node-version: "latest"
       - run: "mkdir -p gh-pages/docs/assets/ && cp assets/pepperjack.webp gh-pages/docs/assets/"
       - run: "uv sync --all-extras"
-      - run: "uv run pdoc catppuccin --no-include-undocumented --favicon https://catppuccin.com/favicon.png --logo https://python.catppuccin.com/docs/assets/pepperjack.webp --logo-link / --template-directory pdoc --output-directory gh-pages/docs"
+      - run: "uv run pdoc catppuccin --no-include-undocumented --favicon https://catppuccin.com/favicon.png --logo https://python.catppuccin.com/docs/assets/pepperjack.webp --logo-link /docs --template-directory pdoc --output-directory gh-pages/docs"
       - run: "uv run scripts/build-gh-pages"
       - run: "npx lightningcss-cli --minify gh-pages/pygments/*.css --output-dir gh-pages/pygments/"
       - uses: "peaceiris/actions-gh-pages@v4"
