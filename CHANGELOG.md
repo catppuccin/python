@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.5.0](https://github.com/catppuccin/python/compare/v2.4.1...v2.5.0) (2025-03-17)
+
+
+### Build System
+
+* ignore `version` field in palette.json ([b5dad76](https://github.com/catppuccin/python/commit/b5dad762a71d6cab31561d58516a82c7b9c20a8b))
+
+
+### Documentation
+
+* document package with pdoc ([#108](https://github.com/catppuccin/python/issues/108)) ([e499070](https://github.com/catppuccin/python/commit/e49907013cedc45f61a0ce12f9d5849da40b06c9))
+
+
+### Features
+
+* auto-sync upstream palettes ([#107](https://github.com/catppuccin/python/issues/107)) ([900189a](https://github.com/catppuccin/python/commit/900189a21c3e5a0e7a7fd30ce89d440392322e57))
+
 ## [2.4.1](https://github.com/catppuccin/python/compare/v2.4.0...v2.4.1) (2025-02-26)
 
 
