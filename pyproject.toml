@@ -21,25 +21,28 @@ catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 matplotlib = ["matplotlib>=3.8.4"]
 pygments = ["pygments>=2.17.2"]
 rich = ["rich>=13.7.0"]
-gh-pages = ["tinycss2>=1.2.1"]
+gh-pages = ["tinycss2>=1.2.1", "pdoc>=15.0.1"]
 
 [dependency-groups]
 dev = [
   "mypy>=1.15.0",
   "pytest>=8.3.5",
   "pytest-cov>=6.0.0",
-  "ruff>=0.9.9",
-  "types-pygments>=2.19.0.20250219",
+  "ruff>=0.11.0",
+  "types-pygments>=2.19.0.20250305",
   "types-colorama>=0.4.15.20240205",
 ]
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-  "D203",   # one-blank-line-before class, incompatible with D211
-  "D213",   # multi-line-summary-second-line, incompatible with D212
-  "ISC001", # single-line-implicit-string-concatenation, incompatible with formatter
-  "COM812", # missing-trailing-comma, incompatible with formatter
+  "D203",    # one-blank-line-before class, incompatible with D211
+  "D213",    # multi-line-summary-second-line, incompatible with D212
+  "ISC001",  # single-line-implicit-string-concatenation, incompatible with formatter
+  "COM812",  # missing-trailing-comma, incompatible with formatter
+  "RUF022",  # unsorted-dunder-all, __all__ order affects documentation
+  "TC006",   # runtime-cast-value, stylistic choice
+  "PLC0414", # useless-import-alias, incompatible with unused-import (F401)
 ]
 
 [tool.ruff.lint.per-file-ignores]

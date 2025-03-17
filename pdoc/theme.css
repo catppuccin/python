@@ -1,0 +1,31 @@
+@import url("https://cdn.jsdelivr.net/npm/@catppuccin/palette@1.7.1/css/catppuccin.min.css");
+:root {
+  --ctp-text: var(--ctp-latte-text);
+  --ctp-subtext0: var(--ctp-latte-subtext0);
+  --ctp-base: var(--ctp-latte-base);
+  --ctp-mantle: var(--ctp-latte-mantle);
+  --ctp-crust: var(--ctp-latte-crust);
+  --ctp-mauve: var(--ctp-latte-mauve);
+  --ctp-yellow: var(--ctp-latte-yellow);
+  --ctp-sky: var(--ctp-latte-sky);
+  --ctp-blue: var(--ctp-latte-blue);
+
+  --pdoc-background: var(--ctp-base);
+}
+
+.pdoc {
+  --text: var(--ctp-text);
+  --muted: var(--ctp-subtext0);
+  --link: var(--ctp-blue);
+  --link-hover: var(--ctp-sky);
+  --code: var(--ctp-mantle);
+  --active: var(--ctp-crust);
+
+  --accent: var(--ctp-mantle);
+  --accent2: var(--ctp-crust);
+
+  --nav-hover: rgba(0, 0, 0, 0.03);
+  --name: var(--ctp-text);
+  --def: var(--ctp-mauve);
+  --annotation: var(--ctp-mauve);
+}

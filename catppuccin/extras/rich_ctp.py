@@ -1,4 +1,21 @@
-"""Rich themes for all Catppuccin flavors."""
+"""Rich themes for all Catppuccin flavors.
+
+Install Catppuccin with the `rich` feature to include the relevant dependencies:
+
+```
+pip install catppuccin[rich]
+```
+
+Pass one of the four flavors as your `Console` theme:
+
+```python
+from rich.console import Console
+from catppuccin.extras.rich_ctp import latte, frappe, macchiato, mocha
+
+c = Console(theme=mocha)
+c.print("Hello", style="yellow")
+```
+"""
 
 from rich.theme import Theme
 

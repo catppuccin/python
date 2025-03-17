@@ -1,5 +1,37 @@
 # ruff: noqa: ERA001
-"""Pygments styles for all Catppuccin flavors."""
+"""Pygments styles for all Catppuccin flavors.
+
+This package provides a Pygments style for each of the four Catppuccin flavors.
+
+Install Catppuccin with the `pygments` feature to include the relevant dependencies:
+
+```
+pip install catppuccin[pygments]
+```
+
+The styles are registered as importlib entrypoints, which allows Pygments to
+find them by name:
+
+```python
+from pygments.styles import get_style_by_name
+
+get_style_by_name("catppuccin-frappe")
+# catppuccin.extras.pygments.FrappeStyle
+```
+
+The following style names are available:
+
+- `catppuccin-latte`
+- `catppuccin-frappe`
+- `catppuccin-macchiato`
+- `catppuccin-mocha`
+
+They can also be accessed by directly importing them:
+
+```python
+from catppuccin.extras.pygments import MacchiatoStyle
+```
+"""
 
 from __future__ import annotations
 
