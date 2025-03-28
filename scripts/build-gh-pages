@@ -31,8 +31,7 @@ def write(content: str, path: Path) -> None:
 
 
 def postprocess_css(content: str, important: bool) -> str:
-    rules = tinycss2.parse_stylesheet(
-        content, skip_comments=True, skip_whitespace=True)
+    rules = tinycss2.parse_stylesheet(content, skip_comments=True, skip_whitespace=True)
     for rule in rules:
         declarations = tinycss2.parse_declaration_list(
             rule.content, skip_comments=True, skip_whitespace=True
@@ -65,6 +64,9 @@ def variable_css() -> str:
     css = flavor_css(flavor.identifier)
     for color in flavor.colors:
         css = css.replace(color.hex, f"var(--ctp-{color.identifier})")
+        # pygments emits *some* colours (but not all) in uppercase now...
+        # https://github.com/pygments/pygments/commit/0853028bfe180b7c56ef20502f44a5d8d340216c
+        css = css.replace(color.hex.upper(), f"var(--ctp-{color.identifier})")
     return css
 
 
