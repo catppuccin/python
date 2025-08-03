@@ -7,7 +7,7 @@ authors = [{ name = "backwardspy", email = "backwardspy@pigeon.life" }]
 requires-python = ">=3.9.0"
 dependencies = []
 name = "catppuccin"
-version = "2.4.1"
+version = "2.5.0"
 description = "🐍 Soothing pastel theme for Python."
 readme = "README.md"
 
