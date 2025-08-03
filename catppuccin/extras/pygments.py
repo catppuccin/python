@@ -154,7 +154,7 @@ class LatteStyle(Style):
 
     _colors = PALETTE.latte.colors
 
-    background_color = _colors.base.hex
+    background_color = _colors.mantle.hex
     highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
@@ -169,7 +169,7 @@ class FrappeStyle(Style):
 
     _colors = PALETTE.frappe.colors
 
-    background_color = _colors.base.hex
+    background_color = _colors.mantle.hex
     highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
@@ -184,7 +184,7 @@ class MacchiatoStyle(Style):
 
     _colors = PALETTE.macchiato.colors
 
-    background_color = _colors.base.hex
+    background_color = _colors.mantle.hex
     highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
@@ -199,7 +199,7 @@ class MochaStyle(Style):
 
     _colors = PALETTE.mocha.colors
 
-    background_color = _colors.base.hex
+    background_color = _colors.mantle.hex
     highlight_color = _colors.surface0.hex
     line_number_background_color = _colors.mantle.hex
     line_number_color = _colors.text.hex
