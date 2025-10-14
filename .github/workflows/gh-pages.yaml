@@ -18,7 +18,7 @@ jobs:
           python-version: "3.13"
           enable-cache: true
           cache-dependency-glob: "uv.lock"
-      - uses: "actions/setup-node@v4"
+      - uses: "actions/setup-node@v6"
         with:
           node-version: "latest"
       - run: "mkdir -p gh-pages/docs/assets/ && cp assets/pepperjack.webp gh-pages/docs/assets/"
