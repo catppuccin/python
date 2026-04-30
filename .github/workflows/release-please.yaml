@@ -29,7 +29,7 @@ jobs:
     if: ${{ needs.release-please.outputs.release_created }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version-file: "pyproject.toml"
       - uses: astral-sh/setup-uv@v5
