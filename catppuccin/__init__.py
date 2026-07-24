@@ -82,6 +82,7 @@ to see the documentation for that integration.
 - [matplotlib](./catppuccin/extras/matplotlib.html)
 - [pygments](./catppuccin/extras/pygments.html)
 - [rich](./catppuccin/extras/rich_ctp.html)
+- [IPython](./catppuccin/extras/ipython.html)
 
 """
 
