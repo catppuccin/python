@@ -21,6 +21,7 @@ catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 matplotlib = ["matplotlib>=3.8.4"]
 pygments = ["pygments>=2.17.2"]
 rich = ["rich>=13.7.0"]
+ipython = ["ipython>=8.0.0"]
 gh-pages = ["tinycss2>=1.2.1", "pdoc>=15.0.1"]
 
 [dependency-groups]
@@ -31,6 +32,7 @@ dev = [
   "ruff>=0.11.2",
   "types-pygments>=2.19.0.20250305",
   "types-colorama>=0.4.15.20240205",
+  "ipython>=8.0.0",
 ]
 
 [tool.ruff.lint]
