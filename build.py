@@ -5,11 +5,12 @@ from __future__ import annotations
 import json
 import subprocess
 from dataclasses import asdict
+from importlib import reload
 from pathlib import Path
 from typing import Any, cast
 
+import catppuccin
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
-from example_plots import example_plots, plot_palette
 
 HEADER = '''"""Catppuccin palette definition."""
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette'''
@@ -54,7 +55,7 @@ def make_flavor(identifier: str, fields: dict[str, Any]) -> Flavor:
     )
 
 
-def codegen() -> str:
+def palette_codegen() -> str:
     """Generate contents of `catppuccin/palette.py`."""
     palette_json = load_palette_json()
     palette = Palette(
@@ -72,26 +73,11 @@ def codegen() -> str:
     return "\n".join(lines)
 
 
-if __name__ == "__main__":
-    print("running codegen")
-    palette_path = Path.cwd() / "catppuccin" / "palette.py"
-    with palette_path.open("w", newline="\n") as f:
-        f.write(codegen())
-    print("formatting with ruff")
-    ruff_format = f"ruff format {palette_path}"
-    subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
-    print("palette.py generation complete")
+def generate_mpl_styles() -> None:
+    """Generate the matplotlib .mplstyle files."""
+    template_text = (Path.cwd() / "matplotlib_template.txt").read_text()
 
-    # Generate the matplotlib styles
-    print("generating matplotlib styles")
-    from catppuccin.extras.matplotlib import CATPPUCCIN_STYLE_DIRECTORY
-    from catppuccin.palette import PALETTE
-
-    template_text = (
-        CATPPUCCIN_STYLE_DIRECTORY / "_catppuccin_template.txt"
-    ).read_text()
-
-    for key, palette in asdict(PALETTE).items():
+    for key, palette in asdict(catppuccin.PALETTE).items():
         print(f"- {key}")
         text = template_text
         text = text.replace("<palette>", key)
@@ -100,34 +86,26 @@ if __name__ == "__main__":
                 f"<{color}>",
                 palette["colors"][color]["hex"].replace("#", ""),
             )
-        style_path = CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle"
+        style_path = Path(catppuccin.__file__).parent / f"{key}.mplstyle"
         with style_path.open("w", newline="\n") as f:
             f.write(text)
+
+
+def main() -> None:  # noqa: D103
+    print("running palette codegen")
+    palette_path = Path.cwd() / "catppuccin" / "palette.py"
+    with palette_path.open("w", newline="\n") as f:
+        f.write(palette_codegen())
+    print("formatting with ruff")
+    ruff_format = f"ruff format {palette_path}"
+    subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
+    print("palette.py generation complete")
+
+    print("generating matplotlib styles")
+    reload(catppuccin)  # Reload the palette
+    generate_mpl_styles()
     print("matplotlib styles generation complete")
 
-    # Generate matplotlib assets for the docs
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
 
-    import catppuccin  # This loads the styles in matplotlib  # noqa: F401
-
-    print("generating matplotlib asset images")
-    for palette_name in asdict(PALETTE):
-        print(f"- {palette_name}")
-        mpl.style.use(palette_name)
-
-        palette_path = Path.cwd() / "assets" / palette_name
-        palette_path.mkdir(exist_ok=True, parents=True)
-
-        # Plot palette separately
-        print("  - palette")
-        fig = plot_palette(palette_name)
-        fig.savefig(palette_path / "palette.png", dpi=DPI)
-
-        # Plot examples
-        for filename, plot_function in example_plots.items():
-            print(f"  - {filename}")
-            fig = plot_function()
-            fig.savefig(palette_path / f"{filename}.png", dpi=DPI)
-            plt.close()
-    print("matplotlib asset image generation complete")
+if __name__ == "__main__":
+    main()

@@ -167,6 +167,16 @@ class Flavor:
     colors: FlavorColors
     """@public"""
 
+    @property
+    def matplotlib_style(self) -> str:
+        """Name of the matplotlib style associated with the flavor."""
+        return f"catppuccin.{self.identifier}"
+
+    @property
+    def cmap(self) -> str:
+        """Name of the matplotlib colormap associated with the flavor."""
+        return self.identifier
+
 
 @dataclass(frozen=True)
 class Palette:

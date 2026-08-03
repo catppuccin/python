@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 authors = [{ name = "backwardspy", email = "backwardspy@pigeon.life" }]
-requires-python = ">=3.9.0"
+requires-python = ">=3.11.0"
 dependencies = []
 name = "catppuccin"
-version = "2.5.0"
+version = "3.0.0"
 description = "🐍 Soothing pastel theme for Python."
 readme = "README.md"
 
@@ -18,19 +18,19 @@ catppuccin-macchiato = "catppuccin.extras.pygments:MacchiatoStyle"
 catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 
 [project.optional-dependencies]
-matplotlib = ["matplotlib>=3.8.4"]
+matplotlib = ["matplotlib>=3.11.0"]
 pygments = ["pygments>=2.17.2"]
 rich = ["rich>=13.7.0"]
 gh-pages = ["tinycss2>=1.2.1", "pdoc>=15.0.1"]
 
 [dependency-groups]
 dev = [
-  "mypy>=1.15.0",
-  "pytest>=8.3.5",
-  "pytest-cov>=6.0.0",
-  "ruff>=0.11.2",
-  "types-pygments>=2.19.0.20250305",
-  "types-colorama>=0.4.15.20240205",
+  "mypy>=2.1.0",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "ruff>=0.15.20",
+  "types-colorama>=0.4.15.20260508",
+  "types-pygments>=2.20.0.20260518",
 ]
 
 [tool.ruff.lint]
