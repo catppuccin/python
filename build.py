@@ -91,7 +91,7 @@ def generate_mpl_styles() -> None:
             f.write(text)
 
 
-def main() -> None:
+def main() -> None:  # noqa: D103
     print("running palette codegen")
     palette_path = Path.cwd() / "catppuccin" / "palette.py"
     with palette_path.open("w", newline="\n") as f:
