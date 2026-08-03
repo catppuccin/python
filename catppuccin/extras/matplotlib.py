@@ -64,8 +64,8 @@ See the examples below for some use cases:
     cmap = LinearSegmentedColormap.from_list(
         "my_custom_palette",
         [
-            getattr(catppuccin.PALETTE.frappe.colors, color_name).hex
-            for color_name in ["red", "peach", "yellow", "green"]
+            color.hex for color in catppuccin.PALETTE.frappe.colors
+            if color.identifier in ["red", "peach", "yellow", "green"]
         ],
     )
     rng = np.random.default_rng()
