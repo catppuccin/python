@@ -89,8 +89,9 @@ for _palette in PALETTE:
     _cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
         _palette.identifier,
         [
-            getattr(_palette.colors, color_name).hex
-            for color_name in ("blue", "teal", "yellow", "peach", "red")
+            color.hex
+            for color in PALETTE.frappe.colors
+            if color.identifier in ("blue", "teal", "yellow", "peach", "red")
         ],
     )
     mpl.colormaps.register(cmap=_cmap, name=_palette.identifier, force=True)
