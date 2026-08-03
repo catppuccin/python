@@ -3,24 +3,22 @@
 The generated plots are in the `assets` directory.
 """
 
-from __future__ import annotations
-
 from dataclasses import asdict
 
-import matplotlib as mpl
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import numpy as np
 
-from catppuccin.palette import PALETTE
+from catppuccin import PALETTE
+from catppuccin.models import Flavor
 
 SEED = 0
 POINTS = 50
 
 
-def plot_palette(palette_name: str) -> plt.Figure:  # type: ignore [name-defined]
+def plot_palette(palette: Flavor) -> plt.Figure:  # type: ignore [name-defined]
     """Plot a palette with color names and hex values."""
-    colors = asdict(PALETTE.__getattribute__(palette_name).colors)
+    colors = asdict(palette.colors)
 
     # Create figure and adjust figure height to number of colormaps
     nrows = len(colors)
@@ -28,9 +26,9 @@ def plot_palette(palette_name: str) -> plt.Figure:  # type: ignore [name-defined
     fig, axs = plt.subplots(nrows=nrows, figsize=(6.4, figh))
     fig.subplots_adjust(top=1 - 0.35 / figh, bottom=0.15 / figh, left=0.2, right=0.99)
 
-    axs[0].set_title(palette_name, fontsize=14)
+    axs[0].set_title(palette.name, fontsize=14)
 
-    for ax, color_name in zip(axs, colors):
+    for ax, color_name in zip(axs, colors, strict=True):
         ax.hlines(0, 0, 1, colors=colors[color_name]["hex"], linewidth=15)
         ax.text(
             -0.01,
@@ -132,9 +130,9 @@ def example_imshow() -> plt.Figure:  # type: ignore [name-defined]
 
 
 if __name__ == "__main__":
-    palette_name = "mocha"
-    mpl.style.use(f"catppuccin.{palette_name}")
-    plot_palette(palette_name)
+    flavor = PALETTE.mocha
+    plt.style.use(flavor.matplotlib_style)
+    plot_palette(flavor)
     example_plot()
     example_scatter()
     example_boxplot()
