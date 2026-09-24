@@ -28,21 +28,25 @@ For an API reference and usage examples, [see our online documentation](https://
 A minimal configuration:
 
 ```bash
-pip install catppuccin[pygments]
+pip install "catppuccin[ipython]"
 ```
+
+If IPython is already installed, `catppuccin[pygments]` is sufficient.
 
 ```python
 c.InteractiveShellApp.extensions = ["catppuccin.extras.ipython"]
 c.TerminalInteractiveShell.true_color = True
+# Set this explicitly to apply a flavor when the extension loads.
 c.Catppuccin.flavor = "mocha"  # possible values: "latte", "frappe", "macchiato", "mocha"
 ```
 
 Putting this into your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html)
-and ensuring `catppuccin[pygments]` is installed in the same environment will
-give you Catppuccin Mocha syntax highlighting in the REPL. 
+will give you Catppuccin Mocha syntax highlighting in the REPL.
 
-> [!NOTE]  
-> The `Catppuccin` section in the IPython config file is custom and not part of the official IPython configuration. It is used by the Catppuccin extension to determine which flavor to apply. `TerminalInteractiveShell.colors` is not used because it is validated before the extension is loaded and as a result, the `theme_table` is not yet populated with Catppuccin themes.
+> [!NOTE]
+> The `Catppuccin` section in the IPython config file is custom and not part of the official IPython configuration. It is used by the Catppuccin extension to determine which flavor to apply. The flavor is opt-in; if it is not set, the extension leaves the current IPython theme unchanged. `TerminalInteractiveShell.colors` is not used because it is validated before the extension is loaded and as a result, the `theme_table` is not yet populated with Catppuccin themes.
+>
+> IPython 8 uses the existing `highlighting_style` setting as a fallback; IPython 9 and newer use the theme table.
 
 ## Contribution
 
