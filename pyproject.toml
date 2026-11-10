@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 authors = [{ name = "backwardspy", email = "backwardspy@pigeon.life" }]
-requires-python = ">=3.9.0"
+requires-python = ">=3.11.0"
 dependencies = []
 name = "catppuccin"
 version = "2.5.0"
@@ -25,12 +25,12 @@ gh-pages = ["tinycss2>=1.2.1", "pdoc>=15.0.1"]
 
 [dependency-groups]
 dev = [
-  "mypy>=1.15.0",
-  "pytest>=8.3.5",
-  "pytest-cov>=6.0.0",
-  "ruff>=0.11.2",
-  "types-pygments>=2.19.0.20250305",
-  "types-colorama>=0.4.15.20240205",
+  "mypy>=2.4.1",
+  "pytest>=9.2.0",
+  "pytest-cov>=7.1.0",
+  "ruff>=0.17.4",
+  "types-pygments>=2.21.0.20260819",
+  "types-colorama>=0.4.15.20260508",
 ]
 
 [tool.ruff.lint]
@@ -43,6 +43,7 @@ ignore = [
   "RUF022",  # unsorted-dunder-all, __all__ order affects documentation
   "TC006",   # runtime-cast-value, stylistic choice
   "PLC0414", # useless-import-alias, incompatible with unused-import (F401)
+  "CPY001",  # missing-copyright-notice, licence is in repo root
 ]
 
 [tool.ruff.lint.per-file-ignores]

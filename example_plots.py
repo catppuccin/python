@@ -30,7 +30,7 @@ def plot_palette(palette_name: str) -> plt.Figure:  # type: ignore [name-defined
 
     axs[0].set_title(palette_name, fontsize=14)
 
-    for ax, color_name in zip(axs, colors):
+    for ax, color_name in zip(axs, colors, strict=True):
         ax.hlines(0, 0, 1, colors=colors[color_name]["hex"], linewidth=15)
         ax.text(
             -0.01,
@@ -139,7 +139,7 @@ def plot_examples(colormap_list: list[str]) -> None:
     fig, axs = plt.subplots(
         1, n, figsize=(n * 2 + 2, 3), constrained_layout=True, squeeze=False
     )
-    for [ax, cmap] in zip(axs.flat, colormap_list):
+    for [ax, cmap] in zip(axs.flat, colormap_list, strict=True):
         psm = ax.pcolormesh(data, cmap=cmap, rasterized=True, vmin=0.0, vmax=1.0)
         fig.colorbar(psm, ax=ax)
     plt.show()
