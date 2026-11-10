@@ -6,7 +6,7 @@
 # Main colors: blue, peach, green, red, mauve, maroon, pink, rosewater, teal, lavender
 axes.prop_cycle: cycler('color', ['1e66f5', 'fe640b', '40a02b', 'd20f39', '8839ef', 'e64553', 'ea76cb', 'dc8a78', '179299', '7287fd'])
 
-image.cmap: latte
+image.cmap: catppuccin.latte
 
 # Font color: Text
 text.color: 4c4f69

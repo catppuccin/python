@@ -142,7 +142,7 @@ def load_palette() -> Palette:
     )
 
 
-def codegen(palette: Palette) -> str:
+def palette_codegen(palette: Palette) -> str:
     """Generate contents of `catppuccin/palette.py`."""
     lines = [
         HEADER,
@@ -152,28 +152,9 @@ def codegen(palette: Palette) -> str:
     return "\n".join(lines)
 
 
-if __name__ == "__main__":
-    # we build from the latest palette data rather than a stale `catppuccin.PALETTE`.
-    # `catppuccin.PALETTE` gets rewritten later, but even then we'd have to
-    # reload a bunch of modules to get it loaded.
-    palette = load_palette()
-
-    print("running codegen")
-    palette_path = Path.cwd() / "catppuccin" / "palette.py"
-    with palette_path.open("w", newline="\n") as f:
-        f.write(codegen(palette))
-    print("formatting with ruff")
-    ruff_format = f"ruff format {palette_path}"
-    subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
-    print("palette.py generation complete")
-
-    # Generate the matplotlib styles
-    print("generating matplotlib styles")
-    from catppuccin.extras.matplotlib import CATPPUCCIN_STYLE_DIRECTORY
-
-    template_text = (
-        CATPPUCCIN_STYLE_DIRECTORY / "_catppuccin_template.txt"
-    ).read_text()
+def generate_mpl_styles(palette: Palette) -> None:
+    """Generate the matplotlib .mplstyle files."""
+    template_text = (Path.cwd() / "matplotlib_template.txt").read_text()
 
     for key, flavor in asdict(palette).items():
         print(f"- {key}")
@@ -184,13 +165,13 @@ if __name__ == "__main__":
                 f"<{color}>",
                 flavor["colors"][color]["hex"].replace("#", ""),
             )
-        style_path = CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle"
+        style_path = Path.cwd() / "catppuccin" / f"{key}.mplstyle"
         with style_path.open("w", newline="\n") as f:
             f.write(text)
-    print("matplotlib styles generation complete")
 
-    # Generate the IPython themes
-    print("generating ipython themes")
+
+def generate_ipython_themes(palette: Palette) -> None:
+    """Generate the IPython theme JSON files."""
     IPYTHON_THEME_DIRECTORY.mkdir(exist_ok=True)
     for flavor in palette:
         for theme in (ipython_theme(flavor), ipython_noitalic_theme(flavor)):
@@ -199,4 +180,31 @@ if __name__ == "__main__":
             with theme_path.open("w", newline="\n") as f:
                 json.dump(theme, f, indent=2)
                 f.write("\n")
+
+
+def main() -> None:  # noqa: D103
+    # we build from the latest palette data rather than a stale `catppuccin.PALETTE`.
+    # `catppuccin.PALETTE` gets rewritten below, but even then we'd have to
+    # reload a bunch of modules to get it loaded.
+    palette = load_palette()
+
+    print("running palette codegen")
+    palette_path = Path.cwd() / "catppuccin" / "palette.py"
+    with palette_path.open("w", newline="\n") as f:
+        f.write(palette_codegen(palette))
+    print("formatting with ruff")
+    ruff_format = f"ruff format {palette_path}"
+    subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
+    print("palette.py generation complete")
+
+    print("generating matplotlib styles")
+    generate_mpl_styles(palette)
+    print("matplotlib styles generation complete")
+
+    print("generating ipython themes")
+    generate_ipython_themes(palette)
     print("ipython themes generation complete")
+
+
+if __name__ == "__main__":
+    main()
