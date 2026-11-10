@@ -9,12 +9,9 @@ from pathlib import Path
 from typing import Any, cast
 
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
-from example_plots import example_plots, plot_palette
 
 HEADER = '''"""Catppuccin palette definition."""
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette'''
-
-DPI = 200
 
 # must match the `ipython.themes` entry points in `pyproject.toml`.
 IPYTHON_THEME_DIRECTORY = (
@@ -164,30 +161,3 @@ if __name__ == "__main__":
             json.dump(theme, f, indent=2)
             f.write("\n")
     print("ipython themes generation complete")
-
-    # Generate matplotlib assets for the docs
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
-
-    import catppuccin  # This loads the styles in matplotlib  # noqa: F401
-
-    print("generating matplotlib asset images")
-    for palette_name in asdict(PALETTE):
-        print(f"- {palette_name}")
-        mpl.style.use(palette_name)
-
-        palette_path = Path.cwd() / "assets" / palette_name
-        palette_path.mkdir(exist_ok=True, parents=True)
-
-        # Plot palette separately
-        print("  - palette")
-        fig = plot_palette(palette_name)
-        fig.savefig(palette_path / "palette.png", dpi=DPI)
-
-        # Plot examples
-        for filename, plot_function in example_plots.items():
-            print(f"  - {filename}")
-            fig = plot_function()
-            fig.savefig(palette_path / f"{filename}.png", dpi=DPI)
-            plt.close()
-    print("matplotlib asset image generation complete")

@@ -1,7 +1,4 @@
-"""Functions to plot some images using matplotlib.
-
-The generated plots are in the `assets` directory.
-"""
+"""Functions to plot some images using matplotlib."""
 
 from __future__ import annotations
 
