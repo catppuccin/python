@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.6.0](https://github.com/catppuccin/python/compare/v2.5.0...v2.6.0) (2026-11-10)
+
+
+### Build System
+
+* update supported python versions to 3.11-3.15 ([73cfade](https://github.com/catppuccin/python/commit/73cfadea6258d1e6aea16a2cc65446d32c649524))
+
+
+### Documentation
+
+* fix codegen script link ([1105f48](https://github.com/catppuccin/python/commit/1105f488270fa16502d7916cd009392183aaa840))
+* **readme:** add ipython install instructions ([b3fa400](https://github.com/catppuccin/python/commit/b3fa400f47ea1a3fa609178301eb18d79d33ef6b))
+
+
+### Features
+
+* **ipython:** add noitalic theme variants ([#141](https://github.com/catppuccin/python/issues/141)) ([0602f1e](https://github.com/catppuccin/python/commit/0602f1e28986d6170511275773d667a57749b516)), closes [#60](https://github.com/catppuccin/python/issues/60)
+* **ipython:** use ipython 9.18's new theme system ([#140](https://github.com/catppuccin/python/issues/140)) ([080202e](https://github.com/catppuccin/python/commit/080202e009ae3013300c276c77be2edb2f424811)), closes [#134](https://github.com/catppuccin/python/issues/134)
+* sync upstream palette ([a6abab6](https://github.com/catppuccin/python/commit/a6abab6e5145ab3bdbb6cefd158e8e08927001d6)), closes [#113](https://github.com/catppuccin/python/issues/113)
+
+
+### Bug Fixes
+
+* **matplotlib:** support matplotlib 3.11 ([6844324](https://github.com/catppuccin/python/commit/684432431b5054f849a86421c464f5828e2d5e65))
+
 ## [2.5.0](https://github.com/catppuccin/python/compare/v2.4.1...v2.5.0) (2025-08-03)
 
 
