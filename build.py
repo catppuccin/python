@@ -16,6 +16,11 @@ from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette'''
 
 DPI = 200
 
+# must match the `ipython.themes` entry points in `pyproject.toml`.
+IPYTHON_THEME_DIRECTORY = (
+    Path(__file__).parent / "catppuccin" / "extras" / "ipython_themes"
+)
+
 
 def load_palette_json() -> dict[str, Any]:
     """Load palette data from `./palette.json`."""
@@ -52,6 +57,49 @@ def make_flavor(identifier: str, fields: dict[str, Any]) -> Flavor:
             }
         ),
     )
+
+
+def ipython_theme(flavor: Flavor) -> dict[str, Any]:
+    """Create an IPython theme for a flavor.
+
+    Syntax highlighting comes from the matching pygments style via `base`.
+    `extra_style` covers the IPython tokens used for prompts, tracebacks, and
+    the debugger.
+    """
+    c = flavor.colors
+    name = f"catppuccin-{flavor.identifier}"
+    return {
+        "name": name,
+        "base": name,
+        "extra_style": {
+            # prompts
+            "Prompt": c.green.hex,
+            "PromptNum": f"{c.green.hex} bold",
+            "OutPrompt": c.peach.hex,
+            "OutPromptNum": f"{c.peach.hex} bold",
+            # tracebacks
+            "Header": c.red.hex,
+            "Topline": c.red.hex,
+            "ExcName": f"{c.red.hex} bold",
+            "Filename": c.blue.hex,
+            "FilenameEm": f"{c.blue.hex} bold",
+            "Lineno": c.overlay1.hex,
+            "LinenoEm": f"{c.lavender.hex} bold",
+            "Line": c.text.hex,
+            "TB.Name": c.mauve.hex,
+            "TB.NameEm": f"{c.mauve.hex} bold",
+            "VName": c.teal.hex,
+            "ValEm": f"{c.peach.hex} bold",
+            "Normal": "",
+            "NormalEm": f"{c.text.hex} bold",
+            "Caret": "",
+            "TbHighlight": f"bg:{c.surface1.hex}",
+            # debugger
+            "Breakpoint": "",
+            "Breakpoint.Enabled": c.red.hex,
+            "Breakpoint.Disabled": c.overlay1.hex,
+        },
+    }
 
 
 def codegen() -> str:
@@ -104,6 +152,18 @@ if __name__ == "__main__":
         with style_path.open("w", newline="\n") as f:
             f.write(text)
     print("matplotlib styles generation complete")
+
+    # Generate the IPython themes
+    print("generating ipython themes")
+    IPYTHON_THEME_DIRECTORY.mkdir(exist_ok=True)
+    for flavor in PALETTE:
+        theme = ipython_theme(flavor)
+        print(f"- {theme['name']}")
+        theme_path = IPYTHON_THEME_DIRECTORY / f"{theme['name']}.json"
+        with theme_path.open("w", newline="\n") as f:
+            json.dump(theme, f, indent=2)
+            f.write("\n")
+    print("ipython themes generation complete")
 
     # Generate matplotlib assets for the docs
     import matplotlib as mpl

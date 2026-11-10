@@ -1,0 +1,29 @@
+{
+  "name": "catppuccin-frappe",
+  "base": "catppuccin-frappe",
+  "extra_style": {
+    "Prompt": "#a6d189",
+    "PromptNum": "#a6d189 bold",
+    "OutPrompt": "#ef9f76",
+    "OutPromptNum": "#ef9f76 bold",
+    "Header": "#e78284",
+    "Topline": "#e78284",
+    "ExcName": "#e78284 bold",
+    "Filename": "#8caaee",
+    "FilenameEm": "#8caaee bold",
+    "Lineno": "#838ba7",
+    "LinenoEm": "#babbf1 bold",
+    "Line": "#c6d0f5",
+    "TB.Name": "#ca9ee6",
+    "TB.NameEm": "#ca9ee6 bold",
+    "VName": "#81c8be",
+    "ValEm": "#ef9f76 bold",
+    "Normal": "",
+    "NormalEm": "#c6d0f5 bold",
+    "Caret": "",
+    "TbHighlight": "bg:#51576d",
+    "Breakpoint": "",
+    "Breakpoint.Enabled": "#e78284",
+    "Breakpoint.Disabled": "#838ba7"
+  }
+}
