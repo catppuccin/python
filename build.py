@@ -8,6 +8,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, cast
 
+from catppuccin.extras.pygments import _make_styles
 from catppuccin.models import HSL, RGB, Color, Flavor, FlavorColors, Palette
 
 HEADER = '''"""Catppuccin palette definition."""
@@ -99,16 +100,50 @@ def ipython_theme(flavor: Flavor) -> dict[str, Any]:
     }
 
 
-def codegen() -> str:
-    """Generate contents of `catppuccin/palette.py`."""
+def ipython_noitalic_theme(flavor: Flavor) -> dict[str, Any]:
+    """Create the :noitalic variant of the IPython theme for the given flavor.
+
+    This works by loading the existing theme and returning a modified copy with
+    all `italic` parts replaced with `noitalic. It's done this way rather than
+    just removing `italic` to ensure it still overrides any italics in the base
+    style.
+    """
+    theme = ipython_theme(flavor)
+    noitalic = {
+        str(token).removeprefix("Token."): " ".join(
+            "noitalic" if part == "italic" else part for part in style.split()
+        )
+        for token, style in _make_styles(flavor.colors).items()
+        if "italic" in style.split()
+    }
+    return {
+        **theme,
+        "name": f"{theme['name']}:noitalic",
+        "extra_style": {**theme["extra_style"], **noitalic},
+    }
+
+
+def ipython_theme_filename(name: str) -> str:
+    """Return the file that IPython loads for a given theme name.
+
+    Practically speaking this means replacing `:` with `-` and appending `.json`.
+    """
+    return name.replace(":", "-") + ".json"
+
+
+def load_palette() -> Palette:
+    """Build the palette from `./palette.json`."""
     palette_json = load_palette_json()
-    palette = Palette(
+    return Palette(
         *[
             make_flavor(identifier, fields)
             for identifier, fields in palette_json.items()
         ]
     )
 
+
+def codegen(palette: Palette) -> str:
+    """Generate contents of `catppuccin/palette.py`."""
     lines = [
         HEADER,
         f"PALETTE = {palette!r}",
@@ -118,10 +153,15 @@ def codegen() -> str:
 
 
 if __name__ == "__main__":
+    # we build from the latest palette data rather than a stale `catppuccin.PALETTE`.
+    # `catppuccin.PALETTE` gets rewritten later, but even then we'd have to
+    # reload a bunch of modules to get it loaded.
+    palette = load_palette()
+
     print("running codegen")
     palette_path = Path.cwd() / "catppuccin" / "palette.py"
     with palette_path.open("w", newline="\n") as f:
-        f.write(codegen())
+        f.write(codegen(palette))
     print("formatting with ruff")
     ruff_format = f"ruff format {palette_path}"
     subprocess.run(ruff_format.split(), check=True, stdout=subprocess.DEVNULL)
@@ -130,20 +170,19 @@ if __name__ == "__main__":
     # Generate the matplotlib styles
     print("generating matplotlib styles")
     from catppuccin.extras.matplotlib import CATPPUCCIN_STYLE_DIRECTORY
-    from catppuccin.palette import PALETTE
 
     template_text = (
         CATPPUCCIN_STYLE_DIRECTORY / "_catppuccin_template.txt"
     ).read_text()
 
-    for key, palette in asdict(PALETTE).items():
+    for key, flavor in asdict(palette).items():
         print(f"- {key}")
         text = template_text
         text = text.replace("<palette>", key)
-        for color in palette["colors"]:
+        for color in flavor["colors"]:
             text = text.replace(
                 f"<{color}>",
-                palette["colors"][color]["hex"].replace("#", ""),
+                flavor["colors"][color]["hex"].replace("#", ""),
             )
         style_path = CATPPUCCIN_STYLE_DIRECTORY / f"{key}.mplstyle"
         with style_path.open("w", newline="\n") as f:
@@ -153,11 +192,11 @@ if __name__ == "__main__":
     # Generate the IPython themes
     print("generating ipython themes")
     IPYTHON_THEME_DIRECTORY.mkdir(exist_ok=True)
-    for flavor in PALETTE:
-        theme = ipython_theme(flavor)
-        print(f"- {theme['name']}")
-        theme_path = IPYTHON_THEME_DIRECTORY / f"{theme['name']}.json"
-        with theme_path.open("w", newline="\n") as f:
-            json.dump(theme, f, indent=2)
-            f.write("\n")
+    for flavor in palette:
+        for theme in (ipython_theme(flavor), ipython_noitalic_theme(flavor)):
+            print(f"- {theme['name']}")
+            theme_path = IPYTHON_THEME_DIRECTORY / ipython_theme_filename(theme["name"])
+            with theme_path.open("w", newline="\n") as f:
+                json.dump(theme, f, indent=2)
+                f.write("\n")
     print("ipython themes generation complete")

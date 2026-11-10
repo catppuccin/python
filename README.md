@@ -42,6 +42,8 @@ Available IPython themes:
 - `catppuccin-macchiato`
 - `catppuccin-mocha`
 
+Each theme also has a variant without italics, such as `catppuccin-mocha:noitalic`.
+
 > [!IMPORTANT]
 > This requires IPython 9.18 or newer.
 >

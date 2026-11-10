@@ -23,6 +23,10 @@ catppuccin-latte = "catppuccin.extras:ipython_themes"
 catppuccin-frappe = "catppuccin.extras:ipython_themes"
 catppuccin-macchiato = "catppuccin.extras:ipython_themes"
 catppuccin-mocha = "catppuccin.extras:ipython_themes"
+"catppuccin-latte:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-frappe:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-macchiato:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-mocha:noitalic" = "catppuccin.extras:ipython_themes"
 
 [project.optional-dependencies]
 matplotlib = ["matplotlib>=3.8.4"]
