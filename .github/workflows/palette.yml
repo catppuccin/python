@@ -24,7 +24,7 @@ jobs:
         run: curl -Lo palette.json 'https://raw.githubusercontent.com/catppuccin/palette/main/palette.json'
 
       - name: Run codegen
-        run: uv run --extra matplotlib --extra pygments build.py
+        run: uv run --frozen --extra matplotlib --extra pygments build.py
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
