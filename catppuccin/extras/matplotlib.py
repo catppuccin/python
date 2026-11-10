@@ -84,10 +84,9 @@ DEFAULT_COLORMAP_COLORS = ("base", "blue")
 
 def _register_styles() -> None:
     """Register the included stylesheets in the mpl style library."""
-    catppuccin_stylesheets = mpl.style.core.read_style_directory(  # type: ignore [attr-defined]
-        CATPPUCCIN_STYLE_DIRECTORY
-    )
-    mpl.style.core.update_nested_dict(mpl.style.library, catppuccin_stylesheets)  # type: ignore [attr-defined]
+    for path in CATPPUCCIN_STYLE_DIRECTORY.glob("*.mplstyle"):
+        style = mpl.rc_params_from_file(path, use_default_template=False)
+        mpl.style.library.setdefault(path.stem, mpl.RcParams()).update(style)
 
 
 def _register_colormap_list() -> None:
