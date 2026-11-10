@@ -25,17 +25,15 @@ For an API reference and usage examples, [see our online documentation](https://
 
 ## IPython Theme
 
-A minimal configuration:
+Install `catppuccin[ipython]` in the same environment as IPython, then add
+the following to your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html):
 
 ```python
 c.TerminalInteractiveShell.true_color = True
-c.TerminalInteractiveShell.highlighting_style = "catppuccin-mocha"
+c.TerminalInteractiveShell.colors = "catppuccin-mocha"
 ```
 
-Putting this into your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html)
-and ensuring `catppuccin[pygments]` is installed in the same environment will
-give you Catppuccin Mocha syntax highlighting in the REPL. See [here](https://github.com/backwardspy/dots/blob/f6991570d6691212e27e266517656192f910ccbf/dot_config/ipython/profile_default/ipython_config.py)
-for an example of a more complete configuration.
+You can also switch themes interactively with `%colors catppuccin-latte`.
 
 Available IPython themes:
 
@@ -43,6 +41,17 @@ Available IPython themes:
 - `catppuccin-frappe`
 - `catppuccin-macchiato`
 - `catppuccin-mocha`
+
+> [!IMPORTANT]
+> This requires IPython 9.18 or newer.
+>
+> IPython versions 9.0-9.17 are in a weird place where it requires an extension for the theme to work.
+> I've chosen to skip that in the hope you can upgrade to 9.18 and use the new theme system.
+> If you absolutely require support for these pre-9.18 versions, then open an issue explaining
+> your situation and I will reconsider adding the extension as an option.
+>
+> For IPython 8, install `catppuccin[pygments]` and use
+> `c.TerminalInteractiveShell.highlighting_style = "catppuccin-mocha"` instead.
 
 ## Contribution
 
