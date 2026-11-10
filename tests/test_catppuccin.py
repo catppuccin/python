@@ -1,4 +1,6 @@
-from catppuccin import PALETTE
+import pytest
+
+from catppuccin import PALETTE, ColorName, FlavorName
 
 
 def test_some_colors() -> None:
@@ -51,3 +53,34 @@ def test_iterate_flavor_colors() -> None:
     for i, color in enumerate(colors):
         assert order[i] == color
     assert list(colors) == order
+
+
+def test_name_enums_match_models() -> None:
+    assert [flavor.identifier for flavor in PALETTE] == list(FlavorName)
+    for flavor in PALETTE:
+        assert [color.identifier for color in flavor.colors] == list(ColorName)
+
+
+@pytest.mark.parametrize("flavor", list(FlavorName))
+def test_lookup_flavor(flavor: FlavorName) -> None:
+    assert PALETTE[flavor] is getattr(PALETTE, flavor)
+    assert PALETTE[str(flavor)] is PALETTE[flavor]
+
+
+@pytest.mark.parametrize("color", list(ColorName))
+def test_lookup_color(color: ColorName) -> None:
+    colors = PALETTE.mocha.colors
+    assert colors[color] is getattr(colors, color)
+    assert colors[str(color)] is colors[color]
+
+
+@pytest.mark.parametrize("name", ["", "Mocha", "colors", "__iter__", "red"])
+def test_lookup_unknown_flavor(name: str) -> None:
+    with pytest.raises(KeyError):
+        PALETTE[name]
+
+
+@pytest.mark.parametrize("name", ["", "Red", "accent", "__iter__", "mocha"])
+def test_lookup_unknown_color(name: str) -> None:
+    with pytest.raises(KeyError):
+        PALETTE.mocha.colors[name]
