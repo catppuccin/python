@@ -25,8 +25,26 @@ For an API reference and usage examples, [see our online documentation](https://
 
 ## IPython Theme
 
-Install `catppuccin[ipython]` in the same environment as IPython, then add
-the following to your [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html):
+Install `catppuccin[ipython]` in the same environment as IPython, for example as a uv tool:
+
+```
+uv tool install ipython --with "catppuccin[ipython]"
+```
+
+or with pip:
+
+```
+pip install "catppuccin[ipython]"
+```
+
+If you don't have an [IPython configuration](https://ipython.readthedocs.io/en/stable/config/intro.html)
+file yet, create one with:
+
+```
+ipython profile create
+```
+
+Then add the following to your `ipython_config.py`:
 
 ```python
 c.TerminalInteractiveShell.true_color = True
