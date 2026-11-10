@@ -74,8 +74,8 @@ See the examples below for some use cases:
     cmap = LinearSegmentedColormap.from_list(
         "my_custom_palette",
         [
-            color.hex for color in catppuccin.PALETTE.frappe.colors
-            if color.identifier in ["red", "peach", "yellow", "green"]
+            catppuccin.PALETTE.frappe.colors[name].hex
+            for name in ["red", "peach", "yellow", "green"]
         ],
     )
     rng = np.random.default_rng()
@@ -113,6 +113,6 @@ def style_name(flavor: Flavor) -> str:
 for _palette in PALETTE:
     _cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
         style_name(_palette),
-        [getattr(_palette.colors, name).hex for name in DEFAULT_COLORMAP_COLORS],
+        [_palette.colors[name].hex for name in DEFAULT_COLORMAP_COLORS],
     )
     mpl.colormaps.register(cmap=_cmap, force=True)

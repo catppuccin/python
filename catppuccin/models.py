@@ -2,8 +2,59 @@
 
 from collections.abc import Iterator
 from dataclasses import dataclass
+from enum import StrEnum
+from typing import cast
 
-__all__ = ["Palette", "Flavor", "FlavorColors", "Color", "RGB", "HSL"]
+__all__ = [
+    "Palette",
+    "Flavor",
+    "FlavorColors",
+    "Color",
+    "RGB",
+    "HSL",
+    "FlavorName",
+    "ColorName",
+]
+
+
+class FlavorName(StrEnum):
+    """Identifiers of the flavors, in palette order."""
+
+    LATTE = "latte"
+    FRAPPE = "frappe"
+    MACCHIATO = "macchiato"
+    MOCHA = "mocha"
+
+
+class ColorName(StrEnum):
+    """Identifiers of the colors in a flavor, in palette order."""
+
+    ROSEWATER = "rosewater"
+    FLAMINGO = "flamingo"
+    PINK = "pink"
+    MAUVE = "mauve"
+    RED = "red"
+    MAROON = "maroon"
+    PEACH = "peach"
+    YELLOW = "yellow"
+    GREEN = "green"
+    TEAL = "teal"
+    SKY = "sky"
+    SAPPHIRE = "sapphire"
+    BLUE = "blue"
+    LAVENDER = "lavender"
+    TEXT = "text"
+    SUBTEXT1 = "subtext1"
+    SUBTEXT0 = "subtext0"
+    OVERLAY2 = "overlay2"
+    OVERLAY1 = "overlay1"
+    OVERLAY0 = "overlay0"
+    SURFACE2 = "surface2"
+    SURFACE1 = "surface1"
+    SURFACE0 = "surface0"
+    BASE = "base"
+    MANTLE = "mantle"
+    CRUST = "crust"
 
 
 @dataclass(frozen=True)
@@ -60,6 +111,9 @@ class FlavorColors:
     """All of the colors for a particular flavor of Catppuccin.
 
     Can be iterated over, in which case the colors are yielded in order.
+
+    Colors can also be looked up by identifier, such as `colors["red"]` or
+    `colors[ColorName.RED]`.
     """
 
     rosewater: Color
@@ -146,6 +200,17 @@ class FlavorColors:
             self.crust,
         ]
 
+    def __getitem__(self, name: str) -> Color:
+        """Look up a color by identifier, such as `"red"` or `ColorName.RED`.
+
+        Raises `KeyError` if there is no color with that identifier.
+        """
+        try:
+            identifier = ColorName(name)
+        except ValueError:
+            raise KeyError(name) from None
+        return cast(Color, getattr(self, identifier))
+
 
 @dataclass(frozen=True)
 class Flavor:
@@ -175,6 +240,9 @@ class Palette:
     Primarily used via the `PALETTE` constant.
     Can be iterated over, in which case the flavors are yielded in the canonical
     order: Latte, Frappé, Macchiato, Mocha.
+
+    Flavors can also be looked up by identifier, such as `PALETTE["mocha"]` or
+    `PALETTE[FlavorName.MOCHA]`.
     """
 
     latte: Flavor
@@ -189,3 +257,14 @@ class Palette:
     def __iter__(self) -> Iterator[Flavor]:
         """Iterate over flavors in the palette."""
         yield from [self.latte, self.frappe, self.macchiato, self.mocha]
+
+    def __getitem__(self, name: str) -> Flavor:
+        """Look up a flavor by identifier, such as `"mocha"` or `FlavorName.MOCHA`.
+
+        Raises `KeyError` if there is no flavor with that identifier.
+        """
+        try:
+            identifier = FlavorName(name)
+        except ValueError:
+            raise KeyError(name) from None
+        return cast(Flavor, getattr(self, identifier))

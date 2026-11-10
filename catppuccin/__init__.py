@@ -42,6 +42,23 @@ for color in PALETTE.latte.colors:
 # Crust: #232634
 ```
 
+## Lookup by name
+
+Flavors and colors can also be looked up via the `FlavorName` and `ColorName`
+enums:
+
+```python
+from catppuccin import PALETTE, ColorName, FlavorName
+
+PALETTE[FlavorName.MOCHA].colors[ColorName.RED].hex
+# '#f38ba8'
+PALETTE["latte"].colors["mauve"].hex
+# '#8839ef'
+
+def accent(flavor: FlavorName, color: ColorName) -> str:
+    return PALETTE[flavor].colors[color].hex
+```
+
 ## Dataclasses
 
 `Palette`, `Flavor`, `Color` et cetera are all
@@ -57,7 +74,7 @@ from catppuccin import PALETTE
 
 flavor = PALETTE.frappe
 for field in fields(flavor.colors):
-    color = getattr(flavor.colors, field.name)
+    color = flavor.colors[field.name]
     print(f"{field.name}: {color.hex}")
 
 # rosewater: #f2d5cf
@@ -87,6 +104,8 @@ to see the documentation for that integration.
 
 import importlib.util
 
+from catppuccin.models import ColorName as ColorName
+from catppuccin.models import FlavorName as FlavorName
 from catppuccin.palette import PALETTE as PALETTE
 
 # Register colormaps if matplotlib is available
