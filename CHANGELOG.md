@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/catppuccin/python/compare/v2.6.0...v3.0.0) (2026-11-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **matplotlib:** matplotlib styles and colourmaps have been renamed to `catppuccin.<flavour>`, and the public helper functions have been removed. see #128 for details.
+
+### Features
+
+* add FlavorName and ColorName enums ([#58](https://github.com/catppuccin/python/issues/58)) ([e5130f7](https://github.com/catppuccin/python/commit/e5130f705987dde1c84acb1de0915e2ef298b334))
+* **matplotlib:** rework matplotlib extra for 3.11 ([#128](https://github.com/catppuccin/python/issues/128)) ([f7f5871](https://github.com/catppuccin/python/commit/f7f5871278845b6a11eae08aace858b451bbb1b3))
+
 ## [2.6.0](https://github.com/catppuccin/python/compare/v2.5.0...v2.6.0) (2026-11-10)
 
 
