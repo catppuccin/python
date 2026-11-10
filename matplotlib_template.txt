@@ -6,7 +6,7 @@
 # Main colors: blue, peach, green, red, mauve, maroon, pink, rosewater, teal, lavender
 axes.prop_cycle: cycler('color', ['<blue>', '<peach>', '<green>', '<red>', '<mauve>', '<maroon>', '<pink>', '<rosewater>', '<teal>', '<lavender>'])
 
-image.cmap: <palette>
+image.cmap: catppuccin.<palette>
 
 # Font color: Text
 text.color: <text>

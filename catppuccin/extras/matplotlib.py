@@ -7,13 +7,12 @@ for allowing this port.
 The library tries to register styles and colormaps if `matplotlib` is installed.
 See the examples below for some use cases:
 
-1. Load a style, using `mpl.style.use`
+1. Load a style, using `plt.style.use`
 
     ```python
-    import catppuccin
     import matplotlib.pyplot as plt
 
-    plt.style.use(catppuccin.PALETTE.mocha.matplotlib_style)
+    plt.style.use("catppuccin.mocha")
     plt.plot([0,1,2,3], [1,2,3,4])
     plt.show()
     ```
@@ -21,10 +20,22 @@ See the examples below for some use cases:
 1. Mix it with different stylesheets!
 
     ```python
-    import catppuccin
     import matplotlib.pyplot as plt
 
-    plt.style.use(["ggplot", catppuccin.PALETTE.mocha.matplotlib_style])
+    plt.style.use(["ggplot", "catppuccin.mocha"])
+    plt.plot([0,1,2,3], [1,2,3,4])
+    plt.show()
+    ```
+
+1. Pick the style from a flavor, using `style_name`
+
+    ```python
+    import catppuccin
+    import matplotlib.pyplot as plt
+    from catppuccin.extras.matplotlib import style_name
+
+    flavor = catppuccin.PALETTE.latte
+    plt.style.use(style_name(flavor))
     plt.plot([0,1,2,3], [1,2,3,4])
     plt.show()
     ```
@@ -44,12 +55,11 @@ See the examples below for some use cases:
     ```python
     import matplotlib.pyplot as plt
     import numpy as np
-    import catppuccin
 
     rng = np.random.default_rng()
     data = rng.integers(10, size=(30, 30))
 
-    plt.imshow(data, cmap=catppuccin.PALETTE.mocha.cmap)
+    plt.imshow(data, cmap="catppuccin.mocha")
     plt.show()
     ```
 
@@ -76,22 +86,33 @@ See the examples below for some use cases:
     ```
 """
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import matplotlib as mpl
 import matplotlib.colors
 
 from catppuccin.palette import PALETTE
 
+if TYPE_CHECKING:
+    from catppuccin.models import Flavor
+
 DEFAULT_COLORMAP_COLORS = ("blue", "teal", "yellow", "peach", "red")
+
+
+def style_name(flavor: Flavor) -> str:
+    """Name of the matplotlib style for a flavor, for use with `plt.style.use`.
+
+    The flavor's colormap is registered under the same name.
+    """
+    return f"catppuccin.{flavor.identifier}"
 
 
 # Register the included color maps in the `matplotlib` colormap library.
 for _palette in PALETTE:
     _cmap = matplotlib.colors.LinearSegmentedColormap.from_list(
-        _palette.identifier,
-        [
-            color.hex
-            for color in PALETTE.frappe.colors
-            if color.identifier in ("blue", "teal", "yellow", "peach", "red")
-        ],
+        style_name(_palette),
+        [getattr(_palette.colors, name).hex for name in DEFAULT_COLORMAP_COLORS],
     )
-    mpl.colormaps.register(cmap=_cmap, name=_palette.identifier, force=True)
+    mpl.colormaps.register(cmap=_cmap, force=True)

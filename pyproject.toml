@@ -29,7 +29,7 @@ catppuccin-mocha = "catppuccin.extras:ipython_themes"
 "catppuccin-mocha:noitalic" = "catppuccin.extras:ipython_themes"
 
 [project.optional-dependencies]
-matplotlib = ["matplotlib>=3.11.0"]
+matplotlib = ["matplotlib>=3.10.0"]
 pygments = ["pygments>=2.17.2"]
 rich = ["rich>=13.7.0"]
 ipython = ["ipython>=9.18.0"]

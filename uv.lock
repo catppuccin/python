@@ -116,7 +116,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "ipython", marker = "extra == 'ipython'", specifier = ">=9.18.0" },
-    { name = "matplotlib", marker = "extra == 'matplotlib'", specifier = ">=3.11.0" },
+    { name = "matplotlib", marker = "extra == 'matplotlib'", specifier = ">=3.10.0" },
     { name = "pdoc", marker = "extra == 'gh-pages'", specifier = ">=15.0.1" },
     { name = "pygments", marker = "extra == 'pygments'", specifier = ">=2.17.2" },
     { name = "rich", marker = "extra == 'rich'", specifier = ">=13.7.0" },

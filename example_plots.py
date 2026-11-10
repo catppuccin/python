@@ -1,7 +1,4 @@
-"""Functions to plot some images using matplotlib.
-
-The generated plots are in the `assets` directory.
-"""
+"""Functions to plot some images using matplotlib."""
 
 from dataclasses import asdict
 
@@ -10,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from catppuccin import PALETTE
+from catppuccin.extras.matplotlib import style_name
 from catppuccin.models import Flavor
 
 SEED = 0
@@ -131,7 +129,7 @@ def example_imshow() -> plt.Figure:  # type: ignore [name-defined]
 
 if __name__ == "__main__":
     flavor = PALETTE.mocha
-    plt.style.use(flavor.matplotlib_style)
+    plt.style.use(style_name(flavor))
     plot_palette(flavor)
     example_plot()
     example_scatter()
