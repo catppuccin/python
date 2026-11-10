@@ -212,6 +212,18 @@
                 </ul>
 
             </li>
+            <li>
+                    <a class="class" href="#FlavorName">FlavorName</a>
+                            <ul class="memberlist">
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#ColorName">ColorName</a>
+                            <ul class="memberlist">
+                </ul>
+
+            </li>
     </ul>
 
 
@@ -239,193 +251,272 @@
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a>
 </span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Palette"</span><span class="p">,</span> <span class="s2">"Flavor"</span><span class="p">,</span> <span class="s2">"FlavorColors"</span><span class="p">,</span> <span class="s2">"Color"</span><span class="p">,</span> <span class="s2">"RGB"</span><span class="p">,</span> <span class="s2">"HSL"</span><span class="p">]</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrEnum</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a>
-</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>
-</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="k">class</span><span class="w"> </span><span class="nc">RGB</span><span class="p">:</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="w">    </span><span class="sd">"""Color represented as red, green, and blue (all 0-255)."""</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>
-</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>    <span class="n">g</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>    <span class="n">b</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>    <span class="s2">"Palette"</span><span class="p">,</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>    <span class="s2">"Flavor"</span><span class="p">,</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>    <span class="s2">"FlavorColors"</span><span class="p">,</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>    <span class="s2">"Color"</span><span class="p">,</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>    <span class="s2">"RGB"</span><span class="p">,</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>    <span class="s2">"HSL"</span><span class="p">,</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>    <span class="s2">"FlavorName"</span><span class="p">,</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>    <span class="s2">"ColorName"</span><span class="p">,</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="p">]</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>
 </span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>
-</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>
-</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="k">class</span><span class="w"> </span><span class="nc">HSL</span><span class="p">:</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="w">    </span><span class="sd">"""Color represented as hue (0-359), saturation (0-1), and lightness (0-1)."""</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>
-</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>    <span class="n">s</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>    <span class="n">l</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># noqa: E741</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorName</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a><span class="w">    </span><span class="sd">"""Identifiers of the flavors, in palette order."""</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>    <span class="n">LATTE</span> <span class="o">=</span> <span class="s2">"latte"</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>    <span class="n">FRAPPE</span> <span class="o">=</span> <span class="s2">"frappe"</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>    <span class="n">MACCHIATO</span> <span class="o">=</span> <span class="s2">"macchiato"</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>    <span class="n">MOCHA</span> <span class="o">=</span> <span class="s2">"mocha"</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ColorName</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="w">    </span><span class="sd">"""Identifiers of the colors in a flavor, in palette order."""</span>
 </span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>
-</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>
-</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">:</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="w">    </span><span class="sd">"""A single color in the Catppuccin palette."""</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
-</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Pink` or `Surface0`."""</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the color. This differs from `name` in</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">    that it's intended for machine usage rather than presentation."""</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>    <span class="n">accent</span><span class="p">:</span> <span class="nb">bool</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="w">    </span><span class="sd">"""Whether the color is considered an accent color. Accent colors are the</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">    first 14 colors in the palette, also called the analogous colours. The</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">    remaining 12 non-accent colors are also referred to as the monochromatic</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">    colors."""</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="w">    </span><span class="sd">"""Order of the color in the palette spec."""</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>    <span class="nb">hex</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="w">    </span><span class="sd">"""The color represented as a six-digit hex string with a leading hash (#)."""</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>    <span class="n">rgb</span><span class="p">:</span> <span class="n">RGB</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="w">    </span><span class="sd">"""The color represented as individual red, green, and blue channels. (0-255)"""</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>    <span class="n">hsl</span><span class="p">:</span> <span class="n">HSL</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="w">    </span><span class="sd">"""The color represented as individual hue (0-359), saturation (0-1), and</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">    lightness (0-1) channels."""</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorColors</span><span class="p">:</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="w">    </span><span class="sd">"""All of the colors for a particular flavor of Catppuccin.</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">    Can be iterated over, in which case the colors are yielded in order.</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">    """</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
-</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>    <span class="n">rosewater</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>    <span class="n">flamingo</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>    <span class="n">pink</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>    <span class="n">mauve</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>    <span class="n">red</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>    <span class="n">maroon</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>    <span class="n">peach</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>    <span class="n">yellow</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>    <span class="n">green</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>    <span class="n">teal</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>    <span class="n">sky</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="n">sapphire</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>    <span class="n">blue</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>    <span class="n">lavender</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>    <span class="n">text</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>    <span class="n">subtext1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>    <span class="n">subtext0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>    <span class="n">overlay2</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>    <span class="n">overlay1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>    <span class="n">overlay0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>    <span class="n">surface2</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>    <span class="n">surface1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>    <span class="n">surface0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>    <span class="n">base</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="n">mantle</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>    <span class="n">crust</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>
-</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Color</span><span class="p">]:</span>
-</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="w">        </span><span class="sd">"""Iterate over colors in the flavor."""</span>
-</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>        <span class="k">yield from</span> <span class="p">[</span>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rosewater</span><span class="p">,</span>
-</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">flamingo</span><span class="p">,</span>
-</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">pink</span><span class="p">,</span>
-</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mauve</span><span class="p">,</span>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">red</span><span class="p">,</span>
-</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">maroon</span><span class="p">,</span>
-</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">peach</span><span class="p">,</span>
-</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">,</span>
-</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">teal</span><span class="p">,</span>
-</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span><span class="p">,</span>
-</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sapphire</span><span class="p">,</span>
-</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
-</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">lavender</span><span class="p">,</span>
-</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext1</span><span class="p">,</span>
-</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext0</span><span class="p">,</span>
-</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay2</span><span class="p">,</span>
-</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay1</span><span class="p">,</span>
-</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay0</span><span class="p">,</span>
-</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface2</span><span class="p">,</span>
-</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface1</span><span class="p">,</span>
-</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface0</span><span class="p">,</span>
-</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">,</span>
-</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mantle</span><span class="p">,</span>
-</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">crust</span><span class="p">,</span>
-</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>        <span class="p">]</span>
-</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>
-</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>
-</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Flavor</span><span class="p">:</span>
-</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a><span class="w">    </span><span class="sd">"""A flavor is a collection of colors.</span>
-</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>
-</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="sd">    Catppuccin has four flavors; Latte, Frappé, Macchiato, and Mocha.</span>
-</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a><span class="sd">    """</span>
-</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a>
-</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Latte` or `Mocha`."""</span>
-</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the flavor. This differs from `name`</span>
-</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">    in that it's intended for machine usage rather than presentation"""</span>
-</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a><span class="w">    </span><span class="sd">"""Order of the flavor in the palette spec."""</span>
-</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a>    <span class="n">dark</span><span class="p">:</span> <span class="nb">bool</span>
-</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a><span class="w">    </span><span class="sd">"""Whether this flavor is dark or light oriented. Latte is light, the other</span>
-</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a><span class="sd">    three flavors are dark."""</span>
-</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>    <span class="n">colors</span><span class="p">:</span> <span class="n">FlavorColors</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>    <span class="n">ROSEWATER</span> <span class="o">=</span> <span class="s2">"rosewater"</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>    <span class="n">FLAMINGO</span> <span class="o">=</span> <span class="s2">"flamingo"</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>    <span class="n">PINK</span> <span class="o">=</span> <span class="s2">"pink"</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>    <span class="n">MAUVE</span> <span class="o">=</span> <span class="s2">"mauve"</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>    <span class="n">RED</span> <span class="o">=</span> <span class="s2">"red"</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>    <span class="n">MAROON</span> <span class="o">=</span> <span class="s2">"maroon"</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>    <span class="n">PEACH</span> <span class="o">=</span> <span class="s2">"peach"</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>    <span class="n">YELLOW</span> <span class="o">=</span> <span class="s2">"yellow"</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>    <span class="n">GREEN</span> <span class="o">=</span> <span class="s2">"green"</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>    <span class="n">TEAL</span> <span class="o">=</span> <span class="s2">"teal"</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>    <span class="n">SKY</span> <span class="o">=</span> <span class="s2">"sky"</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>    <span class="n">SAPPHIRE</span> <span class="o">=</span> <span class="s2">"sapphire"</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>    <span class="n">BLUE</span> <span class="o">=</span> <span class="s2">"blue"</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>    <span class="n">LAVENDER</span> <span class="o">=</span> <span class="s2">"lavender"</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>    <span class="n">TEXT</span> <span class="o">=</span> <span class="s2">"text"</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>    <span class="n">SUBTEXT1</span> <span class="o">=</span> <span class="s2">"subtext1"</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>    <span class="n">SUBTEXT0</span> <span class="o">=</span> <span class="s2">"subtext0"</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>    <span class="n">OVERLAY2</span> <span class="o">=</span> <span class="s2">"overlay2"</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>    <span class="n">OVERLAY1</span> <span class="o">=</span> <span class="s2">"overlay1"</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>    <span class="n">OVERLAY0</span> <span class="o">=</span> <span class="s2">"overlay0"</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>    <span class="n">SURFACE2</span> <span class="o">=</span> <span class="s2">"surface2"</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>    <span class="n">SURFACE1</span> <span class="o">=</span> <span class="s2">"surface1"</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>    <span class="n">SURFACE0</span> <span class="o">=</span> <span class="s2">"surface0"</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>    <span class="n">BASE</span> <span class="o">=</span> <span class="s2">"base"</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>    <span class="n">MANTLE</span> <span class="o">=</span> <span class="s2">"mantle"</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>    <span class="n">CRUST</span> <span class="o">=</span> <span class="s2">"crust"</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="k">class</span><span class="w"> </span><span class="nc">RGB</span><span class="p">:</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="w">    </span><span class="sd">"""Color represented as red, green, and blue (all 0-255)."""</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>    <span class="n">g</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>    <span class="n">b</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="k">class</span><span class="w"> </span><span class="nc">HSL</span><span class="p">:</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="w">    </span><span class="sd">"""Color represented as hue (0-359), saturation (0-1), and lightness (0-1)."""</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>    <span class="n">s</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>    <span class="n">l</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># noqa: E741</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">:</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="w">    </span><span class="sd">"""A single color in the Catppuccin palette."""</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Pink` or `Surface0`."""</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the color. This differs from `name` in</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">    that it's intended for machine usage rather than presentation."""</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>    <span class="n">accent</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="w">    </span><span class="sd">"""Whether the color is considered an accent color. Accent colors are the</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a><span class="sd">    first 14 colors in the palette, also called the analogous colours. The</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a><span class="sd">    remaining 12 non-accent colors are also referred to as the monochromatic</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a><span class="sd">    colors."""</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="w">    </span><span class="sd">"""Order of the color in the palette spec."""</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>    <span class="nb">hex</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">"""The color represented as a six-digit hex string with a leading hash (#)."""</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>    <span class="n">rgb</span><span class="p">:</span> <span class="n">RGB</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="w">    </span><span class="sd">"""The color represented as individual red, green, and blue channels. (0-255)"""</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>    <span class="n">hsl</span><span class="p">:</span> <span class="n">HSL</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="w">    </span><span class="sd">"""The color represented as individual hue (0-359), saturation (0-1), and</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">    lightness (0-1) channels."""</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorColors</span><span class="p">:</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a><span class="w">    </span><span class="sd">"""All of the colors for a particular flavor of Catppuccin.</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a><span class="sd">    Can be iterated over, in which case the colors are yielded in order.</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a><span class="sd">    Colors can also be looked up by identifier, such as `colors["red"]` or</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">    `colors[ColorName.RED]`.</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="sd">    """</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>    <span class="n">rosewater</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>    <span class="n">flamingo</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>    <span class="n">pink</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>    <span class="n">mauve</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>    <span class="n">red</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>    <span class="n">maroon</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>    <span class="n">peach</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>    <span class="n">yellow</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>    <span class="n">green</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>    <span class="n">teal</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>    <span class="n">sky</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>    <span class="n">sapphire</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>    <span class="n">blue</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>    <span class="n">lavender</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>    <span class="n">text</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>    <span class="n">subtext1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>    <span class="n">subtext0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>    <span class="n">overlay2</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a>    <span class="n">overlay1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>    <span class="n">overlay0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>    <span class="n">surface2</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>    <span class="n">surface1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>    <span class="n">surface0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a>    <span class="n">base</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>    <span class="n">mantle</span><span class="p">:</span> <span class="n">Color</span>
 </span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a>
-</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a>
-</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Palette</span><span class="p">:</span>
-</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a><span class="w">    </span><span class="sd">"""The top-level type that encompasses the Catppuccin palette data structure.</span>
-</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a>
-</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a><span class="sd">    Primarily used via the `PALETTE` constant.</span>
-</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a><span class="sd">    Can be iterated over, in which case the flavors are yielded in the canonical</span>
-</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a><span class="sd">    order: Latte, Frappé, Macchiato, Mocha.</span>
-</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a><span class="sd">    """</span>
-</span><span id="L-179"><a href="#L-179"><span class="linenos">179</span></a>
-</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a>    <span class="n">latte</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a><span class="w">    </span><span class="sd">"""The light flavor."""</span>
-</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a>    <span class="n">frappe</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a><span class="w">    </span><span class="sd">"""The lightest dark flavor."""</span>
-</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a>    <span class="n">macchiato</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a><span class="w">    </span><span class="sd">"""The medium dark flavor."""</span>
-</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a>    <span class="n">mocha</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a><span class="w">    </span><span class="sd">"""The darkest dark flavor."""</span>
-</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>
-</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Flavor</span><span class="p">]:</span>
-</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a><span class="w">        </span><span class="sd">"""Iterate over flavors in the palette."""</span>
-</span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a>        <span class="k">yield from</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">latte</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frappe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macchiato</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mocha</span><span class="p">]</span>
+</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a>    <span class="n">crust</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a>
+</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Color</span><span class="p">]:</span>
+</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a><span class="w">        </span><span class="sd">"""Iterate over colors in the flavor."""</span>
+</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a>        <span class="k">yield from</span> <span class="p">[</span>
+</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rosewater</span><span class="p">,</span>
+</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">flamingo</span><span class="p">,</span>
+</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">pink</span><span class="p">,</span>
+</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mauve</span><span class="p">,</span>
+</span><span id="L-179"><a href="#L-179"><span class="linenos">179</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">red</span><span class="p">,</span>
+</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">maroon</span><span class="p">,</span>
+</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">peach</span><span class="p">,</span>
+</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
+</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">,</span>
+</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">teal</span><span class="p">,</span>
+</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span><span class="p">,</span>
+</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sapphire</span><span class="p">,</span>
+</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">lavender</span><span class="p">,</span>
+</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext1</span><span class="p">,</span>
+</span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext0</span><span class="p">,</span>
+</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay2</span><span class="p">,</span>
+</span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay1</span><span class="p">,</span>
+</span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay0</span><span class="p">,</span>
+</span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface2</span><span class="p">,</span>
+</span><span id="L-196"><a href="#L-196"><span class="linenos">196</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface1</span><span class="p">,</span>
+</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface0</span><span class="p">,</span>
+</span><span id="L-198"><a href="#L-198"><span class="linenos">198</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">,</span>
+</span><span id="L-199"><a href="#L-199"><span class="linenos">199</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mantle</span><span class="p">,</span>
+</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">crust</span><span class="p">,</span>
+</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a>        <span class="p">]</span>
+</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a>
+</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a><span class="w">        </span><span class="sd">"""Look up a color by identifier, such as `"red"` or `ColorName.RED`.</span>
+</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>
+</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a><span class="sd">        Raises `KeyError` if there is no color with that identifier.</span>
+</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a><span class="sd">        """</span>
+</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a>            <span class="n">identifier</span> <span class="o">=</span> <span class="n">ColorName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a>        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span id="L-211"><a href="#L-211"><span class="linenos">211</span></a>            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</span><span id="L-212"><a href="#L-212"><span class="linenos">212</span></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Color</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">))</span>
+</span><span id="L-213"><a href="#L-213"><span class="linenos">213</span></a>
+</span><span id="L-214"><a href="#L-214"><span class="linenos">214</span></a>
+</span><span id="L-215"><a href="#L-215"><span class="linenos">215</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-216"><a href="#L-216"><span class="linenos">216</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Flavor</span><span class="p">:</span>
+</span><span id="L-217"><a href="#L-217"><span class="linenos">217</span></a><span class="w">    </span><span class="sd">"""A flavor is a collection of colors.</span>
+</span><span id="L-218"><a href="#L-218"><span class="linenos">218</span></a>
+</span><span id="L-219"><a href="#L-219"><span class="linenos">219</span></a><span class="sd">    Catppuccin has four flavors; Latte, Frappé, Macchiato, and Mocha.</span>
+</span><span id="L-220"><a href="#L-220"><span class="linenos">220</span></a><span class="sd">    """</span>
+</span><span id="L-221"><a href="#L-221"><span class="linenos">221</span></a>
+</span><span id="L-222"><a href="#L-222"><span class="linenos">222</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-223"><a href="#L-223"><span class="linenos">223</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Latte` or `Mocha`."""</span>
+</span><span id="L-224"><a href="#L-224"><span class="linenos">224</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="L-225"><a href="#L-225"><span class="linenos">225</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the flavor. This differs from `name`</span>
+</span><span id="L-226"><a href="#L-226"><span class="linenos">226</span></a><span class="sd">    in that it's intended for machine usage rather than presentation"""</span>
+</span><span id="L-227"><a href="#L-227"><span class="linenos">227</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="L-228"><a href="#L-228"><span class="linenos">228</span></a><span class="w">    </span><span class="sd">"""Order of the flavor in the palette spec."""</span>
+</span><span id="L-229"><a href="#L-229"><span class="linenos">229</span></a>    <span class="n">dark</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="L-230"><a href="#L-230"><span class="linenos">230</span></a><span class="w">    </span><span class="sd">"""Whether this flavor is dark or light oriented. Latte is light, the other</span>
+</span><span id="L-231"><a href="#L-231"><span class="linenos">231</span></a><span class="sd">    three flavors are dark."""</span>
+</span><span id="L-232"><a href="#L-232"><span class="linenos">232</span></a>    <span class="n">colors</span><span class="p">:</span> <span class="n">FlavorColors</span>
+</span><span id="L-233"><a href="#L-233"><span class="linenos">233</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="L-234"><a href="#L-234"><span class="linenos">234</span></a>
+</span><span id="L-235"><a href="#L-235"><span class="linenos">235</span></a>
+</span><span id="L-236"><a href="#L-236"><span class="linenos">236</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-237"><a href="#L-237"><span class="linenos">237</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Palette</span><span class="p">:</span>
+</span><span id="L-238"><a href="#L-238"><span class="linenos">238</span></a><span class="w">    </span><span class="sd">"""The top-level type that encompasses the Catppuccin palette data structure.</span>
+</span><span id="L-239"><a href="#L-239"><span class="linenos">239</span></a>
+</span><span id="L-240"><a href="#L-240"><span class="linenos">240</span></a><span class="sd">    Primarily used via the `PALETTE` constant.</span>
+</span><span id="L-241"><a href="#L-241"><span class="linenos">241</span></a><span class="sd">    Can be iterated over, in which case the flavors are yielded in the canonical</span>
+</span><span id="L-242"><a href="#L-242"><span class="linenos">242</span></a><span class="sd">    order: Latte, Frappé, Macchiato, Mocha.</span>
+</span><span id="L-243"><a href="#L-243"><span class="linenos">243</span></a>
+</span><span id="L-244"><a href="#L-244"><span class="linenos">244</span></a><span class="sd">    Flavors can also be looked up by identifier, such as `PALETTE["mocha"]` or</span>
+</span><span id="L-245"><a href="#L-245"><span class="linenos">245</span></a><span class="sd">    `PALETTE[FlavorName.MOCHA]`.</span>
+</span><span id="L-246"><a href="#L-246"><span class="linenos">246</span></a><span class="sd">    """</span>
+</span><span id="L-247"><a href="#L-247"><span class="linenos">247</span></a>
+</span><span id="L-248"><a href="#L-248"><span class="linenos">248</span></a>    <span class="n">latte</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="L-249"><a href="#L-249"><span class="linenos">249</span></a><span class="w">    </span><span class="sd">"""The light flavor."""</span>
+</span><span id="L-250"><a href="#L-250"><span class="linenos">250</span></a>    <span class="n">frappe</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="L-251"><a href="#L-251"><span class="linenos">251</span></a><span class="w">    </span><span class="sd">"""The lightest dark flavor."""</span>
+</span><span id="L-252"><a href="#L-252"><span class="linenos">252</span></a>    <span class="n">macchiato</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="L-253"><a href="#L-253"><span class="linenos">253</span></a><span class="w">    </span><span class="sd">"""The medium dark flavor."""</span>
+</span><span id="L-254"><a href="#L-254"><span class="linenos">254</span></a>    <span class="n">mocha</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="L-255"><a href="#L-255"><span class="linenos">255</span></a><span class="w">    </span><span class="sd">"""The darkest dark flavor."""</span>
+</span><span id="L-256"><a href="#L-256"><span class="linenos">256</span></a>
+</span><span id="L-257"><a href="#L-257"><span class="linenos">257</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Flavor</span><span class="p">]:</span>
+</span><span id="L-258"><a href="#L-258"><span class="linenos">258</span></a><span class="w">        </span><span class="sd">"""Iterate over flavors in the palette."""</span>
+</span><span id="L-259"><a href="#L-259"><span class="linenos">259</span></a>        <span class="k">yield from</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">latte</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frappe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macchiato</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mocha</span><span class="p">]</span>
+</span><span id="L-260"><a href="#L-260"><span class="linenos">260</span></a>
+</span><span id="L-261"><a href="#L-261"><span class="linenos">261</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Flavor</span><span class="p">:</span>
+</span><span id="L-262"><a href="#L-262"><span class="linenos">262</span></a><span class="w">        </span><span class="sd">"""Look up a flavor by identifier, such as `"mocha"` or `FlavorName.MOCHA`.</span>
+</span><span id="L-263"><a href="#L-263"><span class="linenos">263</span></a>
+</span><span id="L-264"><a href="#L-264"><span class="linenos">264</span></a><span class="sd">        Raises `KeyError` if there is no flavor with that identifier.</span>
+</span><span id="L-265"><a href="#L-265"><span class="linenos">265</span></a><span class="sd">        """</span>
+</span><span id="L-266"><a href="#L-266"><span class="linenos">266</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="L-267"><a href="#L-267"><span class="linenos">267</span></a>            <span class="n">identifier</span> <span class="o">=</span> <span class="n">FlavorName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="L-268"><a href="#L-268"><span class="linenos">268</span></a>        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span id="L-269"><a href="#L-269"><span class="linenos">269</span></a>            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</span><span id="L-270"><a href="#L-270"><span class="linenos">270</span></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Flavor</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">))</span>
 </span></pre></div>
 
 
@@ -442,27 +533,41 @@
 
     </div>
     <a class="headerlink" href="#Palette"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Palette-172"><a href="#Palette-172"><span class="linenos">172</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="Palette-173"><a href="#Palette-173"><span class="linenos">173</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Palette</span><span class="p">:</span>
-</span><span id="Palette-174"><a href="#Palette-174"><span class="linenos">174</span></a><span class="w">    </span><span class="sd">"""The top-level type that encompasses the Catppuccin palette data structure.</span>
-</span><span id="Palette-175"><a href="#Palette-175"><span class="linenos">175</span></a>
-</span><span id="Palette-176"><a href="#Palette-176"><span class="linenos">176</span></a><span class="sd">    Primarily used via the `PALETTE` constant.</span>
-</span><span id="Palette-177"><a href="#Palette-177"><span class="linenos">177</span></a><span class="sd">    Can be iterated over, in which case the flavors are yielded in the canonical</span>
-</span><span id="Palette-178"><a href="#Palette-178"><span class="linenos">178</span></a><span class="sd">    order: Latte, Frappé, Macchiato, Mocha.</span>
-</span><span id="Palette-179"><a href="#Palette-179"><span class="linenos">179</span></a><span class="sd">    """</span>
-</span><span id="Palette-180"><a href="#Palette-180"><span class="linenos">180</span></a>
-</span><span id="Palette-181"><a href="#Palette-181"><span class="linenos">181</span></a>    <span class="n">latte</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="Palette-182"><a href="#Palette-182"><span class="linenos">182</span></a><span class="w">    </span><span class="sd">"""The light flavor."""</span>
-</span><span id="Palette-183"><a href="#Palette-183"><span class="linenos">183</span></a>    <span class="n">frappe</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="Palette-184"><a href="#Palette-184"><span class="linenos">184</span></a><span class="w">    </span><span class="sd">"""The lightest dark flavor."""</span>
-</span><span id="Palette-185"><a href="#Palette-185"><span class="linenos">185</span></a>    <span class="n">macchiato</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="Palette-186"><a href="#Palette-186"><span class="linenos">186</span></a><span class="w">    </span><span class="sd">"""The medium dark flavor."""</span>
-</span><span id="Palette-187"><a href="#Palette-187"><span class="linenos">187</span></a>    <span class="n">mocha</span><span class="p">:</span> <span class="n">Flavor</span>
-</span><span id="Palette-188"><a href="#Palette-188"><span class="linenos">188</span></a><span class="w">    </span><span class="sd">"""The darkest dark flavor."""</span>
-</span><span id="Palette-189"><a href="#Palette-189"><span class="linenos">189</span></a>
-</span><span id="Palette-190"><a href="#Palette-190"><span class="linenos">190</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Flavor</span><span class="p">]:</span>
-</span><span id="Palette-191"><a href="#Palette-191"><span class="linenos">191</span></a><span class="w">        </span><span class="sd">"""Iterate over flavors in the palette."""</span>
-</span><span id="Palette-192"><a href="#Palette-192"><span class="linenos">192</span></a>        <span class="k">yield from</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">latte</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frappe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macchiato</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mocha</span><span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Palette-237"><a href="#Palette-237"><span class="linenos">237</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="Palette-238"><a href="#Palette-238"><span class="linenos">238</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Palette</span><span class="p">:</span>
+</span><span id="Palette-239"><a href="#Palette-239"><span class="linenos">239</span></a><span class="w">    </span><span class="sd">"""The top-level type that encompasses the Catppuccin palette data structure.</span>
+</span><span id="Palette-240"><a href="#Palette-240"><span class="linenos">240</span></a>
+</span><span id="Palette-241"><a href="#Palette-241"><span class="linenos">241</span></a><span class="sd">    Primarily used via the `PALETTE` constant.</span>
+</span><span id="Palette-242"><a href="#Palette-242"><span class="linenos">242</span></a><span class="sd">    Can be iterated over, in which case the flavors are yielded in the canonical</span>
+</span><span id="Palette-243"><a href="#Palette-243"><span class="linenos">243</span></a><span class="sd">    order: Latte, Frappé, Macchiato, Mocha.</span>
+</span><span id="Palette-244"><a href="#Palette-244"><span class="linenos">244</span></a>
+</span><span id="Palette-245"><a href="#Palette-245"><span class="linenos">245</span></a><span class="sd">    Flavors can also be looked up by identifier, such as `PALETTE["mocha"]` or</span>
+</span><span id="Palette-246"><a href="#Palette-246"><span class="linenos">246</span></a><span class="sd">    `PALETTE[FlavorName.MOCHA]`.</span>
+</span><span id="Palette-247"><a href="#Palette-247"><span class="linenos">247</span></a><span class="sd">    """</span>
+</span><span id="Palette-248"><a href="#Palette-248"><span class="linenos">248</span></a>
+</span><span id="Palette-249"><a href="#Palette-249"><span class="linenos">249</span></a>    <span class="n">latte</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="Palette-250"><a href="#Palette-250"><span class="linenos">250</span></a><span class="w">    </span><span class="sd">"""The light flavor."""</span>
+</span><span id="Palette-251"><a href="#Palette-251"><span class="linenos">251</span></a>    <span class="n">frappe</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="Palette-252"><a href="#Palette-252"><span class="linenos">252</span></a><span class="w">    </span><span class="sd">"""The lightest dark flavor."""</span>
+</span><span id="Palette-253"><a href="#Palette-253"><span class="linenos">253</span></a>    <span class="n">macchiato</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="Palette-254"><a href="#Palette-254"><span class="linenos">254</span></a><span class="w">    </span><span class="sd">"""The medium dark flavor."""</span>
+</span><span id="Palette-255"><a href="#Palette-255"><span class="linenos">255</span></a>    <span class="n">mocha</span><span class="p">:</span> <span class="n">Flavor</span>
+</span><span id="Palette-256"><a href="#Palette-256"><span class="linenos">256</span></a><span class="w">    </span><span class="sd">"""The darkest dark flavor."""</span>
+</span><span id="Palette-257"><a href="#Palette-257"><span class="linenos">257</span></a>
+</span><span id="Palette-258"><a href="#Palette-258"><span class="linenos">258</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Flavor</span><span class="p">]:</span>
+</span><span id="Palette-259"><a href="#Palette-259"><span class="linenos">259</span></a><span class="w">        </span><span class="sd">"""Iterate over flavors in the palette."""</span>
+</span><span id="Palette-260"><a href="#Palette-260"><span class="linenos">260</span></a>        <span class="k">yield from</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">latte</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frappe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">macchiato</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mocha</span><span class="p">]</span>
+</span><span id="Palette-261"><a href="#Palette-261"><span class="linenos">261</span></a>
+</span><span id="Palette-262"><a href="#Palette-262"><span class="linenos">262</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Flavor</span><span class="p">:</span>
+</span><span id="Palette-263"><a href="#Palette-263"><span class="linenos">263</span></a><span class="w">        </span><span class="sd">"""Look up a flavor by identifier, such as `"mocha"` or `FlavorName.MOCHA`.</span>
+</span><span id="Palette-264"><a href="#Palette-264"><span class="linenos">264</span></a>
+</span><span id="Palette-265"><a href="#Palette-265"><span class="linenos">265</span></a><span class="sd">        Raises `KeyError` if there is no flavor with that identifier.</span>
+</span><span id="Palette-266"><a href="#Palette-266"><span class="linenos">266</span></a><span class="sd">        """</span>
+</span><span id="Palette-267"><a href="#Palette-267"><span class="linenos">267</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="Palette-268"><a href="#Palette-268"><span class="linenos">268</span></a>            <span class="n">identifier</span> <span class="o">=</span> <span class="n">FlavorName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="Palette-269"><a href="#Palette-269"><span class="linenos">269</span></a>        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span id="Palette-270"><a href="#Palette-270"><span class="linenos">270</span></a>            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</span><span id="Palette-271"><a href="#Palette-271"><span class="linenos">271</span></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Flavor</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">))</span>
 </span></pre></div>
 
 
@@ -471,6 +576,9 @@
 <p>Primarily used via the <code>PALETTE</code> constant.
 Can be iterated over, in which case the flavors are yielded in the canonical
 order: Latte, Frappé, Macchiato, Mocha.</p>
+
+<p>Flavors can also be looked up by identifier, such as <code>PALETTE["mocha"]</code> or
+<code>PALETTE[FlavorName.MOCHA]</code>.</p>
 </div>
 
 
@@ -539,25 +647,25 @@ order: Latte, Frappé, Macchiato, Mocha.</p>
 
     </div>
     <a class="headerlink" href="#Flavor"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Flavor-151"><a href="#Flavor-151"><span class="linenos">151</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="Flavor-152"><a href="#Flavor-152"><span class="linenos">152</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Flavor</span><span class="p">:</span>
-</span><span id="Flavor-153"><a href="#Flavor-153"><span class="linenos">153</span></a><span class="w">    </span><span class="sd">"""A flavor is a collection of colors.</span>
-</span><span id="Flavor-154"><a href="#Flavor-154"><span class="linenos">154</span></a>
-</span><span id="Flavor-155"><a href="#Flavor-155"><span class="linenos">155</span></a><span class="sd">    Catppuccin has four flavors; Latte, Frappé, Macchiato, and Mocha.</span>
-</span><span id="Flavor-156"><a href="#Flavor-156"><span class="linenos">156</span></a><span class="sd">    """</span>
-</span><span id="Flavor-157"><a href="#Flavor-157"><span class="linenos">157</span></a>
-</span><span id="Flavor-158"><a href="#Flavor-158"><span class="linenos">158</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Flavor-159"><a href="#Flavor-159"><span class="linenos">159</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Latte` or `Mocha`."""</span>
-</span><span id="Flavor-160"><a href="#Flavor-160"><span class="linenos">160</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Flavor-161"><a href="#Flavor-161"><span class="linenos">161</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the flavor. This differs from `name`</span>
-</span><span id="Flavor-162"><a href="#Flavor-162"><span class="linenos">162</span></a><span class="sd">    in that it's intended for machine usage rather than presentation"""</span>
-</span><span id="Flavor-163"><a href="#Flavor-163"><span class="linenos">163</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="Flavor-164"><a href="#Flavor-164"><span class="linenos">164</span></a><span class="w">    </span><span class="sd">"""Order of the flavor in the palette spec."""</span>
-</span><span id="Flavor-165"><a href="#Flavor-165"><span class="linenos">165</span></a>    <span class="n">dark</span><span class="p">:</span> <span class="nb">bool</span>
-</span><span id="Flavor-166"><a href="#Flavor-166"><span class="linenos">166</span></a><span class="w">    </span><span class="sd">"""Whether this flavor is dark or light oriented. Latte is light, the other</span>
-</span><span id="Flavor-167"><a href="#Flavor-167"><span class="linenos">167</span></a><span class="sd">    three flavors are dark."""</span>
-</span><span id="Flavor-168"><a href="#Flavor-168"><span class="linenos">168</span></a>    <span class="n">colors</span><span class="p">:</span> <span class="n">FlavorColors</span>
-</span><span id="Flavor-169"><a href="#Flavor-169"><span class="linenos">169</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Flavor-216"><a href="#Flavor-216"><span class="linenos">216</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="Flavor-217"><a href="#Flavor-217"><span class="linenos">217</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Flavor</span><span class="p">:</span>
+</span><span id="Flavor-218"><a href="#Flavor-218"><span class="linenos">218</span></a><span class="w">    </span><span class="sd">"""A flavor is a collection of colors.</span>
+</span><span id="Flavor-219"><a href="#Flavor-219"><span class="linenos">219</span></a>
+</span><span id="Flavor-220"><a href="#Flavor-220"><span class="linenos">220</span></a><span class="sd">    Catppuccin has four flavors; Latte, Frappé, Macchiato, and Mocha.</span>
+</span><span id="Flavor-221"><a href="#Flavor-221"><span class="linenos">221</span></a><span class="sd">    """</span>
+</span><span id="Flavor-222"><a href="#Flavor-222"><span class="linenos">222</span></a>
+</span><span id="Flavor-223"><a href="#Flavor-223"><span class="linenos">223</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Flavor-224"><a href="#Flavor-224"><span class="linenos">224</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Latte` or `Mocha`."""</span>
+</span><span id="Flavor-225"><a href="#Flavor-225"><span class="linenos">225</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Flavor-226"><a href="#Flavor-226"><span class="linenos">226</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the flavor. This differs from `name`</span>
+</span><span id="Flavor-227"><a href="#Flavor-227"><span class="linenos">227</span></a><span class="sd">    in that it's intended for machine usage rather than presentation"""</span>
+</span><span id="Flavor-228"><a href="#Flavor-228"><span class="linenos">228</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="Flavor-229"><a href="#Flavor-229"><span class="linenos">229</span></a><span class="w">    </span><span class="sd">"""Order of the flavor in the palette spec."""</span>
+</span><span id="Flavor-230"><a href="#Flavor-230"><span class="linenos">230</span></a>    <span class="n">dark</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="Flavor-231"><a href="#Flavor-231"><span class="linenos">231</span></a><span class="w">    </span><span class="sd">"""Whether this flavor is dark or light oriented. Latte is light, the other</span>
+</span><span id="Flavor-232"><a href="#Flavor-232"><span class="linenos">232</span></a><span class="sd">    three flavors are dark."""</span>
+</span><span id="Flavor-233"><a href="#Flavor-233"><span class="linenos">233</span></a>    <span class="n">colors</span><span class="p">:</span> <span class="n">FlavorColors</span>
+</span><span id="Flavor-234"><a href="#Flavor-234"><span class="linenos">234</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
 </span></pre></div>
 
 
@@ -647,102 +755,119 @@ three flavors are dark.</p>
 
     </div>
     <a class="headerlink" href="#FlavorColors"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="FlavorColors-59"><a href="#FlavorColors-59"><span class="linenos"> 59</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="FlavorColors-60"><a href="#FlavorColors-60"><span class="linenos"> 60</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorColors</span><span class="p">:</span>
-</span><span id="FlavorColors-61"><a href="#FlavorColors-61"><span class="linenos"> 61</span></a><span class="w">    </span><span class="sd">"""All of the colors for a particular flavor of Catppuccin.</span>
-</span><span id="FlavorColors-62"><a href="#FlavorColors-62"><span class="linenos"> 62</span></a>
-</span><span id="FlavorColors-63"><a href="#FlavorColors-63"><span class="linenos"> 63</span></a><span class="sd">    Can be iterated over, in which case the colors are yielded in order.</span>
-</span><span id="FlavorColors-64"><a href="#FlavorColors-64"><span class="linenos"> 64</span></a><span class="sd">    """</span>
-</span><span id="FlavorColors-65"><a href="#FlavorColors-65"><span class="linenos"> 65</span></a>
-</span><span id="FlavorColors-66"><a href="#FlavorColors-66"><span class="linenos"> 66</span></a>    <span class="n">rosewater</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-67"><a href="#FlavorColors-67"><span class="linenos"> 67</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-68"><a href="#FlavorColors-68"><span class="linenos"> 68</span></a>    <span class="n">flamingo</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-69"><a href="#FlavorColors-69"><span class="linenos"> 69</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-70"><a href="#FlavorColors-70"><span class="linenos"> 70</span></a>    <span class="n">pink</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-71"><a href="#FlavorColors-71"><span class="linenos"> 71</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-72"><a href="#FlavorColors-72"><span class="linenos"> 72</span></a>    <span class="n">mauve</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-73"><a href="#FlavorColors-73"><span class="linenos"> 73</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-74"><a href="#FlavorColors-74"><span class="linenos"> 74</span></a>    <span class="n">red</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-75"><a href="#FlavorColors-75"><span class="linenos"> 75</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-76"><a href="#FlavorColors-76"><span class="linenos"> 76</span></a>    <span class="n">maroon</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-77"><a href="#FlavorColors-77"><span class="linenos"> 77</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-78"><a href="#FlavorColors-78"><span class="linenos"> 78</span></a>    <span class="n">peach</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-79"><a href="#FlavorColors-79"><span class="linenos"> 79</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-80"><a href="#FlavorColors-80"><span class="linenos"> 80</span></a>    <span class="n">yellow</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-81"><a href="#FlavorColors-81"><span class="linenos"> 81</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-82"><a href="#FlavorColors-82"><span class="linenos"> 82</span></a>    <span class="n">green</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-83"><a href="#FlavorColors-83"><span class="linenos"> 83</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-84"><a href="#FlavorColors-84"><span class="linenos"> 84</span></a>    <span class="n">teal</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-85"><a href="#FlavorColors-85"><span class="linenos"> 85</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-86"><a href="#FlavorColors-86"><span class="linenos"> 86</span></a>    <span class="n">sky</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-87"><a href="#FlavorColors-87"><span class="linenos"> 87</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-88"><a href="#FlavorColors-88"><span class="linenos"> 88</span></a>    <span class="n">sapphire</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-89"><a href="#FlavorColors-89"><span class="linenos"> 89</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-90"><a href="#FlavorColors-90"><span class="linenos"> 90</span></a>    <span class="n">blue</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-91"><a href="#FlavorColors-91"><span class="linenos"> 91</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-92"><a href="#FlavorColors-92"><span class="linenos"> 92</span></a>    <span class="n">lavender</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-93"><a href="#FlavorColors-93"><span class="linenos"> 93</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-94"><a href="#FlavorColors-94"><span class="linenos"> 94</span></a>    <span class="n">text</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-95"><a href="#FlavorColors-95"><span class="linenos"> 95</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-96"><a href="#FlavorColors-96"><span class="linenos"> 96</span></a>    <span class="n">subtext1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-97"><a href="#FlavorColors-97"><span class="linenos"> 97</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-98"><a href="#FlavorColors-98"><span class="linenos"> 98</span></a>    <span class="n">subtext0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-99"><a href="#FlavorColors-99"><span class="linenos"> 99</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-100"><a href="#FlavorColors-100"><span class="linenos">100</span></a>    <span class="n">overlay2</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-101"><a href="#FlavorColors-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-102"><a href="#FlavorColors-102"><span class="linenos">102</span></a>    <span class="n">overlay1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-103"><a href="#FlavorColors-103"><span class="linenos">103</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-104"><a href="#FlavorColors-104"><span class="linenos">104</span></a>    <span class="n">overlay0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-105"><a href="#FlavorColors-105"><span class="linenos">105</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-106"><a href="#FlavorColors-106"><span class="linenos">106</span></a>    <span class="n">surface2</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-107"><a href="#FlavorColors-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-108"><a href="#FlavorColors-108"><span class="linenos">108</span></a>    <span class="n">surface1</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-109"><a href="#FlavorColors-109"><span class="linenos">109</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-110"><a href="#FlavorColors-110"><span class="linenos">110</span></a>    <span class="n">surface0</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-111"><a href="#FlavorColors-111"><span class="linenos">111</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-112"><a href="#FlavorColors-112"><span class="linenos">112</span></a>    <span class="n">base</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-113"><a href="#FlavorColors-113"><span class="linenos">113</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-114"><a href="#FlavorColors-114"><span class="linenos">114</span></a>    <span class="n">mantle</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-115"><a href="#FlavorColors-115"><span class="linenos">115</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-116"><a href="#FlavorColors-116"><span class="linenos">116</span></a>    <span class="n">crust</span><span class="p">:</span> <span class="n">Color</span>
-</span><span id="FlavorColors-117"><a href="#FlavorColors-117"><span class="linenos">117</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="FlavorColors-118"><a href="#FlavorColors-118"><span class="linenos">118</span></a>
-</span><span id="FlavorColors-119"><a href="#FlavorColors-119"><span class="linenos">119</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Color</span><span class="p">]:</span>
-</span><span id="FlavorColors-120"><a href="#FlavorColors-120"><span class="linenos">120</span></a><span class="w">        </span><span class="sd">"""Iterate over colors in the flavor."""</span>
-</span><span id="FlavorColors-121"><a href="#FlavorColors-121"><span class="linenos">121</span></a>        <span class="k">yield from</span> <span class="p">[</span>
-</span><span id="FlavorColors-122"><a href="#FlavorColors-122"><span class="linenos">122</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rosewater</span><span class="p">,</span>
-</span><span id="FlavorColors-123"><a href="#FlavorColors-123"><span class="linenos">123</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">flamingo</span><span class="p">,</span>
-</span><span id="FlavorColors-124"><a href="#FlavorColors-124"><span class="linenos">124</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">pink</span><span class="p">,</span>
-</span><span id="FlavorColors-125"><a href="#FlavorColors-125"><span class="linenos">125</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mauve</span><span class="p">,</span>
-</span><span id="FlavorColors-126"><a href="#FlavorColors-126"><span class="linenos">126</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">red</span><span class="p">,</span>
-</span><span id="FlavorColors-127"><a href="#FlavorColors-127"><span class="linenos">127</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">maroon</span><span class="p">,</span>
-</span><span id="FlavorColors-128"><a href="#FlavorColors-128"><span class="linenos">128</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">peach</span><span class="p">,</span>
-</span><span id="FlavorColors-129"><a href="#FlavorColors-129"><span class="linenos">129</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
-</span><span id="FlavorColors-130"><a href="#FlavorColors-130"><span class="linenos">130</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">,</span>
-</span><span id="FlavorColors-131"><a href="#FlavorColors-131"><span class="linenos">131</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">teal</span><span class="p">,</span>
-</span><span id="FlavorColors-132"><a href="#FlavorColors-132"><span class="linenos">132</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span><span class="p">,</span>
-</span><span id="FlavorColors-133"><a href="#FlavorColors-133"><span class="linenos">133</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sapphire</span><span class="p">,</span>
-</span><span id="FlavorColors-134"><a href="#FlavorColors-134"><span class="linenos">134</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
-</span><span id="FlavorColors-135"><a href="#FlavorColors-135"><span class="linenos">135</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">lavender</span><span class="p">,</span>
-</span><span id="FlavorColors-136"><a href="#FlavorColors-136"><span class="linenos">136</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-</span><span id="FlavorColors-137"><a href="#FlavorColors-137"><span class="linenos">137</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext1</span><span class="p">,</span>
-</span><span id="FlavorColors-138"><a href="#FlavorColors-138"><span class="linenos">138</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext0</span><span class="p">,</span>
-</span><span id="FlavorColors-139"><a href="#FlavorColors-139"><span class="linenos">139</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay2</span><span class="p">,</span>
-</span><span id="FlavorColors-140"><a href="#FlavorColors-140"><span class="linenos">140</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay1</span><span class="p">,</span>
-</span><span id="FlavorColors-141"><a href="#FlavorColors-141"><span class="linenos">141</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay0</span><span class="p">,</span>
-</span><span id="FlavorColors-142"><a href="#FlavorColors-142"><span class="linenos">142</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface2</span><span class="p">,</span>
-</span><span id="FlavorColors-143"><a href="#FlavorColors-143"><span class="linenos">143</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface1</span><span class="p">,</span>
-</span><span id="FlavorColors-144"><a href="#FlavorColors-144"><span class="linenos">144</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface0</span><span class="p">,</span>
-</span><span id="FlavorColors-145"><a href="#FlavorColors-145"><span class="linenos">145</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">,</span>
-</span><span id="FlavorColors-146"><a href="#FlavorColors-146"><span class="linenos">146</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mantle</span><span class="p">,</span>
-</span><span id="FlavorColors-147"><a href="#FlavorColors-147"><span class="linenos">147</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">crust</span><span class="p">,</span>
-</span><span id="FlavorColors-148"><a href="#FlavorColors-148"><span class="linenos">148</span></a>        <span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="FlavorColors-110"><a href="#FlavorColors-110"><span class="linenos">110</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="FlavorColors-111"><a href="#FlavorColors-111"><span class="linenos">111</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorColors</span><span class="p">:</span>
+</span><span id="FlavorColors-112"><a href="#FlavorColors-112"><span class="linenos">112</span></a><span class="w">    </span><span class="sd">"""All of the colors for a particular flavor of Catppuccin.</span>
+</span><span id="FlavorColors-113"><a href="#FlavorColors-113"><span class="linenos">113</span></a>
+</span><span id="FlavorColors-114"><a href="#FlavorColors-114"><span class="linenos">114</span></a><span class="sd">    Can be iterated over, in which case the colors are yielded in order.</span>
+</span><span id="FlavorColors-115"><a href="#FlavorColors-115"><span class="linenos">115</span></a>
+</span><span id="FlavorColors-116"><a href="#FlavorColors-116"><span class="linenos">116</span></a><span class="sd">    Colors can also be looked up by identifier, such as `colors["red"]` or</span>
+</span><span id="FlavorColors-117"><a href="#FlavorColors-117"><span class="linenos">117</span></a><span class="sd">    `colors[ColorName.RED]`.</span>
+</span><span id="FlavorColors-118"><a href="#FlavorColors-118"><span class="linenos">118</span></a><span class="sd">    """</span>
+</span><span id="FlavorColors-119"><a href="#FlavorColors-119"><span class="linenos">119</span></a>
+</span><span id="FlavorColors-120"><a href="#FlavorColors-120"><span class="linenos">120</span></a>    <span class="n">rosewater</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-121"><a href="#FlavorColors-121"><span class="linenos">121</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-122"><a href="#FlavorColors-122"><span class="linenos">122</span></a>    <span class="n">flamingo</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-123"><a href="#FlavorColors-123"><span class="linenos">123</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-124"><a href="#FlavorColors-124"><span class="linenos">124</span></a>    <span class="n">pink</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-125"><a href="#FlavorColors-125"><span class="linenos">125</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-126"><a href="#FlavorColors-126"><span class="linenos">126</span></a>    <span class="n">mauve</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-127"><a href="#FlavorColors-127"><span class="linenos">127</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-128"><a href="#FlavorColors-128"><span class="linenos">128</span></a>    <span class="n">red</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-129"><a href="#FlavorColors-129"><span class="linenos">129</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-130"><a href="#FlavorColors-130"><span class="linenos">130</span></a>    <span class="n">maroon</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-131"><a href="#FlavorColors-131"><span class="linenos">131</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-132"><a href="#FlavorColors-132"><span class="linenos">132</span></a>    <span class="n">peach</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-133"><a href="#FlavorColors-133"><span class="linenos">133</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-134"><a href="#FlavorColors-134"><span class="linenos">134</span></a>    <span class="n">yellow</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-135"><a href="#FlavorColors-135"><span class="linenos">135</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-136"><a href="#FlavorColors-136"><span class="linenos">136</span></a>    <span class="n">green</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-137"><a href="#FlavorColors-137"><span class="linenos">137</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-138"><a href="#FlavorColors-138"><span class="linenos">138</span></a>    <span class="n">teal</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-139"><a href="#FlavorColors-139"><span class="linenos">139</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-140"><a href="#FlavorColors-140"><span class="linenos">140</span></a>    <span class="n">sky</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-141"><a href="#FlavorColors-141"><span class="linenos">141</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-142"><a href="#FlavorColors-142"><span class="linenos">142</span></a>    <span class="n">sapphire</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-143"><a href="#FlavorColors-143"><span class="linenos">143</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-144"><a href="#FlavorColors-144"><span class="linenos">144</span></a>    <span class="n">blue</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-145"><a href="#FlavorColors-145"><span class="linenos">145</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-146"><a href="#FlavorColors-146"><span class="linenos">146</span></a>    <span class="n">lavender</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-147"><a href="#FlavorColors-147"><span class="linenos">147</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-148"><a href="#FlavorColors-148"><span class="linenos">148</span></a>    <span class="n">text</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-149"><a href="#FlavorColors-149"><span class="linenos">149</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-150"><a href="#FlavorColors-150"><span class="linenos">150</span></a>    <span class="n">subtext1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-151"><a href="#FlavorColors-151"><span class="linenos">151</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-152"><a href="#FlavorColors-152"><span class="linenos">152</span></a>    <span class="n">subtext0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-153"><a href="#FlavorColors-153"><span class="linenos">153</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-154"><a href="#FlavorColors-154"><span class="linenos">154</span></a>    <span class="n">overlay2</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-155"><a href="#FlavorColors-155"><span class="linenos">155</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-156"><a href="#FlavorColors-156"><span class="linenos">156</span></a>    <span class="n">overlay1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-157"><a href="#FlavorColors-157"><span class="linenos">157</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-158"><a href="#FlavorColors-158"><span class="linenos">158</span></a>    <span class="n">overlay0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-159"><a href="#FlavorColors-159"><span class="linenos">159</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-160"><a href="#FlavorColors-160"><span class="linenos">160</span></a>    <span class="n">surface2</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-161"><a href="#FlavorColors-161"><span class="linenos">161</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-162"><a href="#FlavorColors-162"><span class="linenos">162</span></a>    <span class="n">surface1</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-163"><a href="#FlavorColors-163"><span class="linenos">163</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-164"><a href="#FlavorColors-164"><span class="linenos">164</span></a>    <span class="n">surface0</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-165"><a href="#FlavorColors-165"><span class="linenos">165</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-166"><a href="#FlavorColors-166"><span class="linenos">166</span></a>    <span class="n">base</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-167"><a href="#FlavorColors-167"><span class="linenos">167</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-168"><a href="#FlavorColors-168"><span class="linenos">168</span></a>    <span class="n">mantle</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-169"><a href="#FlavorColors-169"><span class="linenos">169</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-170"><a href="#FlavorColors-170"><span class="linenos">170</span></a>    <span class="n">crust</span><span class="p">:</span> <span class="n">Color</span>
+</span><span id="FlavorColors-171"><a href="#FlavorColors-171"><span class="linenos">171</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="FlavorColors-172"><a href="#FlavorColors-172"><span class="linenos">172</span></a>
+</span><span id="FlavorColors-173"><a href="#FlavorColors-173"><span class="linenos">173</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Color</span><span class="p">]:</span>
+</span><span id="FlavorColors-174"><a href="#FlavorColors-174"><span class="linenos">174</span></a><span class="w">        </span><span class="sd">"""Iterate over colors in the flavor."""</span>
+</span><span id="FlavorColors-175"><a href="#FlavorColors-175"><span class="linenos">175</span></a>        <span class="k">yield from</span> <span class="p">[</span>
+</span><span id="FlavorColors-176"><a href="#FlavorColors-176"><span class="linenos">176</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">rosewater</span><span class="p">,</span>
+</span><span id="FlavorColors-177"><a href="#FlavorColors-177"><span class="linenos">177</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">flamingo</span><span class="p">,</span>
+</span><span id="FlavorColors-178"><a href="#FlavorColors-178"><span class="linenos">178</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">pink</span><span class="p">,</span>
+</span><span id="FlavorColors-179"><a href="#FlavorColors-179"><span class="linenos">179</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mauve</span><span class="p">,</span>
+</span><span id="FlavorColors-180"><a href="#FlavorColors-180"><span class="linenos">180</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">red</span><span class="p">,</span>
+</span><span id="FlavorColors-181"><a href="#FlavorColors-181"><span class="linenos">181</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">maroon</span><span class="p">,</span>
+</span><span id="FlavorColors-182"><a href="#FlavorColors-182"><span class="linenos">182</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">peach</span><span class="p">,</span>
+</span><span id="FlavorColors-183"><a href="#FlavorColors-183"><span class="linenos">183</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
+</span><span id="FlavorColors-184"><a href="#FlavorColors-184"><span class="linenos">184</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">green</span><span class="p">,</span>
+</span><span id="FlavorColors-185"><a href="#FlavorColors-185"><span class="linenos">185</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">teal</span><span class="p">,</span>
+</span><span id="FlavorColors-186"><a href="#FlavorColors-186"><span class="linenos">186</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sky</span><span class="p">,</span>
+</span><span id="FlavorColors-187"><a href="#FlavorColors-187"><span class="linenos">187</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">sapphire</span><span class="p">,</span>
+</span><span id="FlavorColors-188"><a href="#FlavorColors-188"><span class="linenos">188</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+</span><span id="FlavorColors-189"><a href="#FlavorColors-189"><span class="linenos">189</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">lavender</span><span class="p">,</span>
+</span><span id="FlavorColors-190"><a href="#FlavorColors-190"><span class="linenos">190</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+</span><span id="FlavorColors-191"><a href="#FlavorColors-191"><span class="linenos">191</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext1</span><span class="p">,</span>
+</span><span id="FlavorColors-192"><a href="#FlavorColors-192"><span class="linenos">192</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">subtext0</span><span class="p">,</span>
+</span><span id="FlavorColors-193"><a href="#FlavorColors-193"><span class="linenos">193</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay2</span><span class="p">,</span>
+</span><span id="FlavorColors-194"><a href="#FlavorColors-194"><span class="linenos">194</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay1</span><span class="p">,</span>
+</span><span id="FlavorColors-195"><a href="#FlavorColors-195"><span class="linenos">195</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">overlay0</span><span class="p">,</span>
+</span><span id="FlavorColors-196"><a href="#FlavorColors-196"><span class="linenos">196</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface2</span><span class="p">,</span>
+</span><span id="FlavorColors-197"><a href="#FlavorColors-197"><span class="linenos">197</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface1</span><span class="p">,</span>
+</span><span id="FlavorColors-198"><a href="#FlavorColors-198"><span class="linenos">198</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">surface0</span><span class="p">,</span>
+</span><span id="FlavorColors-199"><a href="#FlavorColors-199"><span class="linenos">199</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">,</span>
+</span><span id="FlavorColors-200"><a href="#FlavorColors-200"><span class="linenos">200</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">mantle</span><span class="p">,</span>
+</span><span id="FlavorColors-201"><a href="#FlavorColors-201"><span class="linenos">201</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">crust</span><span class="p">,</span>
+</span><span id="FlavorColors-202"><a href="#FlavorColors-202"><span class="linenos">202</span></a>        <span class="p">]</span>
+</span><span id="FlavorColors-203"><a href="#FlavorColors-203"><span class="linenos">203</span></a>
+</span><span id="FlavorColors-204"><a href="#FlavorColors-204"><span class="linenos">204</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+</span><span id="FlavorColors-205"><a href="#FlavorColors-205"><span class="linenos">205</span></a><span class="w">        </span><span class="sd">"""Look up a color by identifier, such as `"red"` or `ColorName.RED`.</span>
+</span><span id="FlavorColors-206"><a href="#FlavorColors-206"><span class="linenos">206</span></a>
+</span><span id="FlavorColors-207"><a href="#FlavorColors-207"><span class="linenos">207</span></a><span class="sd">        Raises `KeyError` if there is no color with that identifier.</span>
+</span><span id="FlavorColors-208"><a href="#FlavorColors-208"><span class="linenos">208</span></a><span class="sd">        """</span>
+</span><span id="FlavorColors-209"><a href="#FlavorColors-209"><span class="linenos">209</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="FlavorColors-210"><a href="#FlavorColors-210"><span class="linenos">210</span></a>            <span class="n">identifier</span> <span class="o">=</span> <span class="n">ColorName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="FlavorColors-211"><a href="#FlavorColors-211"><span class="linenos">211</span></a>        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span id="FlavorColors-212"><a href="#FlavorColors-212"><span class="linenos">212</span></a>            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</span><span id="FlavorColors-213"><a href="#FlavorColors-213"><span class="linenos">213</span></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Color</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">))</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>All of the colors for a particular flavor of Catppuccin.</p>
 
 <p>Can be iterated over, in which case the colors are yielded in order.</p>
+
+<p>Colors can also be looked up by identifier, such as <code>colors["red"]</code> or
+<code>colors[ColorName.RED]</code>.</p>
 </div>
 
 
@@ -1097,29 +1222,29 @@ three flavors are dark.</p>
 
     </div>
     <a class="headerlink" href="#Color"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Color-34"><a href="#Color-34"><span class="linenos">34</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="Color-35"><a href="#Color-35"><span class="linenos">35</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">:</span>
-</span><span id="Color-36"><a href="#Color-36"><span class="linenos">36</span></a><span class="w">    </span><span class="sd">"""A single color in the Catppuccin palette."""</span>
-</span><span id="Color-37"><a href="#Color-37"><span class="linenos">37</span></a>
-</span><span id="Color-38"><a href="#Color-38"><span class="linenos">38</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Color-39"><a href="#Color-39"><span class="linenos">39</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Pink` or `Surface0`."""</span>
-</span><span id="Color-40"><a href="#Color-40"><span class="linenos">40</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Color-41"><a href="#Color-41"><span class="linenos">41</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the color. This differs from `name` in</span>
-</span><span id="Color-42"><a href="#Color-42"><span class="linenos">42</span></a><span class="sd">    that it's intended for machine usage rather than presentation."""</span>
-</span><span id="Color-43"><a href="#Color-43"><span class="linenos">43</span></a>    <span class="n">accent</span><span class="p">:</span> <span class="nb">bool</span>
-</span><span id="Color-44"><a href="#Color-44"><span class="linenos">44</span></a><span class="w">    </span><span class="sd">"""Whether the color is considered an accent color. Accent colors are the</span>
-</span><span id="Color-45"><a href="#Color-45"><span class="linenos">45</span></a><span class="sd">    first 14 colors in the palette, also called the analogous colours. The</span>
-</span><span id="Color-46"><a href="#Color-46"><span class="linenos">46</span></a><span class="sd">    remaining 12 non-accent colors are also referred to as the monochromatic</span>
-</span><span id="Color-47"><a href="#Color-47"><span class="linenos">47</span></a><span class="sd">    colors."""</span>
-</span><span id="Color-48"><a href="#Color-48"><span class="linenos">48</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="Color-49"><a href="#Color-49"><span class="linenos">49</span></a><span class="w">    </span><span class="sd">"""Order of the color in the palette spec."""</span>
-</span><span id="Color-50"><a href="#Color-50"><span class="linenos">50</span></a>    <span class="nb">hex</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="Color-51"><a href="#Color-51"><span class="linenos">51</span></a><span class="w">    </span><span class="sd">"""The color represented as a six-digit hex string with a leading hash (#)."""</span>
-</span><span id="Color-52"><a href="#Color-52"><span class="linenos">52</span></a>    <span class="n">rgb</span><span class="p">:</span> <span class="n">RGB</span>
-</span><span id="Color-53"><a href="#Color-53"><span class="linenos">53</span></a><span class="w">    </span><span class="sd">"""The color represented as individual red, green, and blue channels. (0-255)"""</span>
-</span><span id="Color-54"><a href="#Color-54"><span class="linenos">54</span></a>    <span class="n">hsl</span><span class="p">:</span> <span class="n">HSL</span>
-</span><span id="Color-55"><a href="#Color-55"><span class="linenos">55</span></a><span class="w">    </span><span class="sd">"""The color represented as individual hue (0-359), saturation (0-1), and</span>
-</span><span id="Color-56"><a href="#Color-56"><span class="linenos">56</span></a><span class="sd">    lightness (0-1) channels."""</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Color-85"><a href="#Color-85"><span class="linenos"> 85</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="Color-86"><a href="#Color-86"><span class="linenos"> 86</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Color</span><span class="p">:</span>
+</span><span id="Color-87"><a href="#Color-87"><span class="linenos"> 87</span></a><span class="w">    </span><span class="sd">"""A single color in the Catppuccin palette."""</span>
+</span><span id="Color-88"><a href="#Color-88"><span class="linenos"> 88</span></a>
+</span><span id="Color-89"><a href="#Color-89"><span class="linenos"> 89</span></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Color-90"><a href="#Color-90"><span class="linenos"> 90</span></a><span class="w">    </span><span class="sd">"""A human-readable name such as `Pink` or `Surface0`."""</span>
+</span><span id="Color-91"><a href="#Color-91"><span class="linenos"> 91</span></a>    <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Color-92"><a href="#Color-92"><span class="linenos"> 92</span></a><span class="w">    </span><span class="sd">"""The lowercase key used to identify the color. This differs from `name` in</span>
+</span><span id="Color-93"><a href="#Color-93"><span class="linenos"> 93</span></a><span class="sd">    that it's intended for machine usage rather than presentation."""</span>
+</span><span id="Color-94"><a href="#Color-94"><span class="linenos"> 94</span></a>    <span class="n">accent</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="Color-95"><a href="#Color-95"><span class="linenos"> 95</span></a><span class="w">    </span><span class="sd">"""Whether the color is considered an accent color. Accent colors are the</span>
+</span><span id="Color-96"><a href="#Color-96"><span class="linenos"> 96</span></a><span class="sd">    first 14 colors in the palette, also called the analogous colours. The</span>
+</span><span id="Color-97"><a href="#Color-97"><span class="linenos"> 97</span></a><span class="sd">    remaining 12 non-accent colors are also referred to as the monochromatic</span>
+</span><span id="Color-98"><a href="#Color-98"><span class="linenos"> 98</span></a><span class="sd">    colors."""</span>
+</span><span id="Color-99"><a href="#Color-99"><span class="linenos"> 99</span></a>    <span class="n">order</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="Color-100"><a href="#Color-100"><span class="linenos">100</span></a><span class="w">    </span><span class="sd">"""Order of the color in the palette spec."""</span>
+</span><span id="Color-101"><a href="#Color-101"><span class="linenos">101</span></a>    <span class="nb">hex</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="Color-102"><a href="#Color-102"><span class="linenos">102</span></a><span class="w">    </span><span class="sd">"""The color represented as a six-digit hex string with a leading hash (#)."""</span>
+</span><span id="Color-103"><a href="#Color-103"><span class="linenos">103</span></a>    <span class="n">rgb</span><span class="p">:</span> <span class="n">RGB</span>
+</span><span id="Color-104"><a href="#Color-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">"""The color represented as individual red, green, and blue channels. (0-255)"""</span>
+</span><span id="Color-105"><a href="#Color-105"><span class="linenos">105</span></a>    <span class="n">hsl</span><span class="p">:</span> <span class="n">HSL</span>
+</span><span id="Color-106"><a href="#Color-106"><span class="linenos">106</span></a><span class="w">    </span><span class="sd">"""The color represented as individual hue (0-359), saturation (0-1), and</span>
+</span><span id="Color-107"><a href="#Color-107"><span class="linenos">107</span></a><span class="sd">    lightness (0-1) channels."""</span>
 </span></pre></div>
 
 
@@ -1236,16 +1361,16 @@ lightness (0-1) channels.</p>
 
     </div>
     <a class="headerlink" href="#RGB"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="RGB-10"><a href="#RGB-10"><span class="linenos">10</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="RGB-11"><a href="#RGB-11"><span class="linenos">11</span></a><span class="k">class</span><span class="w"> </span><span class="nc">RGB</span><span class="p">:</span>
-</span><span id="RGB-12"><a href="#RGB-12"><span class="linenos">12</span></a><span class="w">    </span><span class="sd">"""Color represented as red, green, and blue (all 0-255)."""</span>
-</span><span id="RGB-13"><a href="#RGB-13"><span class="linenos">13</span></a>
-</span><span id="RGB-14"><a href="#RGB-14"><span class="linenos">14</span></a>    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="RGB-15"><a href="#RGB-15"><span class="linenos">15</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="RGB-16"><a href="#RGB-16"><span class="linenos">16</span></a>    <span class="n">g</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="RGB-17"><a href="#RGB-17"><span class="linenos">17</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="RGB-18"><a href="#RGB-18"><span class="linenos">18</span></a>    <span class="n">b</span><span class="p">:</span> <span class="nb">int</span>
-</span><span id="RGB-19"><a href="#RGB-19"><span class="linenos">19</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="RGB-61"><a href="#RGB-61"><span class="linenos">61</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="RGB-62"><a href="#RGB-62"><span class="linenos">62</span></a><span class="k">class</span><span class="w"> </span><span class="nc">RGB</span><span class="p">:</span>
+</span><span id="RGB-63"><a href="#RGB-63"><span class="linenos">63</span></a><span class="w">    </span><span class="sd">"""Color represented as red, green, and blue (all 0-255)."""</span>
+</span><span id="RGB-64"><a href="#RGB-64"><span class="linenos">64</span></a>
+</span><span id="RGB-65"><a href="#RGB-65"><span class="linenos">65</span></a>    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="RGB-66"><a href="#RGB-66"><span class="linenos">66</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="RGB-67"><a href="#RGB-67"><span class="linenos">67</span></a>    <span class="n">g</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="RGB-68"><a href="#RGB-68"><span class="linenos">68</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="RGB-69"><a href="#RGB-69"><span class="linenos">69</span></a>    <span class="n">b</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="RGB-70"><a href="#RGB-70"><span class="linenos">70</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
 </span></pre></div>
 
 
@@ -1305,16 +1430,16 @@ lightness (0-1) channels.</p>
 
     </div>
     <a class="headerlink" href="#HSL"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="HSL-22"><a href="#HSL-22"><span class="linenos">22</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="HSL-23"><a href="#HSL-23"><span class="linenos">23</span></a><span class="k">class</span><span class="w"> </span><span class="nc">HSL</span><span class="p">:</span>
-</span><span id="HSL-24"><a href="#HSL-24"><span class="linenos">24</span></a><span class="w">    </span><span class="sd">"""Color represented as hue (0-359), saturation (0-1), and lightness (0-1)."""</span>
-</span><span id="HSL-25"><a href="#HSL-25"><span class="linenos">25</span></a>
-</span><span id="HSL-26"><a href="#HSL-26"><span class="linenos">26</span></a>    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="HSL-27"><a href="#HSL-27"><span class="linenos">27</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="HSL-28"><a href="#HSL-28"><span class="linenos">28</span></a>    <span class="n">s</span><span class="p">:</span> <span class="nb">float</span>
-</span><span id="HSL-29"><a href="#HSL-29"><span class="linenos">29</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
-</span><span id="HSL-30"><a href="#HSL-30"><span class="linenos">30</span></a>    <span class="n">l</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># noqa: E741</span>
-</span><span id="HSL-31"><a href="#HSL-31"><span class="linenos">31</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="HSL-73"><a href="#HSL-73"><span class="linenos">73</span></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="HSL-74"><a href="#HSL-74"><span class="linenos">74</span></a><span class="k">class</span><span class="w"> </span><span class="nc">HSL</span><span class="p">:</span>
+</span><span id="HSL-75"><a href="#HSL-75"><span class="linenos">75</span></a><span class="w">    </span><span class="sd">"""Color represented as hue (0-359), saturation (0-1), and lightness (0-1)."""</span>
+</span><span id="HSL-76"><a href="#HSL-76"><span class="linenos">76</span></a>
+</span><span id="HSL-77"><a href="#HSL-77"><span class="linenos">77</span></a>    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="HSL-78"><a href="#HSL-78"><span class="linenos">78</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="HSL-79"><a href="#HSL-79"><span class="linenos">79</span></a>    <span class="n">s</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="HSL-80"><a href="#HSL-80"><span class="linenos">80</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
+</span><span id="HSL-81"><a href="#HSL-81"><span class="linenos">81</span></a>    <span class="n">l</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># noqa: E741</span>
+</span><span id="HSL-82"><a href="#HSL-82"><span class="linenos">82</span></a><span class="w">    </span><span class="sd">"""@public"""</span>
 </span></pre></div>
 
 
@@ -1361,6 +1486,80 @@ lightness (0-1) channels.</p>
 
 
                             </div>
+                </section>
+                <section id="FlavorName">
+                            <input id="FlavorName-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">FlavorName</span><wbr>(<span class="base">enum.StrEnum</span>):
+
+                <label class="view-source-button" for="FlavorName-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#FlavorName"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="FlavorName-21"><a href="#FlavorName-21"><span class="linenos">21</span></a><span class="k">class</span><span class="w"> </span><span class="nc">FlavorName</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+</span><span id="FlavorName-22"><a href="#FlavorName-22"><span class="linenos">22</span></a><span class="w">    </span><span class="sd">"""Identifiers of the flavors, in palette order."""</span>
+</span><span id="FlavorName-23"><a href="#FlavorName-23"><span class="linenos">23</span></a>
+</span><span id="FlavorName-24"><a href="#FlavorName-24"><span class="linenos">24</span></a>    <span class="n">LATTE</span> <span class="o">=</span> <span class="s2">"latte"</span>
+</span><span id="FlavorName-25"><a href="#FlavorName-25"><span class="linenos">25</span></a>    <span class="n">FRAPPE</span> <span class="o">=</span> <span class="s2">"frappe"</span>
+</span><span id="FlavorName-26"><a href="#FlavorName-26"><span class="linenos">26</span></a>    <span class="n">MACCHIATO</span> <span class="o">=</span> <span class="s2">"macchiato"</span>
+</span><span id="FlavorName-27"><a href="#FlavorName-27"><span class="linenos">27</span></a>    <span class="n">MOCHA</span> <span class="o">=</span> <span class="s2">"mocha"</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Identifiers of the flavors, in palette order.</p>
+</div>
+
+
+                </section>
+                <section id="ColorName">
+                            <input id="ColorName-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">ColorName</span><wbr>(<span class="base">enum.StrEnum</span>):
+
+                <label class="view-source-button" for="ColorName-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ColorName"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ColorName-30"><a href="#ColorName-30"><span class="linenos">30</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ColorName</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+</span><span id="ColorName-31"><a href="#ColorName-31"><span class="linenos">31</span></a><span class="w">    </span><span class="sd">"""Identifiers of the colors in a flavor, in palette order."""</span>
+</span><span id="ColorName-32"><a href="#ColorName-32"><span class="linenos">32</span></a>
+</span><span id="ColorName-33"><a href="#ColorName-33"><span class="linenos">33</span></a>    <span class="n">ROSEWATER</span> <span class="o">=</span> <span class="s2">"rosewater"</span>
+</span><span id="ColorName-34"><a href="#ColorName-34"><span class="linenos">34</span></a>    <span class="n">FLAMINGO</span> <span class="o">=</span> <span class="s2">"flamingo"</span>
+</span><span id="ColorName-35"><a href="#ColorName-35"><span class="linenos">35</span></a>    <span class="n">PINK</span> <span class="o">=</span> <span class="s2">"pink"</span>
+</span><span id="ColorName-36"><a href="#ColorName-36"><span class="linenos">36</span></a>    <span class="n">MAUVE</span> <span class="o">=</span> <span class="s2">"mauve"</span>
+</span><span id="ColorName-37"><a href="#ColorName-37"><span class="linenos">37</span></a>    <span class="n">RED</span> <span class="o">=</span> <span class="s2">"red"</span>
+</span><span id="ColorName-38"><a href="#ColorName-38"><span class="linenos">38</span></a>    <span class="n">MAROON</span> <span class="o">=</span> <span class="s2">"maroon"</span>
+</span><span id="ColorName-39"><a href="#ColorName-39"><span class="linenos">39</span></a>    <span class="n">PEACH</span> <span class="o">=</span> <span class="s2">"peach"</span>
+</span><span id="ColorName-40"><a href="#ColorName-40"><span class="linenos">40</span></a>    <span class="n">YELLOW</span> <span class="o">=</span> <span class="s2">"yellow"</span>
+</span><span id="ColorName-41"><a href="#ColorName-41"><span class="linenos">41</span></a>    <span class="n">GREEN</span> <span class="o">=</span> <span class="s2">"green"</span>
+</span><span id="ColorName-42"><a href="#ColorName-42"><span class="linenos">42</span></a>    <span class="n">TEAL</span> <span class="o">=</span> <span class="s2">"teal"</span>
+</span><span id="ColorName-43"><a href="#ColorName-43"><span class="linenos">43</span></a>    <span class="n">SKY</span> <span class="o">=</span> <span class="s2">"sky"</span>
+</span><span id="ColorName-44"><a href="#ColorName-44"><span class="linenos">44</span></a>    <span class="n">SAPPHIRE</span> <span class="o">=</span> <span class="s2">"sapphire"</span>
+</span><span id="ColorName-45"><a href="#ColorName-45"><span class="linenos">45</span></a>    <span class="n">BLUE</span> <span class="o">=</span> <span class="s2">"blue"</span>
+</span><span id="ColorName-46"><a href="#ColorName-46"><span class="linenos">46</span></a>    <span class="n">LAVENDER</span> <span class="o">=</span> <span class="s2">"lavender"</span>
+</span><span id="ColorName-47"><a href="#ColorName-47"><span class="linenos">47</span></a>    <span class="n">TEXT</span> <span class="o">=</span> <span class="s2">"text"</span>
+</span><span id="ColorName-48"><a href="#ColorName-48"><span class="linenos">48</span></a>    <span class="n">SUBTEXT1</span> <span class="o">=</span> <span class="s2">"subtext1"</span>
+</span><span id="ColorName-49"><a href="#ColorName-49"><span class="linenos">49</span></a>    <span class="n">SUBTEXT0</span> <span class="o">=</span> <span class="s2">"subtext0"</span>
+</span><span id="ColorName-50"><a href="#ColorName-50"><span class="linenos">50</span></a>    <span class="n">OVERLAY2</span> <span class="o">=</span> <span class="s2">"overlay2"</span>
+</span><span id="ColorName-51"><a href="#ColorName-51"><span class="linenos">51</span></a>    <span class="n">OVERLAY1</span> <span class="o">=</span> <span class="s2">"overlay1"</span>
+</span><span id="ColorName-52"><a href="#ColorName-52"><span class="linenos">52</span></a>    <span class="n">OVERLAY0</span> <span class="o">=</span> <span class="s2">"overlay0"</span>
+</span><span id="ColorName-53"><a href="#ColorName-53"><span class="linenos">53</span></a>    <span class="n">SURFACE2</span> <span class="o">=</span> <span class="s2">"surface2"</span>
+</span><span id="ColorName-54"><a href="#ColorName-54"><span class="linenos">54</span></a>    <span class="n">SURFACE1</span> <span class="o">=</span> <span class="s2">"surface1"</span>
+</span><span id="ColorName-55"><a href="#ColorName-55"><span class="linenos">55</span></a>    <span class="n">SURFACE0</span> <span class="o">=</span> <span class="s2">"surface0"</span>
+</span><span id="ColorName-56"><a href="#ColorName-56"><span class="linenos">56</span></a>    <span class="n">BASE</span> <span class="o">=</span> <span class="s2">"base"</span>
+</span><span id="ColorName-57"><a href="#ColorName-57"><span class="linenos">57</span></a>    <span class="n">MANTLE</span> <span class="o">=</span> <span class="s2">"mantle"</span>
+</span><span id="ColorName-58"><a href="#ColorName-58"><span class="linenos">58</span></a>    <span class="n">CRUST</span> <span class="o">=</span> <span class="s2">"crust"</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Identifiers of the colors in a flavor, in palette order.</p>
+</div>
+
+
                 </section>
     </main>
 <script>
