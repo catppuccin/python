@@ -11,16 +11,16 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - uses: "actions/checkout@v4"
-      - uses: astral-sh/setup-uv@v5
+      - uses: "actions/checkout@v7"
+      - uses: astral-sh/setup-uv@v10.3.3
         with:
-          version: "0.6.3"
+          version: "0.13.7"
           python-version: "3.13"
           enable-cache: true
           cache-dependency-glob: "uv.lock"
-      - uses: "actions/setup-node@v4"
+      - uses: "actions/setup-node@v7"
         with:
-          node-version: "latest"
+          node-version: "lts/*"
       - run: "mkdir -p gh-pages/docs/assets/ && cp assets/pepperjack.webp gh-pages/docs/assets/"
       - run: "uv sync --all-extras"
       - run: "uv run pdoc catppuccin --no-include-undocumented --favicon https://catppuccin.com/favicon.png --logo https://python.catppuccin.com/docs/assets/pepperjack.webp --logo-link /docs --template-directory pdoc --output-directory gh-pages/docs"

@@ -7,7 +7,7 @@ authors = [{ name = "backwardspy", email = "backwardspy@pigeon.life" }]
 requires-python = ">=3.11.0"
 dependencies = []
 name = "catppuccin"
-version = "3.0.0"
+version = "2.6.0"
 description = "🐍 Soothing pastel theme for Python."
 readme = "README.md"
 
@@ -17,20 +17,32 @@ catppuccin-frappe = "catppuccin.extras.pygments:FrappeStyle"
 catppuccin-macchiato = "catppuccin.extras.pygments:MacchiatoStyle"
 catppuccin-mocha = "catppuccin.extras.pygments:MochaStyle"
 
+# for ipython >=9.18
+[project.entry-points."ipython.themes"]
+catppuccin-latte = "catppuccin.extras:ipython_themes"
+catppuccin-frappe = "catppuccin.extras:ipython_themes"
+catppuccin-macchiato = "catppuccin.extras:ipython_themes"
+catppuccin-mocha = "catppuccin.extras:ipython_themes"
+"catppuccin-latte:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-frappe:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-macchiato:noitalic" = "catppuccin.extras:ipython_themes"
+"catppuccin-mocha:noitalic" = "catppuccin.extras:ipython_themes"
+
 [project.optional-dependencies]
 matplotlib = ["matplotlib>=3.11.0"]
 pygments = ["pygments>=2.17.2"]
 rich = ["rich>=13.7.0"]
+ipython = ["ipython>=9.18.0"]
 gh-pages = ["tinycss2>=1.2.1", "pdoc>=15.0.1"]
 
 [dependency-groups]
 dev = [
-  "mypy>=2.1.0",
-  "pytest>=9.1.1",
+  "mypy>=2.4.1",
+  "pytest>=9.2.0",
   "pytest-cov>=7.1.0",
-  "ruff>=0.15.20",
+  "ruff>=0.17.4",
+  "types-pygments>=2.21.0.20260819",
   "types-colorama>=0.4.15.20260508",
-  "types-pygments>=2.20.0.20260518",
 ]
 
 [tool.ruff.lint]
@@ -43,6 +55,7 @@ ignore = [
   "RUF022",  # unsorted-dunder-all, __all__ order affects documentation
   "TC006",   # runtime-cast-value, stylistic choice
   "PLC0414", # useless-import-alias, incompatible with unused-import (F401)
+  "CPY001",  # missing-copyright-notice, licence is in repo root
 ]
 
 [tool.ruff.lint.per-file-ignores]
