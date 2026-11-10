@@ -240,12 +240,9 @@ to see the documentation for that integration.</p>
 </span><span id="L-89"><a href="#L-89"><span class="linenos">89</span></a>
 </span><span id="L-90"><a href="#L-90"><span class="linenos">90</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">catppuccin.palette</span><span class="w"> </span><span class="kn">import</span> <span class="n">PALETTE</span> <span class="k">as</span> <span class="n">PALETTE</span>
 </span><span id="L-91"><a href="#L-91"><span class="linenos">91</span></a>
-</span><span id="L-92"><a href="#L-92"><span class="linenos">92</span></a><span class="c1"># Attempt to register styles and colormaps if matplotlib is available</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos">92</span></a><span class="c1"># Register colormaps if matplotlib is available</span>
 </span><span id="L-93"><a href="#L-93"><span class="linenos">93</span></a><span class="k">if</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">"matplotlib"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos">94</span></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">catppuccin.extras.matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">_register_colormap_list</span><span class="p">,</span> <span class="n">_register_styles</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos">95</span></a>
-</span><span id="L-96"><a href="#L-96"><span class="linenos">96</span></a>    <span class="n">_register_styles</span><span class="p">()</span>
-</span><span id="L-97"><a href="#L-97"><span class="linenos">97</span></a>    <span class="n">_register_colormap_list</span><span class="p">()</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos">94</span></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin.extras.matplotlib</span>  <span class="c1"># noqa: F401</span>
 </span></pre></div>
 
 

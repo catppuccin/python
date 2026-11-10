@@ -33,10 +33,7 @@
             <h2>API Documentation</h2>
                 <ul class="memberlist">
             <li>
-                    <a class="function" href="#get_colormap_from_list">get_colormap_from_list</a>
-            </li>
-            <li>
-                    <a class="function" href="#load_color">load_color</a>
+                    <a class="function" href="#style_name">style_name</a>
             </li>
     </ul>
 
@@ -64,14 +61,12 @@ for allowing this port.</p>
 See the examples below for some use cases:</p>
 
 <ol>
-<li><p>Load a style, using <code>mpl.style.use</code></p>
+<li><p>Load a style, using <code>plt.style.use</code></p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">mocha</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"catppuccin.mocha"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
@@ -80,11 +75,23 @@ See the examples below for some use cases:</p>
 <li><p>Mix it with different stylesheets!</p>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s2">"ggplot"</span><span class="p">,</span> <span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">mocha</span><span class="o">.</span><span class="n">identifier</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s2">"ggplot"</span><span class="p">,</span> <span class="s2">"catppuccin.mocha"</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+</div></li>
+
+<li><p>Pick the style from a flavor, using <code><a href="#style_name">style_name</a></code></p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn"><a href="">catppuccin.extras.matplotlib</a></span><span class="w"> </span><span class="kn">import</span> <span class="n">style_name</span>
+
+<span class="n">flavor</span> <span class="o">=</span> <span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">latte</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">style_name</span><span class="p">(</span><span class="n">flavor</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
@@ -95,10 +102,22 @@ See the examples below for some use cases:</p>
 <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn"><a href="">catppuccin.extras.matplotlib</a></span><span class="w"> </span><span class="kn">import</span> <span class="n">load_color</span>
 
-<span class="n">color</span> <span class="o">=</span> <span class="n">load_color</span><span class="p">(</span><span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">latte</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s2">"peach"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">latte</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">peach</span><span class="o">.</span><span class="n">hex</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+</div></li>
+
+<li><p>Just use the colormaps in your plots</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"catppuccin.mocha"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
 </div></li>
@@ -109,14 +128,17 @@ See the examples below for some use cases:</p>
 <pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">catppuccin</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn"><a href="">catppuccin.extras.matplotlib</a></span><span class="w"> </span><span class="kn">import</span> <span class="n">get_colormap_from_list</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearSegmentedColormap</span>
 
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">get_colormap_from_list</span><span class="p">(</span>
-    <span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">frappe</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span>
-    <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"peach"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">],</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span>
+    <span class="s2">"my_custom_palette"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="n">color</span><span class="o">.</span><span class="n">hex</span> <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">catppuccin</span><span class="o">.</span><span class="n">PALETTE</span><span class="o">.</span><span class="n">frappe</span><span class="o">.</span><span class="n">colors</span>
+        <span class="k">if</span> <span class="n">color</span><span class="o">.</span><span class="n">identifier</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"peach"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">]</span>
+    <span class="p">],</span>
 <span class="p">)</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -138,161 +160,142 @@ See the examples below for some use cases:</p>
 </span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="sd">The library tries to register styles and colormaps if `matplotlib` is installed.</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="sd">See the examples below for some use cases:</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="sd">1. Load a style, using `mpl.style.use`</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="sd">1. Load a style, using `plt.style.use`</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="sd">   ```python</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">   import catppuccin</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="sd">   import matplotlib as mpl</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="sd">   import matplotlib.pyplot as plt</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>
-</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="sd">   mpl.style.use(catppuccin.PALETTE.mocha.identifier)</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a><span class="sd">   plt.plot([0,1,2,3], [1,2,3,4])</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a><span class="sd">   plt.show()</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="sd">   ```</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="sd">    ```python</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="sd">    plt.style.use("catppuccin.mocha")</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a><span class="sd">    plt.plot([0,1,2,3], [1,2,3,4])</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a><span class="sd">    ```</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="sd">1. Mix it with different stylesheets!</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>
-</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="sd">1. Mix it with different stylesheets!</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>
-</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a><span class="sd">   ```python</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="sd">   import catppuccin</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a><span class="sd">   import matplotlib as mpl</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="sd">   import matplotlib.pyplot as plt</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a><span class="sd">   mpl.style.use(["ggplot", catppuccin.PALETTE.mocha.identifier])</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">   plt.plot([0,1,2,3], [1,2,3,4])</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="sd">   plt.show()</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">   ```</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">1. Load individual colors</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a><span class="sd">   ```python</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a><span class="sd">   import matplotlib.pyplot as plt</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="sd">   import catppuccin</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="sd">   from catppuccin.extras.matplotlib import load_color</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">   color = load_color(catppuccin.PALETTE.latte.identifier, "peach")</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">   plt.plot([0,1,2,3], [1,2,3,4], color=color)</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">   plt.show()</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">   ```</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">1. Define custom colormaps</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">   ```python</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">   import matplotlib.pyplot as plt</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">   import numpy as np</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">   import catppuccin</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">   from catppuccin.extras.matplotlib import get_colormap_from_list</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">   cmap = get_colormap_from_list(</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">       catppuccin.PALETTE.frappe.identifier,</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">       ["red", "peach", "yellow", "green"],</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">   )</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="sd">   rng = np.random.default_rng()</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="sd">   data = rng.integers(2, size=(30, 30))</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">   plt.imshow(data, cmap=cmap)</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">   plt.show()</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">   ```</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a><span class="sd">"""</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="sd">    ```python</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="sd">    plt.style.use(["ggplot", "catppuccin.mocha"])</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a><span class="sd">    plt.plot([0,1,2,3], [1,2,3,4])</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a><span class="sd">    ```</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">1. Pick the style from a flavor, using `style_name`</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">    ```python</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a><span class="sd">    import catppuccin</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="sd">    from catppuccin.extras.matplotlib import style_name</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a><span class="sd">    flavor = catppuccin.PALETTE.latte</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="sd">    plt.style.use(style_name(flavor))</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="sd">    plt.plot([0,1,2,3], [1,2,3,4])</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">    ```</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">1. Load individual colors</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">    ```python</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="sd">    import catppuccin</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">    plt.plot([0,1,2,3], [1,2,3,4], color=catppuccin.PALETTE.latte.colors.peach.hex)</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">    ```</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">1. Just use the colormaps in your plots</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">    ```python</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">    import numpy as np</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="sd">    rng = np.random.default_rng()</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="sd">    data = rng.integers(10, size=(30, 30))</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">    plt.imshow(data, cmap="catppuccin.mocha")</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a><span class="sd">    ```</span>
 </span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="sd">1. Define custom colormaps</span>
 </span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">asdict</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.style</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">catppuccin.palette</span><span class="w"> </span><span class="kn">import</span> <span class="n">PALETTE</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="n">CATPPUCCIN_STYLE_DIRECTORY</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"matplotlib_styles"</span>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="n">DEFAULT_COLORMAP_COLORS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"base"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">)</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="sd">    ```python</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="sd">    import matplotlib.pyplot as plt</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="sd">    import numpy as np</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a><span class="sd">    import catppuccin</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="sd">    from matplotlib.colors import LinearSegmentedColormap</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="sd">    cmap = LinearSegmentedColormap.from_list(</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="sd">        "my_custom_palette",</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a><span class="sd">        [</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a><span class="sd">            color.hex for color in catppuccin.PALETTE.frappe.colors</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="sd">            if color.identifier in ["red", "peach", "yellow", "green"]</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a><span class="sd">        ],</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="sd">    )</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="sd">    rng = np.random.default_rng()</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="sd">    data = rng.integers(10, size=(30, 30))</span>
 </span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a><span class="k">def</span><span class="w"> </span><span class="nf">_register_styles</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="w">    </span><span class="sd">"""Register the included stylesheets in the mpl style library."""</span>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">CATPPUCCIN_STYLE_DIRECTORY</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"*.mplstyle"</span><span class="p">):</span>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>        <span class="n">style</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_params_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">use_default_template</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>        <span class="n">mpl</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">library</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">stem</span><span class="p">,</span> <span class="n">mpl</span><span class="o">.</span><span class="n">RcParams</span><span class="p">())</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="sd">    plt.imshow(data, cmap=cmap)</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a><span class="sd">    plt.show()</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="sd">    ```</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a><span class="sd">"""</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 </span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="k">def</span><span class="w"> </span><span class="nf">_register_colormap_list</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="w">    </span><span class="sd">"""Register the included color maps in the `matplotlib` colormap library."""</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>    <span class="k">for</span> <span class="n">palette_name</span> <span class="ow">in</span> <span class="n">asdict</span><span class="p">(</span><span class="n">PALETTE</span><span class="p">):</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>        <span class="n">cmap</span> <span class="o">=</span> <span class="n">get_colormap_from_list</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">DEFAULT_COLORMAP_COLORS</span><span class="p">)</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="n">mpl</span><span class="o">.</span><span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.colors</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">catppuccin.palette</span><span class="w"> </span><span class="kn">import</span> <span class="n">PALETTE</span>
 </span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="k">def</span><span class="w"> </span><span class="nf">get_colormap_from_list</span><span class="p">(</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>    <span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>    <span class="n">color_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">:</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="w">    </span><span class="sd">"""Get a `matplotlib` colormap from a list of colors for a specific palette."""</span>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_color</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">color_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">color_name</span> <span class="ow">in</span> <span class="n">color_names</span><span class="p">]</span>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>    <span class="k">return</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">catppuccin.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flavor</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="n">DEFAULT_COLORMAP_COLORS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"teal"</span><span class="p">,</span> <span class="s2">"yellow"</span><span class="p">,</span> <span class="s2">"peach"</span><span class="p">,</span> <span class="s2">"red"</span><span class="p">)</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="k">def</span><span class="w"> </span><span class="nf">style_name</span><span class="p">(</span><span class="n">flavor</span><span class="p">:</span> <span class="n">Flavor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="w">    </span><span class="sd">"""Name of the matplotlib style for a flavor, for use with `plt.style.use`.</span>
 </span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="k">def</span><span class="w"> </span><span class="nf">load_color</span><span class="p">(</span><span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">color_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="w">    </span><span class="sd">"""Load the color for a given palette and color name."""</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>        <span class="nb">str</span><span class="p">,</span>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="n">PALETTE</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">palette_name</span><span class="p">)</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">color_name</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="p">)</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a><span class="sd">    The flavor's colormap is registered under the same name.</span>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">    """</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"catppuccin.</span><span class="si">{</span><span class="n">flavor</span><span class="o">.</span><span class="n">identifier</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a><span class="c1"># Register the included color maps in the `matplotlib` colormap library.</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a><span class="k">for</span> <span class="n">_palette</span> <span class="ow">in</span> <span class="n">PALETTE</span><span class="p">:</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>    <span class="n">_cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>        <span class="n">style_name</span><span class="p">(</span><span class="n">_palette</span><span class="p">),</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>        <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">_palette</span><span class="o">.</span><span class="n">colors</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">DEFAULT_COLORMAP_COLORS</span><span class="p">],</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>    <span class="p">)</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>    <span class="n">mpl</span><span class="o">.</span><span class="n">colormaps</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">_cmap</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="get_colormap_from_list">
-                            <input id="get_colormap_from_list-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="style_name">
+                            <input id="style_name-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">get_colormap_from_list</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="n">color_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span>:</span></span>
+        <span class="name">style_name</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">flavor</span><span class="p">:</span> <span class="n"><a href="../models.html#Flavor">catppuccin.models.Flavor</a></span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
-                <label class="view-source-button" for="get_colormap_from_list-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="style_name-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#get_colormap_from_list"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_colormap_from_list-100"><a href="#get_colormap_from_list-100"><span class="linenos">100</span></a><span class="k">def</span><span class="w"> </span><span class="nf">get_colormap_from_list</span><span class="p">(</span>
-</span><span id="get_colormap_from_list-101"><a href="#get_colormap_from_list-101"><span class="linenos">101</span></a>    <span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="get_colormap_from_list-102"><a href="#get_colormap_from_list-102"><span class="linenos">102</span></a>    <span class="n">color_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-</span><span id="get_colormap_from_list-103"><a href="#get_colormap_from_list-103"><span class="linenos">103</span></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">:</span>
-</span><span id="get_colormap_from_list-104"><a href="#get_colormap_from_list-104"><span class="linenos">104</span></a><span class="w">    </span><span class="sd">"""Get a `matplotlib` colormap from a list of colors for a specific palette."""</span>
-</span><span id="get_colormap_from_list-105"><a href="#get_colormap_from_list-105"><span class="linenos">105</span></a>    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_color</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">color_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">color_name</span> <span class="ow">in</span> <span class="n">color_names</span><span class="p">]</span>
-</span><span id="get_colormap_from_list-106"><a href="#get_colormap_from_list-106"><span class="linenos">106</span></a>    <span class="k">return</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+    <a class="headerlink" href="#style_name"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="style_name-105"><a href="#style_name-105"><span class="linenos">105</span></a><span class="k">def</span><span class="w"> </span><span class="nf">style_name</span><span class="p">(</span><span class="n">flavor</span><span class="p">:</span> <span class="n">Flavor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="style_name-106"><a href="#style_name-106"><span class="linenos">106</span></a><span class="w">    </span><span class="sd">"""Name of the matplotlib style for a flavor, for use with `plt.style.use`.</span>
+</span><span id="style_name-107"><a href="#style_name-107"><span class="linenos">107</span></a>
+</span><span id="style_name-108"><a href="#style_name-108"><span class="linenos">108</span></a><span class="sd">    The flavor's colormap is registered under the same name.</span>
+</span><span id="style_name-109"><a href="#style_name-109"><span class="linenos">109</span></a><span class="sd">    """</span>
+</span><span id="style_name-110"><a href="#style_name-110"><span class="linenos">110</span></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"catppuccin.</span><span class="si">{</span><span class="n">flavor</span><span class="o">.</span><span class="n">identifier</span><span class="si">}</span><span class="s2">"</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Get a <code>matplotlib</code> colormap from a list of colors for a specific palette.</p>
-</div>
+            <div class="docstring"><p>Name of the matplotlib style for a flavor, for use with <code>plt.style.use</code>.</p>
 
-
-                </section>
-                <section id="load_color">
-                            <input id="load_color-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">load_color</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">color_name</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
-
-                <label class="view-source-button" for="load_color-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#load_color"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="load_color-109"><a href="#load_color-109"><span class="linenos">109</span></a><span class="k">def</span><span class="w"> </span><span class="nf">load_color</span><span class="p">(</span><span class="n">palette_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">color_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="load_color-110"><a href="#load_color-110"><span class="linenos">110</span></a><span class="w">    </span><span class="sd">"""Load the color for a given palette and color name."""</span>
-</span><span id="load_color-111"><a href="#load_color-111"><span class="linenos">111</span></a>    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-</span><span id="load_color-112"><a href="#load_color-112"><span class="linenos">112</span></a>        <span class="nb">str</span><span class="p">,</span>
-</span><span id="load_color-113"><a href="#load_color-113"><span class="linenos">113</span></a>        <span class="n">PALETTE</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">palette_name</span><span class="p">)</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">color_name</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span>
-</span><span id="load_color-114"><a href="#load_color-114"><span class="linenos">114</span></a>    <span class="p">)</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>Load the color for a given palette and color name.</p>
+<p>The flavor's colormap is registered under the same name.</p>
 </div>
 
 
